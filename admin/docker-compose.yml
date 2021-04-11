@@ -1,0 +1,41 @@
+version: "3.2"
+services:
+  lisa-db-postgres:
+    image: postgres:13
+    container_name: lisa-db-postgres
+    env_file:
+      - ./env/dev/postgres.env
+    volumes:
+      - lisa-db-postgres-pgdata:/var/lib/postgresql/data
+      - ./src/init.sql:/docker-entrypoint-initdb.d/00-init.sql:ro
+
+    networks:
+      - lisa-db-admin
+    ports:
+      - "8056:8056"
+    command: -p 8056
+
+  lisa-db-directus-redis:
+    image: redis:6.2-alpine
+    container_name: lisa-db-directus-redis
+    networks:
+      - lisa-db-admin
+
+  lisa-db-directus:
+    image: directus/directus:v9.0.0-rc.56
+    container_name: lisa-db-directus
+    ports:
+      - "8055:8055"
+    env_file:
+      - ./env/dev/directus.env
+    networks:
+      - lisa-db-admin
+    depends_on:
+      - lisa-db-postgres
+      - lisa-db-directus-redis
+
+networks:
+  lisa-db-admin:
+
+volumes:
+  lisa-db-postgres-pgdata:
