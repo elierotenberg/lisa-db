@@ -2,14 +2,8 @@ import { promises } from "fs";
 
 import open from "open";
 import fastify from "fastify";
-import { google, Auth, sheets_v4 } from "googleapis";
-import {
-  isNotNull,
-  isNotUndefined,
-  isOneOf,
-  isRecordOfType,
-  isString,
-} from "typed-assert";
+import { google, Auth } from "googleapis";
+import { isOneOf, isRecordOfType, isString } from "typed-assert";
 import { pick } from "typed-utilities";
 
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
@@ -73,27 +67,15 @@ export const createGoogleAuth = async (
   const tokens = JSON.parse(
     await promises.readFile(tokensFile, { encoding: "utf8" }),
   );
+  if (tokens.expiry_date < Date.now()) {
+    throw new Error(
+      "Tokens expired. Please run npm run script dev:cli:tokens.",
+    );
+  }
   const oauth2Client = new google.auth.OAuth2(
     pick(config, ["clientId", "clientSecret", "redirectUri"]),
   );
   oauth2Client.setCredentials(tokens);
 
   return oauth2Client;
-};
-
-export const parseSpreadSheet = (
-  value: sheets_v4.Schema$ValueRange,
-): Record<string, unknown>[] => {
-  isNotNull(value.values);
-  isNotUndefined(value.values);
-  const [head, ...rows] = value.values as unknown[][];
-  return rows.map((row) =>
-    head.reduce<Record<string, unknown>>(
-      (prev: Record<string, unknown>, label, key) => ({
-        ...prev,
-        [`${label}`]: row[key],
-      }),
-      {},
-    ),
-  );
 };

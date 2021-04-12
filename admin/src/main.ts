@@ -1,12 +1,13 @@
-import { join } from "path";
+import { resolve } from "path";
 
-import pgPromise from "pg-promise";
+import { Pool } from "pg";
 import { isNotNull, isString } from "typed-assert";
 import yargs from "yargs";
 
 import { readFromEnv } from "./lib/Config";
 import { createGoogleAuth, promptTokens } from "./lib/Google";
-import { importFromGoogleSheets } from "./scripts/importFromGoogleSheets";
+import { downloadSpreadSheets } from "./scripts/download-spreadsheets";
+import { upsertData } from "./scripts/upsert-data";
 
 if (require.main !== module) {
   console.error("not the main module");
@@ -18,35 +19,47 @@ const main = async (): Promise<void> => {
   const command = argv._[0];
 
   const config = await readFromEnv();
-  const pgp = pgPromise();
+  const dbPool = new Pool({
+    host: config.postgres.host,
+    port: config.postgres.port,
+    user: config.postgres.user,
+    database: config.postgres.db,
+    password: config.postgres.password,
+    application_name: `@lisa-db/admin:cli`,
+  });
 
   try {
     if (command === "tokens") {
       const outFile = argv.outFile;
       isString(outFile);
-      await promptTokens(config.googleapis, join(process.cwd(), outFile));
-    } else if (command === "import-from-google-sheets") {
+      await promptTokens(config.googleapis, resolve(process.cwd(), outFile));
+      return;
+    }
+    if (command === "download-spreadsheets") {
+      const { outFolder } = argv;
+      isString(outFolder);
       isNotNull(config.googleapis.tokensFile);
       const googleAuth = await createGoogleAuth(
         config.googleapis,
         config.googleapis.tokensFile,
       );
-      const db = pgp({
-        application_name: "@lisa-db/admin",
-        host: config.postgres.host,
-        port: config.postgres.port,
-        user: config.postgres.user,
-        password: config.postgres.password,
-        database: config.postgres.db,
-        idleTimeoutMillis: 100,
-      });
-      await db.connect();
-      await importFromGoogleSheets(googleAuth, db);
-    } else {
-      console.error(new TypeError(`Invalid command: ${command}`));
+      await downloadSpreadSheets(googleAuth, resolve(process.cwd(), outFolder));
+      return;
     }
+    if (command === "upsert-data") {
+      const { inFolder } = argv;
+      isString(inFolder);
+      const db = await dbPool.connect();
+      try {
+        await upsertData(db, inFolder);
+      } finally {
+        db.release();
+      }
+      return;
+    }
+    console.error(new TypeError(`Invalid command: ${command}`));
   } finally {
-    pgp.end();
+    await dbPool.end();
   }
   process.exit(0);
 };
