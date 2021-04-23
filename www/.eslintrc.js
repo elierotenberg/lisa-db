@@ -1,50 +1,73 @@
 module.exports = {
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: "module",
-    ecmaFeatures: {
-      jsx: true,
-    },
-  },
-  settings: {
-    react: {
-      version: "detect",
-    },
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"],
-    },
-  },
+  root: true,
+  parser: `@typescript-eslint/parser`,
   extends: [
-    "plugin:mdx/recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
+    `plugin:@typescript-eslint/recommended`,
+    `plugin:react/recommended`,
+    `prettier`,
+    `plugin:prettier/recommended`,
+    `plugin:import/errors`,
+    `plugin:import/warnings`,
+    `plugin:import/typescript`,
   ],
-  overrides: [
-    {
-      files: ["*.md"],
-      rules: {
-        "prettier/prettier": [
-          2,
-          {
-            parser: "markdown",
-          },
-        ],
-      },
+  settings: {
+    "import/parsers": {
+      "@typescript-eslint/parser": [`.ts`, `.d.ts`, `.tsx`],
     },
-    {
-      files: ["*.mdx"],
-      extends: ["plugin:mdx/overrides"],
+    "react": {
+      version: `detect`,
     },
-  ],
+  },
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: `module`,
+    jsx: true,
+  },
   rules: {
-    "import/order": "warn",
-    "react/display-name": "off",
-    "react/prop-types": "off",
+    "prettier/prettier": [
+      1,
+      { trailingComma: `all`, endOfLine: `auto`, quoteProps: `consistent` },
+    ],
+    "no-unused-vars": `off`,
+    "@typescript-eslint/no-unused-vars": [
+      1,
+      { argsIgnorePattern: `^_`, varsIgnorePattern: `^_` },
+    ],
+    "@typescript-eslint/naming-convention": [
+      `error`,
+      {
+        selector: `variableLike`,
+        format: [`strictCamelCase`, `UPPER_CASE`, `StrictPascalCase`],
+        leadingUnderscore: `allow`,
+      },
+    ],
+    "@typescript-eslint/explicit-function-return-type": [
+      1,
+      {
+        allowExpressions: true,
+        allowTypedFunctionExpressions: true,
+      },
+    ],
+    "@typescript-eslint/quotes": [1, `backtick`],
+    "prettier/quote-props": 0,
+    "quote-props": [1, `consistent-as-needed`],
+    "object-shorthand": [1, `always`],
+    "import/order": [
+      1,
+      {
+        "groups": [
+          `builtin`,
+          `external`,
+          `internal`,
+          `parent`,
+          `sibling`,
+          `index`,
+        ],
+        "newlines-between": `always`,
+      },
+    ],
+    "react/prop-types": 0, // until https://github.com/yannickcr/eslint-plugin-react/issues/2654 is resolved
+    "react/display-name": 0,
+    "react/react-in-jsx-scope": 0,
   },
 };

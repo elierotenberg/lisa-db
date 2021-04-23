@@ -1,18 +1,25 @@
-import React, { Fragment, FunctionComponent } from "react";
-import Head from "next/head";
-import { Redirect } from "../components/Redirect/Redirect";
-import { to } from "../lib/Paths";
-import { defaultLocale } from "../lib/Locales";
+import { ServerInfo } from "@directus/sdk";
+import { GetStaticProps } from "next";
+import { FunctionComponent } from "react";
 
-const IndexPage: FunctionComponent = () => {
-  return (
-    <Fragment>
-      <Head>
-        <title>LISA</title>
-      </Head>
-      <Redirect href={to.locale(defaultLocale)} />
-    </Fragment>
-  );
+import { getDirectusFromEnv } from "../lib/Directus";
+
+type IndexPageProps = {
+  readonly info: ServerInfo;
+};
+
+const IndexPage: FunctionComponent<IndexPageProps> = ({ info }) => (
+  <div>{JSON.stringify(info)}</div>
+);
+
+export const getStaticProps: GetStaticProps<IndexPageProps> = async () => {
+  const directus = await getDirectusFromEnv();
+  const info = await directus.server.info();
+  return {
+    props: {
+      info,
+    },
+  };
 };
 
 export default IndexPage;
