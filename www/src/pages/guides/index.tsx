@@ -18,7 +18,7 @@ export const getStaticProps: GetStaticProps<GuidesIndexPageProps> = async () => 
 
   return {
     props: {
-      guides: (await directus.items(`guides`).readMany()).data,
+      guides: (await directus.items(`guide`).readMany()).data,
     },
   };
 };

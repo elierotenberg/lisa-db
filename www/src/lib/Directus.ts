@@ -12,6 +12,8 @@ export const getDirectusFromEnv = async (): Promise<Directus<Collections>> => {
     const LISA_DB_API_PASSWORD = process.env.LISA_DB_API_PASSWORD;
     const directus = new Directus<Collections>(LISA_DB_API_HOST);
 
+    _directus = Promise.resolve(directus);
+
     _directus = directus.auth
       .login({ email: LISA_DB_API_EMAIL, password: LISA_DB_API_PASSWORD })
       .then(() => directus);
