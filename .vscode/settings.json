@@ -11,11 +11,15 @@
   },
   "eslint.workingDirectories": [
     {
-      "directory": "www",
+      "directory": "admin",
       "changeProcessCWD": true
     },
     {
-      "directory": "admin",
+      "directory": "client-gen",
+      "changeProcessCWD": true
+    },
+    {
+      "directory": "www",
       "changeProcessCWD": true
     }
   ],
