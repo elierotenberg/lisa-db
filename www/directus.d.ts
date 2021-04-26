@@ -2,7 +2,6 @@ export interface Accommodation {
   accommodation_id: number;
   name: string;
   description?: string;
-  accommodation_index?: number;
 }
 
 export interface AccommodationResearchEvidence {
@@ -25,14 +24,15 @@ export interface AssessmentReference {
 
 export interface AssessmentReferenceAuthor {
   assessment_reference_id: number;
-  author_id: number;
+  author_first_initial: string;
+  author_middle_initial: string;
+  author_surname: string;
   rank?: number;
 }
 
 export interface Author {
-  author_id: number;
-  first_initial?: string;
-  middle_initial?: string;
+  first_initial: string;
+  middle_initial: string;
   surname: string;
 }
 
@@ -66,8 +66,8 @@ export interface Disorder {
   name: string;
   disorder_category_id?: number;
   disorder_subcategory_id?: number;
-  icd_9_cm?: number;
-  icd_10_cm?: number;
+  icd_9_cm?: string;
+  icd_10_cm?: string;
 }
 
 export interface DisorderAccommodation {
@@ -107,7 +107,9 @@ export interface DisorderReference {
 
 export interface DisorderReferenceAuthor {
   disorder_reference_id: number;
-  author_id: number;
+  author_first_initial: string;
+  author_middle_initial: string;
+  author_surname: string;
   rank?: number;
 }
 
@@ -131,7 +133,6 @@ export interface Guide {
   title: string;
   link: string;
   publisher: string;
-  guide_type_id: number;
   guide_reference_id?: number;
 }
 
@@ -146,7 +147,9 @@ export interface GuideAudience {
 }
 
 export interface GuideAuthor {
-  author_id: number;
+  author_first_initial: string;
+  author_middle_initial: string;
+  author_surname: string;
   guide_id: number;
   rank?: number;
 }
@@ -158,6 +161,11 @@ export interface GuideDisorder {
 
 export interface GuideDisorderCategory {
   disorder_category_id: number;
+  guide_id: number;
+}
+
+export interface GuideGuideType {
+  guide_type_id: number;
   guide_id: number;
 }
 
@@ -183,21 +191,10 @@ export interface GuideType {
   name: string;
 }
 
-export interface Icd10Cm {
-  icd_10_cm_id: number;
-  code: string;
-}
-
-export interface Icd9Cm {
-  icd_9_cm_id: number;
-  code: string;
-}
-
 export interface Intervention {
   intervention_id: number;
   name?: string;
   description?: string;
-  intervention_index?: number;
 }
 
 export interface InterventionResearchEvidence {
@@ -207,23 +204,27 @@ export interface InterventionResearchEvidence {
 
 export interface LanguageSource {
   language_source_id: number;
+  name: string;
 }
 
 export interface NeutralConstruct {
-  neutral_construct_id: number;
   name: string;
 }
 
 export interface Question {
   question_id: number;
-  questionnaire_id: number;
+  questionnaire_id?: number;
   paper_instruction_preamble?: string;
   digital_instruction_preamble?: string;
   paper_instruction?: string;
   digital_instruction?: string;
   question_context: string;
+  response_option?: string;
+}
+
+export interface QuestionResponseType {
   response_type_id: number;
-  response_option_id?: number;
+  question_id: number;
 }
 
 export interface Questionnaire {
@@ -237,11 +238,18 @@ export interface Questionnaire {
   number_of_questions?: number;
   minutes_to_complete?: number;
   license_id: number;
-  assessment_reference_id?: number;
+  language_source_id: number;
+}
+
+export interface QuestionnaireAssessmentReference {
+  assessment_reference_id: number;
+  questionnaire_id: number;
 }
 
 export interface QuestionnaireAuthor {
-  author_id: number;
+  author_first_initial: string;
+  author_middle_initial: string;
+  author_surname: string;
   questionnaire_id: number;
   rank?: number;
 }
@@ -256,7 +264,7 @@ export interface QuestionnaireDisorderCategory {
   disorder_category_id: number;
 }
 
-export interface QuestionnaireLanguageSource {
+export interface QuestionnaireLanguageNotMhdb {
   questionnaire_id: number;
   language_source_id: number;
 }
@@ -284,15 +292,6 @@ export interface ResearchEvidence {
 export interface ResourcePeopleAudience {
   audience_id: number;
   person: string;
-}
-
-export interface Respondent {
-  respondent_id: number;
-}
-
-export interface ResponseOption {
-  response_option_id: number;
-  option_context: string;
 }
 
 export interface ResponseType {
@@ -325,7 +324,7 @@ export interface SignSymptomIntervention {
 
 export interface SignSymptomNeutralConstruct {
   sign_symptom_id: number;
-  neutral_construct_id: number;
+  name: string;
 }
 
 export interface SignSymptomTechnology {
@@ -341,10 +340,6 @@ export interface SignSymptomwithExample {
 export interface StateDomainBehaviour {
   behaviour_id: number;
   behaviour: string;
-}
-
-export interface Subject {
-  subject_id: number;
 }
 
 export interface Task {
@@ -396,29 +391,28 @@ export type Collections = {
   guide_author: GuideAuthor;
   guide_disorder: GuideDisorder;
   guide_disorder_category: GuideDisorderCategory;
+  guide_guide_type: GuideGuideType;
   guide_intervention: GuideIntervention;
   guide_reference: GuideReference;
   guide_technology: GuideTechnology;
   guide_type: GuideType;
-  icd_10_cm: Icd10Cm;
-  icd_9_cm: Icd9Cm;
   intervention: Intervention;
   intervention_research_evidence: InterventionResearchEvidence;
   language_source: LanguageSource;
   neutral_construct: NeutralConstruct;
   question: Question;
+  question_response_type: QuestionResponseType;
   questionnaire: Questionnaire;
+  questionnaire_assessment_reference: QuestionnaireAssessmentReference;
   questionnaire_author: QuestionnaireAuthor;
   questionnaire_disorder: QuestionnaireDisorder;
   questionnaire_disorder_category: QuestionnaireDisorderCategory;
-  questionnaire_language_source: QuestionnaireLanguageSource;
+  questionnaire_language_not_mhdb: QuestionnaireLanguageNotMhdb;
   questionnaire_respondent: QuestionnaireRespondent;
   questionnaire_sign_symptom: QuestionnaireSignSymptom;
   questionnaire_subject: QuestionnaireSubject;
   research_evidence: ResearchEvidence;
   resource_people_audience: ResourcePeopleAudience;
-  respondent: Respondent;
-  response_option: ResponseOption;
   response_type: ResponseType;
   sign_symptom: SignSymptom;
   sign_symptom_accommodation: SignSymptomAccommodation;
@@ -428,7 +422,6 @@ export type Collections = {
   sign_symptom_technology: SignSymptomTechnology;
   sign_symptom_with_example: SignSymptomwithExample;
   state_domain_behaviour: StateDomainBehaviour;
-  subject: Subject;
   task: Task;
   technology: Technology;
   technology_research_evidence: TechnologyResearchEvidence;
