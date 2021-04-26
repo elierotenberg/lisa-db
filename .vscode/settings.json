@@ -4,22 +4,24 @@
   "editor.tabSize": 2,
   "emmet.showAbbreviationSuggestions": false,
   "emmet.showExpandedAbbreviation": "never",
-  "emmet.excludeLanguages": [
-    "typescript",
-    "javascript",
-  ],
+  "emmet.excludeLanguages": ["typescript", "javascript"],
   "eslint.packageManager": "npm",
   "eslint.options": {
     "extensions": [".js", ".jsx", ".md", ".mdx", ".ts", ".tsx"]
   },
   "eslint.workingDirectories": [
     {
-      "directory": ".",
+      "directory": "www",
+      "changeProcessCWD": true
+    },
+    {
+      "directory": "admin",
       "changeProcessCWD": true
     }
   ],
   "eslint.lintTask.enable": true,
   "files.associations": {
+    "*.sql": "sql",
     "*.d.ts": "typescript"
   },
   "files.autoSave": "off",
@@ -35,8 +37,12 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "pgFormatter.placeholder": "\\$\\{.*\\}",
+  "pgFormatter.noGrouping": true,
+  "pgFormatter.commaBreak": true,
   "editor.suggest.showSnippets": false,
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.snippetSuggestions": "none",
-  "editor.wordWrap": "on"
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true
 }

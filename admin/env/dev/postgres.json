@@ -1,0 +1,7 @@
+{
+  "host": "localhost",
+  "port": "8056",
+  "user": "lisa-db-dev-user",
+  "password": "lisa-db-dev-password",
+  "db": "lisa-db-dev-db"
+}
