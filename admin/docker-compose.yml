@@ -22,7 +22,7 @@ services:
       - lisa-db-admin
 
   lisa-db-directus:
-    image: directus/directus:v9.0.0-rc.56
+    image: directus/directus:v9.0.0-rc.61
     container_name: lisa-db-directus
     ports:
       - "8055:8055"
