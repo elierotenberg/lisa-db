@@ -12,7 +12,9 @@
     "dev:cli": "POSTGRES_JSON_FILE=env/dev/postgres.json GOOGLEAPIS_OAUTH_SECRETS_JSON_FILE=env/dev/googleapis.oauth.secrets.json GOOGLEAPIS_TOKENS_JSON_FILE=env/dev/tokens.secret.json ts-node src/main.ts",
     "dev:cli:tokens": "npm run dev:cli -- tokens --outFile env/dev/tokens.secret.json",
     "dev:cli:download-spreadsheets": "npm run dev:cli -- download-spreadsheets --outFolder data",
-    "dev:cli:upsert-data": "npm run dev:cli -- upsert-data --inFolder data"
+    "dev:cli:upsert-data": "npm run dev:cli -- upsert-data --inFolder data",
+    "prod:cli": "POSTGRES_JSON_FILE=env/production/postgres.json GOOGLEAPIS_OAUTH_SECRETS_JSON_FILE=env/production/googleapis.oauth.secrets.json GOOGLEAPIS_TOKENS_JSON_FILE=env/production/tokens.secret.json ts-node src/main.ts",
+    "prod:cli:upsert-data": "npm run prod:cli -- upsert-data --inFolder data"
   },
   "repository": {
     "type": "git",
