@@ -207,6 +207,56 @@ export interface LanguageSource {
   name: string;
 }
 
+export interface LisaDomain {
+  domain_id: string;
+}
+
+export interface LisaDomainLocale {
+  domain_id: string;
+  locale_id: string;
+  name: string;
+  description: string;
+}
+
+export interface LisaGuide {
+  lisa_guide_id: string;
+}
+
+export interface LisaGuideLocale {
+  lisa_guide_id: string;
+  locale_id: string;
+  name?: string;
+  description?: string;
+}
+
+export interface LisaSubdomain {
+  subdomain_id: string;
+  domain_id: string;
+}
+
+export interface LisaSubdomainGuide {
+  subdomain_id: string;
+  lisa_guide_id: string;
+  rank: number;
+}
+
+export interface LisaSubdomainGuideLocale {
+  rank: number;
+  locale_id: string;
+}
+
+export interface LisaSubdomainLocale {
+  subdomain_id: string;
+  locale_id: string;
+  name: string;
+  description: string;
+}
+
+export interface Locale {
+  locale_id: string;
+  name: string;
+}
+
 export interface NeutralConstruct {
   name: string;
 }
@@ -399,6 +449,15 @@ export type Collections = {
   intervention: Intervention;
   intervention_research_evidence: InterventionResearchEvidence;
   language_source: LanguageSource;
+  lisa_domain: LisaDomain;
+  lisa_domain_locale: LisaDomainLocale;
+  lisa_guide: LisaGuide;
+  lisa_guide_locale: LisaGuideLocale;
+  lisa_subdomain: LisaSubdomain;
+  lisa_subdomain_guide: LisaSubdomainGuide;
+  lisa_subdomain_guide_locale: LisaSubdomainGuideLocale;
+  lisa_subdomain_locale: LisaSubdomainLocale;
+  locale: Locale;
   neutral_construct: NeutralConstruct;
   question: Question;
   question_response_type: QuestionResponseType;

@@ -21,7 +21,7 @@ export const extractData = <T>({ data }: { readonly data: T }): T => data;
 
 export const asNonPartial = <T>(data: PartialItem<T>): T => data as T;
 
-export const extractDataAsNonPartialMany = <T>({
+export const asNonPartialMany = <T>({
   data,
 }: {
   readonly data: PartialItem<T>[];
