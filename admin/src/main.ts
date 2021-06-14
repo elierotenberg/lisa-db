@@ -15,7 +15,7 @@ if (require.main !== module) {
 }
 
 const main = async (): Promise<void> => {
-  const argv = yargs.argv;
+  const argv = await yargs.argv;
   const command = argv._[0];
 
   const config = await readFromEnv();
