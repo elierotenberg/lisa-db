@@ -1,3 +1,5 @@
+BEGIN;
+
 -- URLs now take type text
 -- not null all checked
 -- no abbrevations in names
@@ -457,4 +459,6 @@ CREATE TABLE behaviour_questionnaire (
   behaviour_id int REFERENCES state_domain_behaviour (behaviour_id) ON UPDATE CASCADE ON DELETE CASCADE,
   PRIMARY KEY (questionnaire_id, behaviour_id)
 );
+
+COMMIT;
 
