@@ -1,487 +1,6779 @@
-export interface Accommodation {
-  accommodation_id: number;
-  name: string;
-  description?: string;
-}
-
-export interface AccommodationResearchEvidence {
-  accommodation_id: number;
-  research_evidence_id: number;
-}
-
-export interface Alias {
-  alias_id: number;
-  task_id?: number;
-  name: string;
-}
-
-export interface AssessmentReference {
-  assessment_reference_id: number;
-  title: string;
-  link?: string;
-  pub_med_id?: number;
-}
-
-export interface AssessmentReferenceAuthor {
-  assessment_reference_id: number;
-  author_first_initial: string;
-  author_middle_initial: string;
-  author_surname: string;
-  rank?: number;
-}
-
-export interface Author {
-  first_initial: string;
-  middle_initial: string;
-  surname: string;
-}
-
-export interface BehaviourAccommodation {
-  accommodation_id: number;
-  behaviour_id: number;
-}
-
-export interface BehaviourGuide {
-  guide_id: number;
-  behaviour_id: number;
-}
-
-export interface BehaviourIntervention {
-  intervention_id: number;
-  behaviour_id: number;
-}
-
-export interface BehaviourQuestionnaire {
-  questionnaire_id: number;
-  behaviour_id: number;
-}
-
-export interface BehaviourTechnology {
-  technology_id: number;
-  behaviour_id: number;
-}
-
-export interface Disorder {
-  disorder_id: number;
-  name: string;
-  disorder_category_id?: number;
-  disorder_subcategory_id?: number;
-  icd_9_cm?: string;
-  icd_10_cm?: string;
-}
-
-export interface DisorderAccommodation {
-  accommodation_id: number;
-  disorder_id: number;
-}
-
-export interface DisorderCategory {
-  disorder_category_id: number;
-  name: string;
-}
-
-export interface DisorderCategoryAccommodation {
-  accommodation_id: number;
-  disorder_category_id: number;
-}
-
-export interface DisorderCategoryIntervention {
-  intervention_id: number;
-  disorder_category_id: number;
-}
-
-export interface DisorderCategoryTechnology {
-  technology_id: number;
-  disorder_category_id: number;
-}
-
-export interface DisorderIntervention {
-  intervention_id: number;
-  disorder_id: number;
-}
-
-export interface DisorderReference {
-  disorder_reference_id: number;
-  title: string;
-}
-
-export interface DisorderReferenceAuthor {
-  disorder_reference_id: number;
-  author_first_initial: string;
-  author_middle_initial: string;
-  author_surname: string;
-  rank?: number;
-}
-
-export interface DisorderSignSymptom {
-  disorder_id: number;
-  sign_symptom_id: number;
-}
-
-export interface DisorderSubcategory {
-  disorder_subcategory_id: number;
-  name: string;
-}
-
-export interface DisorderTechnology {
-  technology_id: number;
-  disorder_id: number;
-}
-
-export interface Guide {
-  guide_id: number;
-  title: string;
-  link: string;
-  publisher: string;
-  guide_reference_id?: number;
-}
-
-export interface GuideAccommodation {
-  accommodation_id: number;
-  guide_id: number;
-}
-
-export interface GuideAudience {
-  audience_id: number;
-  guide_id: number;
-}
-
-export interface GuideAuthor {
-  author_first_initial: string;
-  author_middle_initial: string;
-  author_surname: string;
-  guide_id: number;
-  rank?: number;
-}
-
-export interface GuideDisorder {
-  disorder_id: number;
-  guide_id: number;
-}
-
-export interface GuideDisorderCategory {
-  disorder_category_id: number;
-  guide_id: number;
-}
-
-export interface GuideGuideType {
-  guide_type_id: number;
-  guide_id: number;
-}
-
-export interface GuideIntervention {
-  intervention_id: number;
-  guide_id: number;
-}
-
-export interface GuideReference {
-  guide_reference_id: number;
-  title?: string;
-  link?: string;
-  pub_med_id?: number;
-}
-
-export interface GuideTechnology {
-  technology_id: number;
-  guide_id: number;
-}
-
-export interface GuideType {
-  guide_type_id: number;
-  name: string;
-}
-
-export interface Intervention {
-  intervention_id: number;
-  name?: string;
-  description?: string;
-}
-
-export interface InterventionResearchEvidence {
-  intervention_id: number;
-  research_evidence_id: number;
-}
-
-export interface LanguageSource {
-  language_source_id: number;
-  name: string;
-}
-
-export interface LisaDomain {
-  domain_id: string;
-}
-
-export interface LisaDomainLocale {
-  domain_id: string;
-  locale_id: string;
-  name: string;
-  description: string;
-}
-
-export interface LisaGuide {
-  lisa_guide_id: string;
-}
-
-export interface LisaGuideLocale {
-  lisa_guide_id: string;
-  locale_id: string;
-  name?: string;
-  description?: string;
-}
-
-export interface LisaSubdomain {
-  subdomain_id: string;
-  domain_id: string;
-}
-
-export interface LisaSubdomainGuide {
-  subdomain_id: string;
-  lisa_guide_id: string;
-  rank: number;
-}
-
-export interface LisaSubdomainGuideLocale {
-  rank: number;
-  locale_id: string;
-}
-
-export interface LisaSubdomainLocale {
-  subdomain_id: string;
-  locale_id: string;
-  name: string;
-  description: string;
-}
-
-export interface Locale {
-  locale_id: string;
-  name: string;
-}
-
-export interface NeutralConstruct {
-  name: string;
-}
-
-export interface Question {
-  question_id: number;
-  questionnaire_id?: number;
-  paper_instruction_preamble?: string;
-  digital_instruction_preamble?: string;
-  paper_instruction?: string;
-  digital_instruction?: string;
-  question_context: string;
-  response_option?: string;
-}
-
-export interface QuestionResponseType {
-  response_type_id: number;
-  question_id: number;
-}
-
-export interface Questionnaire {
-  questionnaire_id: number;
-  title: string;
-  link?: string;
-  description?: string;
-  abbreviation?: string;
-  age_max?: number;
-  age_min?: number;
-  number_of_questions?: number;
-  minutes_to_complete?: number;
-  license_id: number;
-  language_source_id: number;
-}
-
-export interface QuestionnaireAssessmentReference {
-  assessment_reference_id: number;
-  questionnaire_id: number;
-}
-
-export interface QuestionnaireAuthor {
-  author_first_initial: string;
-  author_middle_initial: string;
-  author_surname: string;
-  questionnaire_id: number;
-  rank?: number;
-}
-
-export interface QuestionnaireDisorder {
-  questionnaire_id: number;
-  disorder_id: number;
-}
-
-export interface QuestionnaireDisorderCategory {
-  questionnaire_id: number;
-  disorder_category_id: number;
-}
-
-export interface QuestionnaireLanguageNotMhdb {
-  questionnaire_id: number;
-  language_source_id: number;
-}
-
-export interface QuestionnaireRespondent {
-  respondent_id: number;
-  questionnaire_id: number;
-}
-
-export interface QuestionnaireSignSymptom {
-  questionnaire_id: number;
-  sign_symptom_id: number;
-}
-
-export interface QuestionnaireSubject {
-  subject_id: number;
-  questionnaire_id: number;
-}
-
-export interface ResearchEvidence {
-  research_evidence_id: number;
-  context: string;
-}
-
-export interface ResourcePeopleAudience {
-  audience_id: number;
-  person: string;
-}
-
-export interface ResponseType {
-  response_type_id: number;
-  type: string;
-  response_type_definition: string;
-}
-
-export interface SignSymptom {
-  sign_symptom_id: number;
-  name: string;
-  underlying_behavior?: string;
-  disorder_reference_id: number;
-}
-
-export interface SignSymptomAccommodation {
-  accommodation_id: number;
-  sign_symptom_id: number;
-}
-
-export interface SignSymptomExample {
-  sign_symptom_example_id: number;
-  name: string;
-}
-
-export interface SignSymptomIntervention {
-  intervention_id: number;
-  sign_symptom_id: number;
-}
-
-export interface SignSymptomNeutralConstruct {
-  sign_symptom_id: number;
-  name: string;
-}
-
-export interface SignSymptomTechnology {
-  technology_id: number;
-  sign_symptom_id: number;
-}
-
-export interface SignSymptomwithExample {
-  sign_symptom_id: number;
-  sign_symptom_example_id: number;
-}
-
-export interface StateDomainBehaviour {
-  behaviour_id: number;
-  behaviour: string;
-}
-
-export interface Task {
-  task_id: number;
-  name: string;
-  description?: string;
-  assessment_reference_id: number;
-}
-
-export interface Technology {
-  technology_id: number;
-  name?: string;
-  description?: string;
-  link?: string;
-}
-
-export interface TechnologyResearchEvidence {
-  technology_id: number;
-  research_evidence_id: number;
+/**
+ * This file was auto-generated by openapi-typescript.
+ * Do not make direct changes to the file.
+ */
+
+export interface paths {
+  "/assets/{id}": {
+    /** Image typed files can be dynamically resized and transformed to fit any need. */
+    get: operations["getAsset"];
+  };
+  "/auth/login": {
+    /** Retrieve a Temporary Access Token */
+    post: operations["login"];
+  };
+  "/auth/refresh": {
+    /** Refresh a Temporary Access Token. */
+    post: operations["refresh"];
+  };
+  "/auth/logout": {
+    /** Log Out */
+    post: operations["logout"];
+  };
+  "/auth/password/request": {
+    /** Request a reset password email to be send. */
+    post: operations["passwordRequest"];
+  };
+  "/auth/password/reset": {
+    /** The request a password reset endpoint sends an email with a link to the admin app which in turn uses this endpoint to allow the user to reset their password. */
+    post: operations["passwordReset"];
+  };
+  "/auth/oauth": {
+    /** List configured OAuth providers. */
+    get: operations["oauth"];
+  };
+  "/auth/oauth/{provider}": {
+    /** Start OAuth flow using the specified provider */
+    get: operations["oauthProvider"];
+  };
+  "/extensions/interfaces": {
+    /** List all installed custom interfaces. */
+    get: operations["getInterfaces"];
+  };
+  "/extensions/layouts": {
+    /** List all installed custom layouts. */
+    get: operations["getLayouts"];
+  };
+  "/extensions/displays": {
+    /** List all installed custom displays. */
+    get: operations["getDisplays"];
+  };
+  "/extensions/modules": {
+    /** List all installed custom modules. */
+    get: operations["getModules"];
+  };
+  "/server/info": {
+    /** Perform a system status check and return the options. */
+    get: operations["serverInfo"];
+  };
+  "/server/ping": {
+    /** Ping, pong. Ping.. pong. */
+    get: operations["ping"];
+  };
+  "/utils/random/string": {
+    /** Returns a random string of given length. */
+    get: operations["random"];
+  };
+  "/utils/sort/{collection}": {
+    /** Re-sort items in collection based on start and to value of item */
+    post: operations["sort"];
+  };
+  "/items/accommodation": {
+    /** List the accommodation items. */
+    get: operations["readItemsAccommodation"];
+  };
+  "/items/accommodation/{id}": {
+    /** Retrieve a single accommodation item by unique identifier. */
+    get: operations["readSingleItemsAccommodation"];
+  };
+  "/items/accommodation_research_evidence": {
+    /** List the accommodation_research_evidence items. */
+    get: operations["readItemsAccommodationResearchEvidence"];
+  };
+  "/items/accommodation_research_evidence/{id}": {
+    /** Retrieve a single accommodation_research_evidence item by unique identifier. */
+    get: operations["readSingleItemsAccommodationResearchEvidence"];
+  };
+  "/items/alias": {
+    /** List the alias items. */
+    get: operations["readItemsAlias"];
+  };
+  "/items/alias/{id}": {
+    /** Retrieve a single alias item by unique identifier. */
+    get: operations["readSingleItemsAlias"];
+  };
+  "/items/assessment_reference": {
+    /** List the assessment_reference items. */
+    get: operations["readItemsAssessmentReference"];
+  };
+  "/items/assessment_reference/{id}": {
+    /** Retrieve a single assessment_reference item by unique identifier. */
+    get: operations["readSingleItemsAssessmentReference"];
+  };
+  "/items/assessment_reference_author": {
+    /** List the assessment_reference_author items. */
+    get: operations["readItemsAssessmentReferenceAuthor"];
+  };
+  "/items/assessment_reference_author/{id}": {
+    /** Retrieve a single assessment_reference_author item by unique identifier. */
+    get: operations["readSingleItemsAssessmentReferenceAuthor"];
+  };
+  "/items/author": {
+    /** List the author items. */
+    get: operations["readItemsAuthor"];
+  };
+  "/items/author/{id}": {
+    /** Retrieve a single author item by unique identifier. */
+    get: operations["readSingleItemsAuthor"];
+  };
+  "/items/behaviour_accommodation": {
+    /** List the behaviour_accommodation items. */
+    get: operations["readItemsBehaviourAccommodation"];
+  };
+  "/items/behaviour_accommodation/{id}": {
+    /** Retrieve a single behaviour_accommodation item by unique identifier. */
+    get: operations["readSingleItemsBehaviourAccommodation"];
+  };
+  "/items/behaviour_guide": {
+    /** List the behaviour_guide items. */
+    get: operations["readItemsBehaviourGuide"];
+  };
+  "/items/behaviour_guide/{id}": {
+    /** Retrieve a single behaviour_guide item by unique identifier. */
+    get: operations["readSingleItemsBehaviourGuide"];
+  };
+  "/items/behaviour_intervention": {
+    /** List the behaviour_intervention items. */
+    get: operations["readItemsBehaviourIntervention"];
+  };
+  "/items/behaviour_intervention/{id}": {
+    /** Retrieve a single behaviour_intervention item by unique identifier. */
+    get: operations["readSingleItemsBehaviourIntervention"];
+  };
+  "/items/behaviour_questionnaire": {
+    /** List the behaviour_questionnaire items. */
+    get: operations["readItemsBehaviourQuestionnaire"];
+  };
+  "/items/behaviour_questionnaire/{id}": {
+    /** Retrieve a single behaviour_questionnaire item by unique identifier. */
+    get: operations["readSingleItemsBehaviourQuestionnaire"];
+  };
+  "/items/behaviour_technology": {
+    /** List the behaviour_technology items. */
+    get: operations["readItemsBehaviourTechnology"];
+  };
+  "/items/behaviour_technology/{id}": {
+    /** Retrieve a single behaviour_technology item by unique identifier. */
+    get: operations["readSingleItemsBehaviourTechnology"];
+  };
+  "/activity": {
+    /** Returns a list of activity actions. */
+    get: operations["getActivities"];
+  };
+  "/activity/comment": {
+    /** Creates a new comment. */
+    post: operations["createComment"];
+  };
+  "/activity/{id}": {
+    /** Retrieves the details of an existing activity action. Provide the primary key of the activity action and Directus will return the corresponding information. */
+    get: operations["getActivity"];
+  };
+  "/activity/comment/{id}": {};
+  "/collections": {
+    /** Returns a list of the collections available in the project. */
+    get: operations["getCollections"];
+  };
+  "/collections/{id}": {
+    /** Retrieves the details of a single collection. */
+    get: operations["getCollection"];
+  };
+  "/fields": {
+    /** Returns a list of the fields available in the project. */
+    get: operations["getFields"];
+  };
+  "/fields/{collection}": {
+    /** Returns a list of the fields available in the given collection. */
+    get: operations["getCollectionFields"];
+  };
+  "/fields/{collection}/{id}": {
+    /** Retrieves the details of a single field in a given collection. */
+    get: operations["getCollectionField"];
+  };
+  "/files": {
+    /** List the files. */
+    get: operations["getFiles"];
+    /** Create a new file */
+    post: operations["createFile"];
+  };
+  "/files/{id}": {
+    /** Retrieve a single file by unique identifier. */
+    get: operations["getFile"];
+    /** Delete an existing file. */
+    delete: operations["deleteFile"];
+    /** Update an existing file. */
+    patch: operations["updateFile"];
+  };
+  "/folders": {
+    /** List the folders. */
+    get: operations["getFolders"];
+    /** Create a new folder. */
+    post: operations["createFolder"];
+  };
+  "/folders/{id}": {
+    /** Retrieve a single folder by unique identifier. */
+    get: operations["getFolder"];
+    /** Delete an existing folder */
+    delete: operations["deleteFolder"];
+    /** Update an existing folder */
+    patch: operations["updateFolder"];
+  };
+  "/permissions": {
+    /** List all permissions. */
+    get: operations["getPermissions"];
+  };
+  "/permissions/me": {
+    /** List the permissions that apply to the current user. */
+    get: operations["getMyPermissions"];
+  };
+  "/permissions/{id}": {
+    /** Retrieve a single permissions object by unique identifier. */
+    get: operations["getPermission"];
+  };
+  "/presets": {
+    /** List the presets. */
+    get: operations["getPresets"];
+    /** Create a new preset. */
+    post: operations["createPreset"];
+  };
+  "/presets/{id}": {
+    /** Retrieve a single preset by unique identifier. */
+    get: operations["getPreset"];
+    /** Delete an existing preset. */
+    delete: operations["deletePreset"];
+    /** Update an existing preset. */
+    patch: operations["updatePreset"];
+  };
+  "/relations": {
+    /** List the relations. */
+    get: operations["getRelations"];
+  };
+  "/relations/{id}": {
+    /** Retrieve a single relation by unique identifier. */
+    get: operations["getRelation"];
+  };
+  "/roles": {
+    /** List the roles. */
+    get: operations["getRoles"];
+  };
+  "/roles/{id}": {
+    /** Retrieve a single role by unique identifier. */
+    get: operations["getRole"];
+  };
+  "/settings": {
+    /** List the settings. */
+    get: operations["getSettings"];
+  };
+  "/users": {
+    /** List the users. */
+    get: operations["getUsers"];
+  };
+  "/users/{id}": {
+    /** Retrieve a single user by unique identifier. */
+    get: operations["getUser"];
+    /** Update an existing user */
+    patch: operations["updateUser"];
+  };
+  "/users/invite": {};
+  "/users/invite/accept": {};
+  "/users/me": {
+    /** Retrieve the currently authenticated user. */
+    get: operations["getMe"];
+    /** Update the currently authenticated user. */
+    patch: operations["updateMe"];
+  };
+  "/users/me/track/page": {
+    /** Updates the last used page field of the currently authenticated user. This is used internally to be able to open the Directus admin app from the last page you used. */
+    patch: operations["updateLastUsedPageMe"];
+  };
+  "/users/me/tfa/enable": {};
+  "/users/me/tfa/disable": {};
+  "/items/disorder": {
+    /** List the disorder items. */
+    get: operations["readItemsDisorder"];
+  };
+  "/items/disorder/{id}": {
+    /** Retrieve a single disorder item by unique identifier. */
+    get: operations["readSingleItemsDisorder"];
+  };
+  "/items/disorder_accommodation": {
+    /** List the disorder_accommodation items. */
+    get: operations["readItemsDisorderAccommodation"];
+  };
+  "/items/disorder_accommodation/{id}": {
+    /** Retrieve a single disorder_accommodation item by unique identifier. */
+    get: operations["readSingleItemsDisorderAccommodation"];
+  };
+  "/items/disorder_category": {
+    /** List the disorder_category items. */
+    get: operations["readItemsDisorderCategory"];
+  };
+  "/items/disorder_category/{id}": {
+    /** Retrieve a single disorder_category item by unique identifier. */
+    get: operations["readSingleItemsDisorderCategory"];
+  };
+  "/items/disorder_category_accommodation": {
+    /** List the disorder_category_accommodation items. */
+    get: operations["readItemsDisorderCategoryAccommodation"];
+  };
+  "/items/disorder_category_accommodation/{id}": {
+    /** Retrieve a single disorder_category_accommodation item by unique identifier. */
+    get: operations["readSingleItemsDisorderCategoryAccommodation"];
+  };
+  "/items/disorder_category_intervention": {
+    /** List the disorder_category_intervention items. */
+    get: operations["readItemsDisorderCategoryIntervention"];
+  };
+  "/items/disorder_category_intervention/{id}": {
+    /** Retrieve a single disorder_category_intervention item by unique identifier. */
+    get: operations["readSingleItemsDisorderCategoryIntervention"];
+  };
+  "/items/disorder_category_technology": {
+    /** List the disorder_category_technology items. */
+    get: operations["readItemsDisorderCategoryTechnology"];
+  };
+  "/items/disorder_category_technology/{id}": {
+    /** Retrieve a single disorder_category_technology item by unique identifier. */
+    get: operations["readSingleItemsDisorderCategoryTechnology"];
+  };
+  "/items/disorder_intervention": {
+    /** List the disorder_intervention items. */
+    get: operations["readItemsDisorderIntervention"];
+  };
+  "/items/disorder_intervention/{id}": {
+    /** Retrieve a single disorder_intervention item by unique identifier. */
+    get: operations["readSingleItemsDisorderIntervention"];
+  };
+  "/items/disorder_reference": {
+    /** List the disorder_reference items. */
+    get: operations["readItemsDisorderReference"];
+  };
+  "/items/disorder_reference/{id}": {
+    /** Retrieve a single disorder_reference item by unique identifier. */
+    get: operations["readSingleItemsDisorderReference"];
+  };
+  "/items/disorder_reference_author": {
+    /** List the disorder_reference_author items. */
+    get: operations["readItemsDisorderReferenceAuthor"];
+  };
+  "/items/disorder_reference_author/{id}": {
+    /** Retrieve a single disorder_reference_author item by unique identifier. */
+    get: operations["readSingleItemsDisorderReferenceAuthor"];
+  };
+  "/items/disorder_sign_symptom": {
+    /** List the disorder_sign_symptom items. */
+    get: operations["readItemsDisorderSignSymptom"];
+  };
+  "/items/disorder_sign_symptom/{id}": {
+    /** Retrieve a single disorder_sign_symptom item by unique identifier. */
+    get: operations["readSingleItemsDisorderSignSymptom"];
+  };
+  "/items/disorder_subcategory": {
+    /** List the disorder_subcategory items. */
+    get: operations["readItemsDisorderSubcategory"];
+  };
+  "/items/disorder_subcategory/{id}": {
+    /** Retrieve a single disorder_subcategory item by unique identifier. */
+    get: operations["readSingleItemsDisorderSubcategory"];
+  };
+  "/items/disorder_technology": {
+    /** List the disorder_technology items. */
+    get: operations["readItemsDisorderTechnology"];
+  };
+  "/items/disorder_technology/{id}": {
+    /** Retrieve a single disorder_technology item by unique identifier. */
+    get: operations["readSingleItemsDisorderTechnology"];
+  };
+  "/items/guide": {
+    /** List the guide items. */
+    get: operations["readItemsGuide"];
+  };
+  "/items/guide/{id}": {
+    /** Retrieve a single guide item by unique identifier. */
+    get: operations["readSingleItemsGuide"];
+  };
+  "/items/guide_accommodation": {
+    /** List the guide_accommodation items. */
+    get: operations["readItemsGuideAccommodation"];
+  };
+  "/items/guide_accommodation/{id}": {
+    /** Retrieve a single guide_accommodation item by unique identifier. */
+    get: operations["readSingleItemsGuideAccommodation"];
+  };
+  "/items/guide_audience": {
+    /** List the guide_audience items. */
+    get: operations["readItemsGuideAudience"];
+  };
+  "/items/guide_audience/{id}": {
+    /** Retrieve a single guide_audience item by unique identifier. */
+    get: operations["readSingleItemsGuideAudience"];
+  };
+  "/items/guide_author": {
+    /** List the guide_author items. */
+    get: operations["readItemsGuideAuthor"];
+  };
+  "/items/guide_author/{id}": {
+    /** Retrieve a single guide_author item by unique identifier. */
+    get: operations["readSingleItemsGuideAuthor"];
+  };
+  "/items/guide_disorder": {
+    /** List the guide_disorder items. */
+    get: operations["readItemsGuideDisorder"];
+  };
+  "/items/guide_disorder/{id}": {
+    /** Retrieve a single guide_disorder item by unique identifier. */
+    get: operations["readSingleItemsGuideDisorder"];
+  };
+  "/items/guide_disorder_category": {
+    /** List the guide_disorder_category items. */
+    get: operations["readItemsGuideDisorderCategory"];
+  };
+  "/items/guide_disorder_category/{id}": {
+    /** Retrieve a single guide_disorder_category item by unique identifier. */
+    get: operations["readSingleItemsGuideDisorderCategory"];
+  };
+  "/items/guide_guide_type": {
+    /** List the guide_guide_type items. */
+    get: operations["readItemsGuideGuideType"];
+  };
+  "/items/guide_guide_type/{id}": {
+    /** Retrieve a single guide_guide_type item by unique identifier. */
+    get: operations["readSingleItemsGuideGuideType"];
+  };
+  "/items/guide_intervention": {
+    /** List the guide_intervention items. */
+    get: operations["readItemsGuideIntervention"];
+  };
+  "/items/guide_intervention/{id}": {
+    /** Retrieve a single guide_intervention item by unique identifier. */
+    get: operations["readSingleItemsGuideIntervention"];
+  };
+  "/items/guide_reference": {
+    /** List the guide_reference items. */
+    get: operations["readItemsGuideReference"];
+  };
+  "/items/guide_reference/{id}": {
+    /** Retrieve a single guide_reference item by unique identifier. */
+    get: operations["readSingleItemsGuideReference"];
+  };
+  "/items/guide_technology": {
+    /** List the guide_technology items. */
+    get: operations["readItemsGuideTechnology"];
+  };
+  "/items/guide_technology/{id}": {
+    /** Retrieve a single guide_technology item by unique identifier. */
+    get: operations["readSingleItemsGuideTechnology"];
+  };
+  "/items/guide_type": {
+    /** List the guide_type items. */
+    get: operations["readItemsGuideType"];
+  };
+  "/items/guide_type/{id}": {
+    /** Retrieve a single guide_type item by unique identifier. */
+    get: operations["readSingleItemsGuideType"];
+  };
+  "/items/intervention": {
+    /** List the intervention items. */
+    get: operations["readItemsIntervention"];
+  };
+  "/items/intervention/{id}": {
+    /** Retrieve a single intervention item by unique identifier. */
+    get: operations["readSingleItemsIntervention"];
+  };
+  "/items/intervention_research_evidence": {
+    /** List the intervention_research_evidence items. */
+    get: operations["readItemsInterventionResearchEvidence"];
+  };
+  "/items/intervention_research_evidence/{id}": {
+    /** Retrieve a single intervention_research_evidence item by unique identifier. */
+    get: operations["readSingleItemsInterventionResearchEvidence"];
+  };
+  "/items/language_source": {
+    /** List the language_source items. */
+    get: operations["readItemsLanguageSource"];
+  };
+  "/items/language_source/{id}": {
+    /** Retrieve a single language_source item by unique identifier. */
+    get: operations["readSingleItemsLanguageSource"];
+  };
+  "/items/lisa_domain": {
+    /** List the lisa_domain items. */
+    get: operations["readItemsLisaDomain"];
+  };
+  "/items/lisa_domain/{id}": {
+    /** Retrieve a single lisa_domain item by unique identifier. */
+    get: operations["readSingleItemsLisaDomain"];
+  };
+  "/items/lisa_domain_locale": {
+    /** List the lisa_domain_locale items. */
+    get: operations["readItemsLisaDomainLocale"];
+  };
+  "/items/lisa_domain_locale/{id}": {
+    /** Retrieve a single lisa_domain_locale item by unique identifier. */
+    get: operations["readSingleItemsLisaDomainLocale"];
+  };
+  "/items/lisa_guide": {
+    /** List the lisa_guide items. */
+    get: operations["readItemsLisaGuide"];
+  };
+  "/items/lisa_guide/{id}": {
+    /** Retrieve a single lisa_guide item by unique identifier. */
+    get: operations["readSingleItemsLisaGuide"];
+  };
+  "/items/lisa_guide_locale": {
+    /** List the lisa_guide_locale items. */
+    get: operations["readItemsLisaGuideLocale"];
+  };
+  "/items/lisa_guide_locale/{id}": {
+    /** Retrieve a single lisa_guide_locale item by unique identifier. */
+    get: operations["readSingleItemsLisaGuideLocale"];
+  };
+  "/items/lisa_subdomain": {
+    /** List the lisa_subdomain items. */
+    get: operations["readItemsLisaSubdomain"];
+  };
+  "/items/lisa_subdomain/{id}": {
+    /** Retrieve a single lisa_subdomain item by unique identifier. */
+    get: operations["readSingleItemsLisaSubdomain"];
+  };
+  "/items/lisa_subdomain_guide": {
+    /** List the lisa_subdomain_guide items. */
+    get: operations["readItemsLisaSubdomainGuide"];
+  };
+  "/items/lisa_subdomain_guide/{id}": {
+    /** Retrieve a single lisa_subdomain_guide item by unique identifier. */
+    get: operations["readSingleItemsLisaSubdomainGuide"];
+  };
+  "/items/lisa_subdomain_guide_locale": {
+    /** List the lisa_subdomain_guide_locale items. */
+    get: operations["readItemsLisaSubdomainGuideLocale"];
+  };
+  "/items/lisa_subdomain_guide_locale/{id}": {
+    /** Retrieve a single lisa_subdomain_guide_locale item by unique identifier. */
+    get: operations["readSingleItemsLisaSubdomainGuideLocale"];
+  };
+  "/items/lisa_subdomain_locale": {
+    /** List the lisa_subdomain_locale items. */
+    get: operations["readItemsLisaSubdomainLocale"];
+  };
+  "/items/lisa_subdomain_locale/{id}": {
+    /** Retrieve a single lisa_subdomain_locale item by unique identifier. */
+    get: operations["readSingleItemsLisaSubdomainLocale"];
+  };
+  "/items/locale": {
+    /** List the locale items. */
+    get: operations["readItemsLocale"];
+  };
+  "/items/locale/{id}": {
+    /** Retrieve a single locale item by unique identifier. */
+    get: operations["readSingleItemsLocale"];
+  };
+  "/items/neutral_construct": {
+    /** List the neutral_construct items. */
+    get: operations["readItemsNeutralConstruct"];
+  };
+  "/items/neutral_construct/{id}": {
+    /** Retrieve a single neutral_construct item by unique identifier. */
+    get: operations["readSingleItemsNeutralConstruct"];
+  };
+  "/items/question": {
+    /** List the question items. */
+    get: operations["readItemsQuestion"];
+  };
+  "/items/question/{id}": {
+    /** Retrieve a single question item by unique identifier. */
+    get: operations["readSingleItemsQuestion"];
+  };
+  "/items/question_response_type": {
+    /** List the question_response_type items. */
+    get: operations["readItemsQuestionResponseType"];
+  };
+  "/items/question_response_type/{id}": {
+    /** Retrieve a single question_response_type item by unique identifier. */
+    get: operations["readSingleItemsQuestionResponseType"];
+  };
+  "/items/questionnaire": {
+    /** List the questionnaire items. */
+    get: operations["readItemsQuestionnaire"];
+  };
+  "/items/questionnaire/{id}": {
+    /** Retrieve a single questionnaire item by unique identifier. */
+    get: operations["readSingleItemsQuestionnaire"];
+  };
+  "/items/questionnaire_assessment_reference": {
+    /** List the questionnaire_assessment_reference items. */
+    get: operations["readItemsQuestionnaireAssessmentReference"];
+  };
+  "/items/questionnaire_assessment_reference/{id}": {
+    /** Retrieve a single questionnaire_assessment_reference item by unique identifier. */
+    get: operations["readSingleItemsQuestionnaireAssessmentReference"];
+  };
+  "/items/questionnaire_author": {
+    /** List the questionnaire_author items. */
+    get: operations["readItemsQuestionnaireAuthor"];
+  };
+  "/items/questionnaire_author/{id}": {
+    /** Retrieve a single questionnaire_author item by unique identifier. */
+    get: operations["readSingleItemsQuestionnaireAuthor"];
+  };
+  "/items/questionnaire_disorder": {
+    /** List the questionnaire_disorder items. */
+    get: operations["readItemsQuestionnaireDisorder"];
+  };
+  "/items/questionnaire_disorder/{id}": {
+    /** Retrieve a single questionnaire_disorder item by unique identifier. */
+    get: operations["readSingleItemsQuestionnaireDisorder"];
+  };
+  "/items/questionnaire_disorder_category": {
+    /** List the questionnaire_disorder_category items. */
+    get: operations["readItemsQuestionnaireDisorderCategory"];
+  };
+  "/items/questionnaire_disorder_category/{id}": {
+    /** Retrieve a single questionnaire_disorder_category item by unique identifier. */
+    get: operations["readSingleItemsQuestionnaireDisorderCategory"];
+  };
+  "/items/questionnaire_language_not_mhdb": {
+    /** List the questionnaire_language_not_mhdb items. */
+    get: operations["readItemsQuestionnaireLanguageNotMhdb"];
+  };
+  "/items/questionnaire_language_not_mhdb/{id}": {
+    /** Retrieve a single questionnaire_language_not_mhdb item by unique identifier. */
+    get: operations["readSingleItemsQuestionnaireLanguageNotMhdb"];
+  };
+  "/items/questionnaire_respondent": {
+    /** List the questionnaire_respondent items. */
+    get: operations["readItemsQuestionnaireRespondent"];
+  };
+  "/items/questionnaire_respondent/{id}": {
+    /** Retrieve a single questionnaire_respondent item by unique identifier. */
+    get: operations["readSingleItemsQuestionnaireRespondent"];
+  };
+  "/items/questionnaire_sign_symptom": {
+    /** List the questionnaire_sign_symptom items. */
+    get: operations["readItemsQuestionnaireSignSymptom"];
+  };
+  "/items/questionnaire_sign_symptom/{id}": {
+    /** Retrieve a single questionnaire_sign_symptom item by unique identifier. */
+    get: operations["readSingleItemsQuestionnaireSignSymptom"];
+  };
+  "/items/questionnaire_subject": {
+    /** List the questionnaire_subject items. */
+    get: operations["readItemsQuestionnaireSubject"];
+  };
+  "/items/questionnaire_subject/{id}": {
+    /** Retrieve a single questionnaire_subject item by unique identifier. */
+    get: operations["readSingleItemsQuestionnaireSubject"];
+  };
+  "/items/research_evidence": {
+    /** List the research_evidence items. */
+    get: operations["readItemsResearchEvidence"];
+  };
+  "/items/research_evidence/{id}": {
+    /** Retrieve a single research_evidence item by unique identifier. */
+    get: operations["readSingleItemsResearchEvidence"];
+  };
+  "/items/resource_people_audience": {
+    /** List the resource_people_audience items. */
+    get: operations["readItemsResourcePeopleAudience"];
+  };
+  "/items/resource_people_audience/{id}": {
+    /** Retrieve a single resource_people_audience item by unique identifier. */
+    get: operations["readSingleItemsResourcePeopleAudience"];
+  };
+  "/items/response_type": {
+    /** List the response_type items. */
+    get: operations["readItemsResponseType"];
+  };
+  "/items/response_type/{id}": {
+    /** Retrieve a single response_type item by unique identifier. */
+    get: operations["readSingleItemsResponseType"];
+  };
+  "/items/sign_symptom": {
+    /** List the sign_symptom items. */
+    get: operations["readItemsSignSymptom"];
+  };
+  "/items/sign_symptom/{id}": {
+    /** Retrieve a single sign_symptom item by unique identifier. */
+    get: operations["readSingleItemsSignSymptom"];
+  };
+  "/items/sign_symptom_accommodation": {
+    /** List the sign_symptom_accommodation items. */
+    get: operations["readItemsSignSymptomAccommodation"];
+  };
+  "/items/sign_symptom_accommodation/{id}": {
+    /** Retrieve a single sign_symptom_accommodation item by unique identifier. */
+    get: operations["readSingleItemsSignSymptomAccommodation"];
+  };
+  "/items/sign_symptom_example": {
+    /** List the sign_symptom_example items. */
+    get: operations["readItemsSignSymptomExample"];
+  };
+  "/items/sign_symptom_example/{id}": {
+    /** Retrieve a single sign_symptom_example item by unique identifier. */
+    get: operations["readSingleItemsSignSymptomExample"];
+  };
+  "/items/sign_symptom_intervention": {
+    /** List the sign_symptom_intervention items. */
+    get: operations["readItemsSignSymptomIntervention"];
+  };
+  "/items/sign_symptom_intervention/{id}": {
+    /** Retrieve a single sign_symptom_intervention item by unique identifier. */
+    get: operations["readSingleItemsSignSymptomIntervention"];
+  };
+  "/items/sign_symptom_neutral_construct": {
+    /** List the sign_symptom_neutral_construct items. */
+    get: operations["readItemsSignSymptomNeutralConstruct"];
+  };
+  "/items/sign_symptom_neutral_construct/{id}": {
+    /** Retrieve a single sign_symptom_neutral_construct item by unique identifier. */
+    get: operations["readSingleItemsSignSymptomNeutralConstruct"];
+  };
+  "/items/sign_symptom_technology": {
+    /** List the sign_symptom_technology items. */
+    get: operations["readItemsSignSymptomTechnology"];
+  };
+  "/items/sign_symptom_technology/{id}": {
+    /** Retrieve a single sign_symptom_technology item by unique identifier. */
+    get: operations["readSingleItemsSignSymptomTechnology"];
+  };
+  "/items/sign_symptom_with_example": {
+    /** List the sign_symptom_with_example items. */
+    get: operations["readItemsSignSymptomwithExample"];
+  };
+  "/items/sign_symptom_with_example/{id}": {
+    /** Retrieve a single sign_symptom_with_example item by unique identifier. */
+    get: operations["readSingleItemsSignSymptomwithExample"];
+  };
+  "/items/state_domain_behaviour": {
+    /** List the state_domain_behaviour items. */
+    get: operations["readItemsStateDomainBehaviour"];
+  };
+  "/items/state_domain_behaviour/{id}": {
+    /** Retrieve a single state_domain_behaviour item by unique identifier. */
+    get: operations["readSingleItemsStateDomainBehaviour"];
+  };
+  "/items/task": {
+    /** List the task items. */
+    get: operations["readItemsTask"];
+  };
+  "/items/task/{id}": {
+    /** Retrieve a single task item by unique identifier. */
+    get: operations["readSingleItemsTask"];
+  };
+  "/items/technology": {
+    /** List the technology items. */
+    get: operations["readItemsTechnology"];
+  };
+  "/items/technology/{id}": {
+    /** Retrieve a single technology item by unique identifier. */
+    get: operations["readSingleItemsTechnology"];
+  };
+  "/items/technology_research_evidence": {
+    /** List the technology_research_evidence items. */
+    get: operations["readItemsTechnologyResearchEvidence"];
+  };
+  "/items/technology_research_evidence/{id}": {
+    /** Retrieve a single technology_research_evidence item by unique identifier. */
+    get: operations["readSingleItemsTechnologyResearchEvidence"];
+  };
+}
+
+export interface components {
+  schemas: {
+    ItemsAccommodation: {
+      accommodation_id?: number;
+      name?: string;
+      description?: string | null;
+    };
+    ItemsAccommodationResearchEvidence: {
+      accommodation_id?: number | components["schemas"]["ItemsAccommodation"];
+      research_evidence_id?:
+        | number
+        | components["schemas"]["ItemsResearchEvidence"];
+    };
+    ItemsAlias: {
+      alias_id?: number;
+      task_id?: (number | components["schemas"]["ItemsTask"]) | null;
+      name?: string;
+    };
+    ItemsAssessmentReference: {
+      assessment_reference_id?: number;
+      title?: string;
+      link?: string | null;
+      pub_med_id?: number | null;
+    };
+    ItemsAssessmentReferenceAuthor: {
+      assessment_reference_id?:
+        | number
+        | components["schemas"]["ItemsAssessmentReference"];
+      author_first_initial?: string;
+      author_middle_initial?: string;
+      author_surname?: string;
+      rank?: number | null;
+    };
+    ItemsAuthor: {
+      first_initial?: string;
+      middle_initial?: string;
+      surname?: string;
+    };
+    ItemsBehaviourAccommodation: {
+      accommodation_id?: number | components["schemas"]["ItemsAccommodation"];
+      behaviour_id?:
+        | number
+        | components["schemas"]["ItemsStateDomainBehaviour"];
+    };
+    ItemsBehaviourGuide: {
+      guide_id?: number | components["schemas"]["ItemsGuide"];
+      behaviour_id?:
+        | number
+        | components["schemas"]["ItemsStateDomainBehaviour"];
+    };
+    ItemsBehaviourIntervention: {
+      intervention_id?: number | components["schemas"]["ItemsIntervention"];
+      behaviour_id?:
+        | number
+        | components["schemas"]["ItemsStateDomainBehaviour"];
+    };
+    ItemsBehaviourQuestionnaire: {
+      questionnaire_id?: number | components["schemas"]["ItemsQuestionnaire"];
+      behaviour_id?:
+        | number
+        | components["schemas"]["ItemsStateDomainBehaviour"];
+    };
+    ItemsBehaviourTechnology: {
+      technology_id?: number | components["schemas"]["ItemsTechnology"];
+      behaviour_id?:
+        | number
+        | components["schemas"]["ItemsStateDomainBehaviour"];
+    };
+    Activity: {
+      /** Unique identifier for the object. */
+      id?: number;
+      /** Action that was performed. */
+      action?: "create" | "update" | "delete" | "authenticate";
+      /** The user who performed this action. */
+      user?: (string | components["schemas"]["Users"]) | null;
+      /** When the action happened. */
+      timestamp?: string;
+      /** The IP address of the user at the time the action took place. */
+      ip?: string;
+      /** User agent string of the browser the user used when the action took place. */
+      user_agent?: string;
+      /** Collection identifier in which the item resides. */
+      collection?: string | components["schemas"]["Collections"];
+      /** Unique identifier for the item the action applied to. This is always a string, even for integer primary keys. */
+      item?: string;
+      /** User comment. This will store the comments that show up in the right sidebar of the item edit page in the admin app. */
+      comment?: string | null;
+      revisions?: { [key: string]: any };
+    };
+    Collections: {
+      /** The collection key. */
+      collection?: string;
+      icon?: string | null;
+      note?: string | null;
+      display_template?: string | null;
+      hidden?: boolean;
+      singleton?: boolean;
+      translations?: string[] | null;
+      archive_field?: string | null;
+      archive_app_filter?: boolean;
+      archive_value?: string | null;
+      unarchive_value?: string | null;
+      sort_field?: string | null;
+      accountability?: string | null;
+      color?: string | null;
+      item_duplication_fields?: string[] | null;
+      collection_divider?: { [key: string]: any };
+      archive_divider?: { [key: string]: any };
+      sort_divider?: { [key: string]: any };
+      accountability_divider?: { [key: string]: any };
+      duplication_divider?: { [key: string]: any };
+    };
+    Fields: {
+      id?: number;
+      /** Unique name of the collection this field is in. */
+      collection?: string;
+      /** Unique name of the field. Field name is unique within the collection. */
+      field?: string;
+      special?: string[] | null;
+      interface?: string | null;
+      options?: string[] | null;
+      display?: string | null;
+      display_options?: string[] | null;
+      readonly?: boolean;
+      hidden?: boolean;
+      sort?: number | null;
+      width?: string | null;
+      group?: (number | components["schemas"]["Fields"]) | null;
+      translations?: string[] | null;
+      note?: string | null;
+    };
+    Files: {
+      /** Unique identifier for the file. */
+      id?: string;
+      /** Where the file is stored. Either `local` for the local filesystem or the name of the storage adapter (for example `s3`). */
+      storage?: string;
+      /** Name of the file on disk. By default, Directus uses a random hash for the filename. */
+      filename_disk?: string;
+      /** How you want to the file to be named when it's being downloaded. */
+      filename_download?: string;
+      /** Title for the file. Is extracted from the filename on upload, but can be edited by the user. */
+      title?: string;
+      /** MIME type of the file. */
+      type?: string;
+      /** Virtual folder where this file resides in. */
+      folder?: (string | components["schemas"]["Folders"]) | null;
+      /** Who uploaded the file. */
+      uploaded_by?: string | components["schemas"]["Users"];
+      /** When the file was uploaded. */
+      uploaded_on?: string;
+      modified_by?: (string | components["schemas"]["Users"]) | null;
+      modified_on?: string;
+      /** Character set of the file. */
+      charset?: string | null;
+      /** Size of the file in bytes. */
+      filesize?: number;
+      /** Width of the file in pixels. Only applies to images. */
+      width?: number | null;
+      /** Height of the file in pixels. Only applies to images. */
+      height?: number | null;
+      /** Duration of the file in seconds. Only applies to audio and video. */
+      duration?: number | null;
+      /** Where the file was embedded from. */
+      embed?: string | null;
+      /** Description for the file. */
+      description?: string | null;
+      /** Where the file was created. Is automatically populated based on EXIF data for images. */
+      location?: string | null;
+      /** Tags for the file. Is automatically populated based on EXIF data for images. */
+      tags?: string[] | null;
+      /** IPTC, EXIF, and ICC metadata extracted from file */
+      metadata?: { [key: string]: any } | null;
+      storage_divider?: { [key: string]: any };
+    };
+    Folders: {
+      /** Unique identifier for the folder. */
+      id?: string;
+      /** Name of the folder. */
+      name?: string;
+      /** Unique identifier of the parent folder. This allows for nested folders. */
+      parent?: (string | components["schemas"]["Folders"]) | null;
+    };
+    Permissions: {
+      /** Unique identifier for the permission. */
+      id?: number;
+      /** Unique identifier of the role this permission applies to. */
+      role?: string | null;
+      /** What collection this permission applies to. */
+      collection?: string;
+      /** What action this permission applies to. */
+      action?: "create" | "read" | "update" | "delete";
+      /** JSON structure containing the permissions checks for this permission. */
+      permissions?: { [key: string]: any } | null;
+      /** JSON structure containing the validation checks for this permission. */
+      validation?: { [key: string]: any } | null;
+      /** JSON structure containing the preset value for created/updated items. */
+      presets?: { [key: string]: any } | null;
+      /** CSV of fields that the user is allowed to interact with. */
+      fields?: string[] | null;
+      /** Maximum amount of items the user can interact with at a time. */
+      limit?: number | null;
+    };
+    Presets: {
+      /** Unique identifier for this single collection preset. */
+      id?: number;
+      /** Name for the bookmark. If this is set, the preset will be considered a bookmark. */
+      bookmark?: string | null;
+      /** The unique identifier of the user to whom this collection preset applies. */
+      user?: (string | components["schemas"]["Users"]) | null;
+      /** The unique identifier of a role in the platform. If `user` is null, this will be used to apply the collection preset or bookmark for all users in the role. */
+      role?: (string | components["schemas"]["Roles"]) | null;
+      /** What collection this collection preset is used for. */
+      collection?: string | components["schemas"]["Collections"];
+      /** Search query. */
+      search?: string | null;
+      /** The filters that the user applied. */
+      filters?: { [key: string]: any }[] | null;
+      /** Key of the layout that is used. */
+      layout?: string;
+      /** Layout query that's saved per layout type. Controls what data is fetched on load. These follow the same format as the JS SDK parameters. */
+      layout_query?: { [key: string]: any } | null;
+      /** Options of the views. The properties in here are controlled by the layout. */
+      layout_options?: { [key: string]: any } | null;
+      refresh_interval?: number | null;
+    };
+    Relations: {
+      /** Unique identifier for the relation. */
+      id?: number;
+      /** Collection that has the field that holds the foreign key. */
+      many_collection?: string;
+      /** Foreign key. Field that holds the primary key of the related collection. */
+      many_field?: string;
+      /** Collection on the _one_ side of the relationship. */
+      one_collection?: string;
+      /** Alias column that serves as the _one_ side of the relationship. */
+      one_field?: string | null;
+      one_collection_field?: string | null;
+      one_allowed_collections?: string[] | null;
+      /** Field on the junction table that holds the many field of the related relation. */
+      junction_field?: string | null;
+      sort_field?: string | null;
+      one_deselect_action?: string;
+    };
+    Roles: {
+      /** Unique identifier for the role. */
+      id?: string;
+      /** Name of the role. */
+      name?: string;
+      /** The role's icon. */
+      icon?: string;
+      /** Description of the role. */
+      description?: string | null;
+      /** Array of IP addresses that are allowed to connect to the API as a user of this role. */
+      ip_access?: string[];
+      /** Whether or not this role enforces the use of 2FA. */
+      enforce_tfa?: boolean;
+      /** Custom override for the admin app module bar navigation. */
+      module_list?: { [key: string]: any }[] | null;
+      /** Custom override for the admin app collection navigation. */
+      collection_list?: { [key: string]: any } | null;
+      /** Admin role. If true, skips all permission checks. */
+      admin_access?: boolean;
+      /** The users in the role are allowed to use the app. */
+      app_access?: boolean;
+      users?: (string | components["schemas"]["Users"])[];
+    };
+    Settings: {
+      /** Unique identifier for the setting. */
+      id?: number;
+      /** The name of the project. */
+      project_name?: string;
+      /** The url of the project. */
+      project_url?: string | null;
+      /** The brand color of the project. */
+      project_color?: string | null;
+      /** The logo of the project. */
+      project_logo?: string | null;
+      /** The foreground of the project. */
+      public_foreground?: string | null;
+      /** The background of the project. */
+      public_background?: string | null;
+      /** Note rendered on the public pages of the app. */
+      public_note?: string | null;
+      /** Allowed authentication login attempts before the user's status is set to blocked. */
+      auth_login_attempts?: number;
+      /** Authentication password policy. */
+      auth_password_policy?: string | null;
+      /** What transformations are allowed in the assets endpoint. */
+      storage_asset_transform?: ("all" | "none" | "presets") | null;
+      /** Array of allowed */
+      storage_asset_presets?:
+        | {
+            /** Key for the asset. Used in the assets endpoint. */
+            key?: string;
+            /** Whether to crop the thumbnail to match the size, or maintain the aspect ratio. */
+            fit?: "cover" | "contain" | "inside" | "outside";
+            /** Width of the thumbnail. */
+            width?: number;
+            /** Height of the thumbnail. */
+            height?: number;
+            /** No image upscale */
+            withoutEnlargement?: boolean;
+            /** Quality of the compression used. */
+            quality?: number;
+          }[]
+        | null;
+      custom_css?: string | null;
+      public_divider?: { [key: string]: any };
+      security_divider?: { [key: string]: any };
+      files_divider?: { [key: string]: any };
+      overrides_divider?: { [key: string]: any };
+    };
+    Users: {
+      /** Unique identifier for the user. */
+      id?: string;
+      /** First name of the user. */
+      first_name?: string;
+      /** Last name of the user. */
+      last_name?: string;
+      /** Unique email address for the user. */
+      email?: string;
+      /** Password of the user. */
+      password?: string;
+      /** The user's location. */
+      location?: string | null;
+      /** The user's title. */
+      title?: string | null;
+      /** The user's description. */
+      description?: string | null;
+      /** The user's tags. */
+      tags?: string[] | null;
+      /** The user's avatar. */
+      avatar?: (string | components["schemas"]["Files"]) | null;
+      /** The user's language used in Directus. */
+      language?: string;
+      /** What theme the user is using. */
+      theme?: "light" | "dark" | "auto";
+      /** The 2FA secret string that's used to generate one time passwords. */
+      tfa_secret?: string | null;
+      /** Status of the user. */
+      status?: "active" | "invited" | "draft" | "suspended" | "deleted";
+      /** Unique identifier of the role of this user. */
+      role?: string | components["schemas"]["Roles"];
+      /** Static token for the user. */
+      token?: string | null;
+      last_access?: string | null;
+      /** Last page that the user was on. */
+      last_page?: string | null;
+      preferences_divider?: { [key: string]: any };
+      admin_divider?: { [key: string]: any };
+    };
+    ItemsDisorder: {
+      disorder_id?: number;
+      name?: string;
+      disorder_category_id?:
+        | (number | components["schemas"]["ItemsDisorderCategory"])
+        | null;
+      disorder_subcategory_id?:
+        | (number | components["schemas"]["ItemsDisorderSubcategory"])
+        | null;
+      icd_9_cm?: string | null;
+      icd_10_cm?: string | null;
+    };
+    ItemsDisorderAccommodation: {
+      accommodation_id?: number | components["schemas"]["ItemsAccommodation"];
+      disorder_id?: number | components["schemas"]["ItemsDisorder"];
+    };
+    ItemsDisorderCategory: {
+      disorder_category_id?: number;
+      name?: string;
+    };
+    ItemsDisorderCategoryAccommodation: {
+      accommodation_id?: number | components["schemas"]["ItemsAccommodation"];
+      disorder_category_id?:
+        | number
+        | components["schemas"]["ItemsDisorderCategory"];
+    };
+    ItemsDisorderCategoryIntervention: {
+      intervention_id?: number | components["schemas"]["ItemsIntervention"];
+      disorder_category_id?:
+        | number
+        | components["schemas"]["ItemsDisorderCategory"];
+    };
+    ItemsDisorderCategoryTechnology: {
+      technology_id?: number | components["schemas"]["ItemsTechnology"];
+      disorder_category_id?:
+        | number
+        | components["schemas"]["ItemsDisorderCategory"];
+    };
+    ItemsDisorderIntervention: {
+      intervention_id?: number | components["schemas"]["ItemsIntervention"];
+      disorder_id?: number | components["schemas"]["ItemsDisorder"];
+    };
+    ItemsDisorderReference: {
+      disorder_reference_id?: number;
+      title?: string;
+    };
+    ItemsDisorderReferenceAuthor: {
+      disorder_reference_id?:
+        | number
+        | components["schemas"]["ItemsDisorderReference"];
+      author_first_initial?: string;
+      author_middle_initial?: string;
+      author_surname?: string;
+      rank?: number | null;
+    };
+    ItemsDisorderSignSymptom: {
+      disorder_id?: number | components["schemas"]["ItemsDisorder"];
+      sign_symptom_id?: number | components["schemas"]["ItemsSignSymptom"];
+    };
+    ItemsDisorderSubcategory: {
+      disorder_subcategory_id?: number;
+      name?: string;
+    };
+    ItemsDisorderTechnology: {
+      technology_id?: number | components["schemas"]["ItemsTechnology"];
+      disorder_id?: number | components["schemas"]["ItemsDisorder"];
+    };
+    ItemsGuide: {
+      guide_id?: number;
+      title?: string;
+      link?: string;
+      publisher?: string;
+      guide_reference_id?:
+        | (number | components["schemas"]["ItemsGuideReference"])
+        | null;
+    };
+    ItemsGuideAccommodation: {
+      accommodation_id?: number | components["schemas"]["ItemsAccommodation"];
+      guide_id?: number | components["schemas"]["ItemsGuide"];
+    };
+    ItemsGuideAudience: {
+      audience_id?:
+        | number
+        | components["schemas"]["ItemsResourcePeopleAudience"];
+      guide_id?: number | components["schemas"]["ItemsGuide"];
+    };
+    ItemsGuideAuthor: {
+      author_first_initial?: string;
+      author_middle_initial?: string;
+      author_surname?: string;
+      guide_id?: number | components["schemas"]["ItemsGuide"];
+      rank?: number | null;
+    };
+    ItemsGuideDisorder: {
+      disorder_id?: number | components["schemas"]["ItemsDisorder"];
+      guide_id?: number | components["schemas"]["ItemsGuide"];
+    };
+    ItemsGuideDisorderCategory: {
+      disorder_category_id?:
+        | number
+        | components["schemas"]["ItemsDisorderCategory"];
+      guide_id?: number | components["schemas"]["ItemsGuide"];
+    };
+    ItemsGuideGuideType: {
+      guide_type_id?: number | components["schemas"]["ItemsGuideType"];
+      guide_id?: number | components["schemas"]["ItemsGuide"];
+    };
+    ItemsGuideIntervention: {
+      intervention_id?: number | components["schemas"]["ItemsIntervention"];
+      guide_id?: number | components["schemas"]["ItemsGuide"];
+    };
+    ItemsGuideReference: {
+      guide_reference_id?: number;
+      title?: string | null;
+      link?: string | null;
+      pub_med_id?: number | null;
+    };
+    ItemsGuideTechnology: {
+      technology_id?: number | components["schemas"]["ItemsTechnology"];
+      guide_id?: number | components["schemas"]["ItemsGuide"];
+    };
+    ItemsGuideType: {
+      guide_type_id?: number;
+      name?: string;
+    };
+    ItemsIntervention: {
+      intervention_id?: number;
+      name?: string | null;
+      description?: string | null;
+    };
+    ItemsInterventionResearchEvidence: {
+      intervention_id?: number | components["schemas"]["ItemsIntervention"];
+      research_evidence_id?:
+        | number
+        | components["schemas"]["ItemsResearchEvidence"];
+    };
+    ItemsLanguageSource: {
+      language_source_id?: number;
+      name?: string;
+    };
+    ItemsLisaDomain: {
+      domain_id?: string;
+    };
+    ItemsLisaDomainLocale: {
+      domain_id?: string | components["schemas"]["ItemsLisaDomain"];
+      locale_id?: string | components["schemas"]["ItemsLocale"];
+      name?: string;
+      description?: string;
+    };
+    ItemsLisaGuide: {
+      lisa_guide_id?: string;
+    };
+    ItemsLisaGuideLocale: {
+      lisa_guide_id?: string | components["schemas"]["ItemsLisaGuide"];
+      locale_id?: string | components["schemas"]["ItemsLocale"];
+      name?: string | null;
+      description?: string | null;
+    };
+    ItemsLisaSubdomain: {
+      subdomain_id?: string;
+      domain_id?: string | components["schemas"]["ItemsLisaDomain"];
+    };
+    ItemsLisaSubdomainGuide: {
+      subdomain_id?: string | components["schemas"]["ItemsLisaSubdomain"];
+      lisa_guide_id?: string | components["schemas"]["ItemsLisaGuide"];
+      rank?: number;
+    };
+    ItemsLisaSubdomainGuideLocale: {
+      rank?: string | components["schemas"]["ItemsLisaSubdomainGuide"];
+      locale_id?: string | components["schemas"]["ItemsLocale"];
+    };
+    ItemsLisaSubdomainLocale: {
+      subdomain_id?: string | components["schemas"]["ItemsLisaSubdomain"];
+      locale_id?: string | components["schemas"]["ItemsLocale"];
+      name?: string;
+      description?: string;
+    };
+    ItemsLocale: {
+      locale_id?: string;
+      name?: string;
+    };
+    ItemsNeutralConstruct: {
+      name?: string;
+    };
+    ItemsQuestion: {
+      question_id?: number;
+      questionnaire_id?:
+        | (number | components["schemas"]["ItemsQuestionnaire"])
+        | null;
+      paper_instruction_preamble?: string | null;
+      digital_instruction_preamble?: string | null;
+      paper_instruction?: string | null;
+      digital_instruction?: string | null;
+      question_context?: string;
+      response_option?: string | null;
+    };
+    ItemsQuestionResponseType: {
+      response_type_id?: number | components["schemas"]["ItemsResponseType"];
+      question_id?: number | components["schemas"]["ItemsQuestion"];
+    };
+    ItemsQuestionnaire: {
+      questionnaire_id?: number;
+      title?: string;
+      link?: string | null;
+      description?: string | null;
+      abbreviation?: string | null;
+      age_max?: number | null;
+      age_min?: number | null;
+      number_of_questions?: number | null;
+      minutes_to_complete?: number | null;
+      license_id?: number;
+      language_source_id?:
+        | number
+        | components["schemas"]["ItemsLanguageSource"];
+    };
+    ItemsQuestionnaireAssessmentReference: {
+      assessment_reference_id?:
+        | number
+        | components["schemas"]["ItemsAssessmentReference"];
+      questionnaire_id?: number | components["schemas"]["ItemsQuestionnaire"];
+    };
+    ItemsQuestionnaireAuthor: {
+      author_first_initial?: string;
+      author_middle_initial?: string;
+      author_surname?: string;
+      questionnaire_id?: number | components["schemas"]["ItemsQuestionnaire"];
+      rank?: number | null;
+    };
+    ItemsQuestionnaireDisorder: {
+      questionnaire_id?: number | components["schemas"]["ItemsQuestionnaire"];
+      disorder_id?: number | components["schemas"]["ItemsDisorder"];
+    };
+    ItemsQuestionnaireDisorderCategory: {
+      questionnaire_id?: number | components["schemas"]["ItemsQuestionnaire"];
+      disorder_category_id?:
+        | number
+        | components["schemas"]["ItemsDisorderCategory"];
+    };
+    ItemsQuestionnaireLanguageNotMhdb: {
+      questionnaire_id?: number | components["schemas"]["ItemsQuestionnaire"];
+      language_source_id?:
+        | number
+        | components["schemas"]["ItemsLanguageSource"];
+    };
+    ItemsQuestionnaireRespondent: {
+      respondent_id?:
+        | number
+        | components["schemas"]["ItemsResourcePeopleAudience"];
+      questionnaire_id?: number | components["schemas"]["ItemsQuestionnaire"];
+    };
+    ItemsQuestionnaireSignSymptom: {
+      questionnaire_id?: number | components["schemas"]["ItemsQuestionnaire"];
+      sign_symptom_id?: number | components["schemas"]["ItemsSignSymptom"];
+    };
+    ItemsQuestionnaireSubject: {
+      subject_id?:
+        | number
+        | components["schemas"]["ItemsResourcePeopleAudience"];
+      questionnaire_id?: number | components["schemas"]["ItemsQuestionnaire"];
+    };
+    ItemsResearchEvidence: {
+      research_evidence_id?: number;
+      context?: string;
+    };
+    ItemsResourcePeopleAudience: {
+      audience_id?: number;
+      person?: string;
+    };
+    ItemsResponseType: {
+      response_type_id?: number;
+      type?: string;
+      response_type_definition?: string;
+    };
+    ItemsSignSymptom: {
+      sign_symptom_id?: number;
+      name?: string;
+      underlying_behavior?: string | null;
+      disorder_reference_id?:
+        | number
+        | components["schemas"]["ItemsDisorderReference"];
+    };
+    ItemsSignSymptomAccommodation: {
+      accommodation_id?: number | components["schemas"]["ItemsAccommodation"];
+      sign_symptom_id?: number | components["schemas"]["ItemsSignSymptom"];
+    };
+    ItemsSignSymptomExample: {
+      sign_symptom_example_id?: number;
+      name?: string;
+    };
+    ItemsSignSymptomIntervention: {
+      intervention_id?: number | components["schemas"]["ItemsIntervention"];
+      sign_symptom_id?: number | components["schemas"]["ItemsSignSymptom"];
+    };
+    ItemsSignSymptomNeutralConstruct: {
+      sign_symptom_id?: number | components["schemas"]["ItemsSignSymptom"];
+      name?: string | components["schemas"]["ItemsNeutralConstruct"];
+    };
+    ItemsSignSymptomTechnology: {
+      technology_id?: number | components["schemas"]["ItemsTechnology"];
+      sign_symptom_id?: number | components["schemas"]["ItemsSignSymptom"];
+    };
+    ItemsSignSymptomwithExample: {
+      sign_symptom_id?: number | components["schemas"]["ItemsSignSymptom"];
+      sign_symptom_example_id?:
+        | number
+        | components["schemas"]["ItemsSignSymptomExample"];
+    };
+    ItemsStateDomainBehaviour: {
+      behaviour_id?: number;
+      behaviour?: string;
+    };
+    ItemsTask: {
+      task_id?: number;
+      name?: string;
+      description?: string | null;
+      assessment_reference_id?:
+        | number
+        | components["schemas"]["ItemsAssessmentReference"];
+    };
+    ItemsTechnology: {
+      technology_id?: number;
+      name?: string | null;
+      description?: string | null;
+      link?: string | null;
+    };
+    ItemsTechnologyResearchEvidence: {
+      technology_id?: number | components["schemas"]["ItemsTechnology"];
+      research_evidence_id?:
+        | number
+        | components["schemas"]["ItemsResearchEvidence"];
+    };
+  };
+  responses: {
+    /** Error: Not found. */
+    NotFoundError: {
+      content: {
+        "application/json": {
+          error?: {
+            code?: number;
+            message?: string;
+          };
+        };
+      };
+    };
+    /** Error: Unauthorized request */
+    UnauthorizedError: {
+      content: {
+        "application/json": {
+          error?: {
+            code?: number;
+            message?: string;
+          };
+        };
+      };
+    };
+  };
+  parameters: {
+    /** Index */
+    Id: number;
+    /** Unique identifier for the object. */
+    UUId: string;
+    /** Collection of which you want to retrieve the items from. */
+    Collection: string;
+    /** Filter by items that contain the given search query in one of their fields. */
+    Search: string;
+    /** Cursor for use in pagination. Often used in combination with limit. */
+    Page: number;
+    /** How many items to skip when fetching data. */
+    Offset: number;
+    /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+    Sort: string[];
+    /** What metadata to return in the response. */
+    Meta: string;
+    /** A limit on the number of objects that are returned. */
+    Limit: number;
+    /** Select items in collection by given conditions. */
+    Filter: string[];
+    /** Control what fields are being returned in the object. */
+    Fields: string[];
+    /** Controls if the API sets a cookie or returns a JWT on successful login. */
+    Mode: "jwt" | "cookie";
+  };
+}
+
+export interface operations {
+  /** Image typed files can be dynamically resized and transformed to fit any need. */
+  getAsset: {
+    parameters: {
+      path: {
+        /** The id of the file. */
+        id: string;
+      };
+      query: {
+        /** The key of the asset size configured in settings. */
+        key?: string;
+        /** Width of the file in pixels. */
+        width?: number;
+        /** Height of the file in pixels. */
+        height?: number;
+        /** Fit of the file */
+        fit?: "crop" | "contain" | "inside" | "outside";
+        /** No image upscale. */
+        withoutEnlargement?: boolean;
+        /** Quality of compression. */
+        quality?: number;
+        /** Download the asset to your computer */
+        download?: boolean;
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "text/plain": string;
+        };
+      };
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Retrieve a Temporary Access Token */
+  login: {
+    responses: {
+      /** Successful authentification */
+      200: {
+        content: {
+          "application/json": {
+            data?: {
+              access_token?: string;
+              expires?: number;
+              refresh_token?: string;
+            };
+          };
+        };
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** Email address of the user you're retrieving the access token for. */
+          email: string;
+          /** Password of the user. */
+          password: string;
+          /** Choose between retrieving the token as a string, or setting it as a cookie. */
+          mode?: "json" | "cookie";
+          /** If 2FA is enabled, you need to pass the one time password. */
+          otp?: string;
+        };
+      };
+    };
+  };
+  /** Refresh a Temporary Access Token. */
+  refresh: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: {
+              access_token?: string;
+              expires?: number;
+              refresh_token?: string;
+            };
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** JWT access token you want to refresh. This token can't be expired. */
+          refresh_token?: string;
+        };
+      };
+    };
+  };
+  /** Log Out */
+  logout: {
+    responses: {
+      /** Request successful */
+      200: unknown;
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** JWT access token you want to logout. */
+          refresh_token?: string;
+        };
+      };
+    };
+  };
+  /** Request a reset password email to be send. */
+  passwordRequest: {
+    responses: {
+      401: components["responses"]["UnauthorizedError"];
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** Email address of the user you're requesting a reset for. */
+          email: string;
+        };
+      };
+    };
+  };
+  /** The request a password reset endpoint sends an email with a link to the admin app which in turn uses this endpoint to allow the user to reset their password. */
+  passwordReset: {
+    responses: {
+      401: components["responses"]["UnauthorizedError"];
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** One-time use JWT token that is used to verify the user. */
+          token: string;
+          /** New password for the user. */
+          password: string;
+        };
+      };
+    };
+  };
+  /** List configured OAuth providers. */
+  oauth: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            public?: boolean;
+            data?: string[];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Start OAuth flow using the specified provider */
+  oauthProvider: {
+    parameters: {
+      path: {
+        /** Key of the activated OAuth provider. */
+        provider: string;
+      };
+      query: {
+        /** Where to redirect on successful login.<br/>If set the authentication details are set inside cookies otherwise a JSON is returned. */
+        redirect?: string;
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            public?: boolean;
+            data?: {
+              token?: string;
+            };
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** List all installed custom interfaces. */
+  getInterfaces: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: { [key: string]: any }[];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List all installed custom layouts. */
+  getLayouts: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: { [key: string]: any }[];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List all installed custom displays. */
+  getDisplays: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: { [key: string]: any }[];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List all installed custom modules. */
+  getModules: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: { [key: string]: any }[];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Perform a system status check and return the options. */
+  serverInfo: {
+    parameters: {
+      query: {
+        /** The first time you create a project, the provided token will be saved and required for subsequent project installs. It can also be found and configured in `/config/__api.json` on your server. */
+        super_admin_token: number;
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: { [key: string]: any };
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Ping, pong. Ping.. pong. */
+  ping: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/text": string;
+        };
+      };
+    };
+  };
+  /** Returns a random string of given length. */
+  random: {
+    parameters: {
+      query: {
+        /** Length of the random string. */
+        length?: number;
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: string;
+          };
+        };
+      };
+    };
+  };
+  /** Re-sort items in collection based on start and to value of item */
+  sort: {
+    parameters: {
+      path: {
+        /** Collection identifier */
+        collection: string;
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: unknown;
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** Primary key of item to move */
+          item?: number;
+          /** Primary key of item where to move the current item to */
+          to?: number;
+        };
+      };
+    };
+  };
+  /** List the accommodation items. */
+  readItemsAccommodation: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAccommodation"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single accommodation item by unique identifier. */
+  readSingleItemsAccommodation: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAccommodation"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the accommodation_research_evidence items. */
+  readItemsAccommodationResearchEvidence: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAccommodationResearchEvidence"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single accommodation_research_evidence item by unique identifier. */
+  readSingleItemsAccommodationResearchEvidence: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAccommodationResearchEvidence"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the alias items. */
+  readItemsAlias: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAlias"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single alias item by unique identifier. */
+  readSingleItemsAlias: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAlias"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the assessment_reference items. */
+  readItemsAssessmentReference: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAssessmentReference"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single assessment_reference item by unique identifier. */
+  readSingleItemsAssessmentReference: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAssessmentReference"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the assessment_reference_author items. */
+  readItemsAssessmentReferenceAuthor: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAssessmentReferenceAuthor"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single assessment_reference_author item by unique identifier. */
+  readSingleItemsAssessmentReferenceAuthor: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAssessmentReferenceAuthor"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the author items. */
+  readItemsAuthor: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAuthor"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single author item by unique identifier. */
+  readSingleItemsAuthor: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsAuthor"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the behaviour_accommodation items. */
+  readItemsBehaviourAccommodation: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBehaviourAccommodation"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single behaviour_accommodation item by unique identifier. */
+  readSingleItemsBehaviourAccommodation: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBehaviourAccommodation"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the behaviour_guide items. */
+  readItemsBehaviourGuide: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBehaviourGuide"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single behaviour_guide item by unique identifier. */
+  readSingleItemsBehaviourGuide: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBehaviourGuide"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the behaviour_intervention items. */
+  readItemsBehaviourIntervention: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBehaviourIntervention"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single behaviour_intervention item by unique identifier. */
+  readSingleItemsBehaviourIntervention: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBehaviourIntervention"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the behaviour_questionnaire items. */
+  readItemsBehaviourQuestionnaire: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBehaviourQuestionnaire"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single behaviour_questionnaire item by unique identifier. */
+  readSingleItemsBehaviourQuestionnaire: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBehaviourQuestionnaire"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the behaviour_technology items. */
+  readItemsBehaviourTechnology: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBehaviourTechnology"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single behaviour_technology item by unique identifier. */
+  readSingleItemsBehaviourTechnology: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsBehaviourTechnology"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Returns a list of activity actions. */
+  getActivities: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Activity"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Creates a new comment. */
+  createComment: {
+    parameters: {
+      query: {
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Activity"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          collection: string;
+          item: number;
+          comment: string;
+        };
+      };
+    };
+  };
+  /** Retrieves the details of an existing activity action. Provide the primary key of the activity action and Directus will return the corresponding information. */
+  getActivity: {
+    parameters: {
+      path: {
+        /** Index */
+        id: components["parameters"]["Id"];
+      };
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Activity"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Returns a list of the collections available in the project. */
+  getCollections: {
+    parameters: {
+      query: {
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Collections"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Retrieves the details of a single collection. */
+  getCollection: {
+    parameters: {
+      query: {
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Collections"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Returns a list of the fields available in the project. */
+  getFields: {
+    parameters: {
+      query: {
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Fields"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Returns a list of the fields available in the given collection. */
+  getCollectionFields: {
+    parameters: {
+      query: {
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Fields"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Retrieves the details of a single field in a given collection. */
+  getCollectionField: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Fields"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the files. */
+  getFiles: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Files"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Create a new file */
+  createFile: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Files"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          data?: string;
+        };
+      };
+    };
+  };
+  /** Retrieve a single file by unique identifier. */
+  getFile: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Files"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Delete an existing file. */
+  deleteFile: {
+    responses: {
+      /** Successful request */
+      200: unknown;
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Update an existing file. */
+  updateFile: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Files"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+    requestBody: {
+      content: {
+        "application/json": { [key: string]: any };
+      };
+    };
+  };
+  /** List the folders. */
+  getFolders: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Folders"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Create a new folder. */
+  createFolder: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Folders"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** Name of the folder. */
+          name: string;
+          /** Unique identifier of the parent folder. This allows for nested folders. */
+          parent?: number;
+        };
+      };
+    };
+  };
+  /** Retrieve a single folder by unique identifier. */
+  getFolder: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Folders"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Delete an existing folder */
+  deleteFolder: {
+    responses: {
+      /** Successful request */
+      200: unknown;
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Update an existing folder */
+  updateFolder: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Folders"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** Name of the folder. Can't be null or empty. */
+          name?: string;
+          /** Unique identifier of the parent folder. This allows for nested folders. */
+          parent?: number;
+        };
+      };
+    };
+  };
+  /** List all permissions. */
+  getPermissions: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+        /** Cursor for use in pagination. Often used in combination with limit. */
+        page?: components["parameters"]["Page"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Permissions"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the permissions that apply to the current user. */
+  getMyPermissions: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Permissions"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Retrieve a single permissions object by unique identifier. */
+  getPermission: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Permissions"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the presets. */
+  getPresets: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** Cursor for use in pagination. Often used in combination with limit. */
+        page?: components["parameters"]["Page"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Presets"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Create a new preset. */
+  createPreset: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Presets"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** What collection this collection preset is used for. */
+          collection: string;
+          /** Name for the bookmark. If this is set, the collection preset will be considered to be a bookmark. */
+          title?: string;
+          /** The unique identifier of a role in the platform. If user is null, this will be used to apply the collection preset or bookmark for all users in the role. */
+          role?: string;
+          /** What the user searched for in search/filter in the header bar. */
+          search?: string;
+          filters?: {
+            key?: string;
+            field?: string;
+            operator?: string;
+            value?: number;
+          }[];
+          /** Name of the view type that is used. */
+          layout?: string;
+          /** Layout query that's saved per layout type. Controls what data is fetched on load. These follow the same format as the JS SDK parameters. */
+          layout_query?: string;
+          /** Options of the views. The properties in here are controlled by the layout. */
+          layout_options?: string;
+        };
+      };
+    };
+  };
+  /** Retrieve a single preset by unique identifier. */
+  getPreset: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Presets"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Delete an existing preset. */
+  deletePreset: {
+    responses: {
+      /** Successful request */
+      200: unknown;
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Update an existing preset. */
+  updatePreset: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Presets"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** What collection this collection preset is used for. */
+          collection: string;
+          /** Name for the bookmark. If this is set, the collection preset will be considered to be a bookmark. */
+          title?: string;
+          /** The unique identifier of a role in the platform. If user is null, this will be used to apply the collection preset or bookmark for all users in the role. */
+          role?: number;
+          /** What the user searched for in search/filter in the header bar. */
+          search_query?: string;
+          filters?: {
+            field?: string;
+            operator?: string;
+            value?: number;
+          }[];
+          /** Name of the view type that is used. Defaults to tabular. */
+          view_type?: string;
+          /** View query that's saved per view type. Controls what data is fetched on load. These follow the same format as the JS SDK parameters. */
+          view_query?: string;
+          /** Options of the views. The properties in here are controlled by the layout. */
+          view_options?: string;
+          /** Key value pair of language-translation. Can be used to translate the bookmark title in multiple languages. */
+          translation?: { [key: string]: any };
+        };
+      };
+    };
+  };
+  /** List the relations. */
+  getRelations: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+        /** Cursor for use in pagination. Often used in combination with limit. */
+        page?: components["parameters"]["Page"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Relations"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Retrieve a single relation by unique identifier. */
+  getRelation: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Relations"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the roles. */
+  getRoles: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+        /** Cursor for use in pagination. Often used in combination with limit. */
+        page?: components["parameters"]["Page"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Roles"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Retrieve a single role by unique identifier. */
+  getRole: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Roles"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the settings. */
+  getSettings: {
+    parameters: {
+      query: {
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** Cursor for use in pagination. Often used in combination with limit. */
+        page?: components["parameters"]["Page"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Settings"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the users. */
+  getUsers: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Users"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Retrieve a single user by unique identifier. */
+  getUser: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Users"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Update an existing user */
+  updateUser: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: { [key: string]: any };
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["Users"];
+      };
+    };
+  };
+  /** Retrieve the currently authenticated user. */
+  getMe: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Users"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Update the currently authenticated user. */
+  updateMe: {
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["Users"];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** Updates the last used page field of the currently authenticated user. This is used internally to be able to open the Directus admin app from the last page you used. */
+  updateLastUsedPageMe: {
+    responses: {
+      /** Successful request */
+      200: unknown;
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          /** Path of the page you used last. */
+          last_page?: string;
+        };
+      };
+    };
+  };
+  /** List the disorder items. */
+  readItemsDisorder: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorder"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single disorder item by unique identifier. */
+  readSingleItemsDisorder: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorder"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the disorder_accommodation items. */
+  readItemsDisorderAccommodation: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderAccommodation"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single disorder_accommodation item by unique identifier. */
+  readSingleItemsDisorderAccommodation: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderAccommodation"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the disorder_category items. */
+  readItemsDisorderCategory: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderCategory"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single disorder_category item by unique identifier. */
+  readSingleItemsDisorderCategory: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderCategory"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the disorder_category_accommodation items. */
+  readItemsDisorderCategoryAccommodation: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderCategoryAccommodation"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single disorder_category_accommodation item by unique identifier. */
+  readSingleItemsDisorderCategoryAccommodation: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderCategoryAccommodation"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the disorder_category_intervention items. */
+  readItemsDisorderCategoryIntervention: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderCategoryIntervention"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single disorder_category_intervention item by unique identifier. */
+  readSingleItemsDisorderCategoryIntervention: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderCategoryIntervention"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the disorder_category_technology items. */
+  readItemsDisorderCategoryTechnology: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderCategoryTechnology"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single disorder_category_technology item by unique identifier. */
+  readSingleItemsDisorderCategoryTechnology: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderCategoryTechnology"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the disorder_intervention items. */
+  readItemsDisorderIntervention: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderIntervention"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single disorder_intervention item by unique identifier. */
+  readSingleItemsDisorderIntervention: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderIntervention"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the disorder_reference items. */
+  readItemsDisorderReference: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderReference"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single disorder_reference item by unique identifier. */
+  readSingleItemsDisorderReference: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderReference"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the disorder_reference_author items. */
+  readItemsDisorderReferenceAuthor: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderReferenceAuthor"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single disorder_reference_author item by unique identifier. */
+  readSingleItemsDisorderReferenceAuthor: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderReferenceAuthor"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the disorder_sign_symptom items. */
+  readItemsDisorderSignSymptom: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderSignSymptom"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single disorder_sign_symptom item by unique identifier. */
+  readSingleItemsDisorderSignSymptom: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderSignSymptom"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the disorder_subcategory items. */
+  readItemsDisorderSubcategory: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderSubcategory"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single disorder_subcategory item by unique identifier. */
+  readSingleItemsDisorderSubcategory: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderSubcategory"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the disorder_technology items. */
+  readItemsDisorderTechnology: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderTechnology"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single disorder_technology item by unique identifier. */
+  readSingleItemsDisorderTechnology: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsDisorderTechnology"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the guide items. */
+  readItemsGuide: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuide"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single guide item by unique identifier. */
+  readSingleItemsGuide: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuide"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the guide_accommodation items. */
+  readItemsGuideAccommodation: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideAccommodation"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single guide_accommodation item by unique identifier. */
+  readSingleItemsGuideAccommodation: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideAccommodation"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the guide_audience items. */
+  readItemsGuideAudience: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideAudience"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single guide_audience item by unique identifier. */
+  readSingleItemsGuideAudience: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideAudience"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the guide_author items. */
+  readItemsGuideAuthor: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideAuthor"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single guide_author item by unique identifier. */
+  readSingleItemsGuideAuthor: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideAuthor"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the guide_disorder items. */
+  readItemsGuideDisorder: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideDisorder"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single guide_disorder item by unique identifier. */
+  readSingleItemsGuideDisorder: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideDisorder"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the guide_disorder_category items. */
+  readItemsGuideDisorderCategory: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideDisorderCategory"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single guide_disorder_category item by unique identifier. */
+  readSingleItemsGuideDisorderCategory: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideDisorderCategory"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the guide_guide_type items. */
+  readItemsGuideGuideType: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideGuideType"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single guide_guide_type item by unique identifier. */
+  readSingleItemsGuideGuideType: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideGuideType"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the guide_intervention items. */
+  readItemsGuideIntervention: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideIntervention"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single guide_intervention item by unique identifier. */
+  readSingleItemsGuideIntervention: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideIntervention"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the guide_reference items. */
+  readItemsGuideReference: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideReference"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single guide_reference item by unique identifier. */
+  readSingleItemsGuideReference: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideReference"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the guide_technology items. */
+  readItemsGuideTechnology: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideTechnology"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single guide_technology item by unique identifier. */
+  readSingleItemsGuideTechnology: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideTechnology"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the guide_type items. */
+  readItemsGuideType: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideType"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single guide_type item by unique identifier. */
+  readSingleItemsGuideType: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsGuideType"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the intervention items. */
+  readItemsIntervention: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsIntervention"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single intervention item by unique identifier. */
+  readSingleItemsIntervention: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsIntervention"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the intervention_research_evidence items. */
+  readItemsInterventionResearchEvidence: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsInterventionResearchEvidence"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single intervention_research_evidence item by unique identifier. */
+  readSingleItemsInterventionResearchEvidence: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsInterventionResearchEvidence"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the language_source items. */
+  readItemsLanguageSource: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLanguageSource"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single language_source item by unique identifier. */
+  readSingleItemsLanguageSource: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLanguageSource"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the lisa_domain items. */
+  readItemsLisaDomain: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaDomain"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single lisa_domain item by unique identifier. */
+  readSingleItemsLisaDomain: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaDomain"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the lisa_domain_locale items. */
+  readItemsLisaDomainLocale: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaDomainLocale"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single lisa_domain_locale item by unique identifier. */
+  readSingleItemsLisaDomainLocale: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaDomainLocale"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the lisa_guide items. */
+  readItemsLisaGuide: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaGuide"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single lisa_guide item by unique identifier. */
+  readSingleItemsLisaGuide: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaGuide"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the lisa_guide_locale items. */
+  readItemsLisaGuideLocale: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaGuideLocale"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single lisa_guide_locale item by unique identifier. */
+  readSingleItemsLisaGuideLocale: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaGuideLocale"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the lisa_subdomain items. */
+  readItemsLisaSubdomain: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaSubdomain"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single lisa_subdomain item by unique identifier. */
+  readSingleItemsLisaSubdomain: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaSubdomain"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the lisa_subdomain_guide items. */
+  readItemsLisaSubdomainGuide: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaSubdomainGuide"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single lisa_subdomain_guide item by unique identifier. */
+  readSingleItemsLisaSubdomainGuide: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaSubdomainGuide"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the lisa_subdomain_guide_locale items. */
+  readItemsLisaSubdomainGuideLocale: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaSubdomainGuideLocale"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single lisa_subdomain_guide_locale item by unique identifier. */
+  readSingleItemsLisaSubdomainGuideLocale: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaSubdomainGuideLocale"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the lisa_subdomain_locale items. */
+  readItemsLisaSubdomainLocale: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaSubdomainLocale"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single lisa_subdomain_locale item by unique identifier. */
+  readSingleItemsLisaSubdomainLocale: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLisaSubdomainLocale"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the locale items. */
+  readItemsLocale: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLocale"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single locale item by unique identifier. */
+  readSingleItemsLocale: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsLocale"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the neutral_construct items. */
+  readItemsNeutralConstruct: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsNeutralConstruct"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single neutral_construct item by unique identifier. */
+  readSingleItemsNeutralConstruct: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsNeutralConstruct"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the question items. */
+  readItemsQuestion: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestion"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single question item by unique identifier. */
+  readSingleItemsQuestion: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestion"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the question_response_type items. */
+  readItemsQuestionResponseType: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionResponseType"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single question_response_type item by unique identifier. */
+  readSingleItemsQuestionResponseType: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionResponseType"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the questionnaire items. */
+  readItemsQuestionnaire: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaire"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single questionnaire item by unique identifier. */
+  readSingleItemsQuestionnaire: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaire"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the questionnaire_assessment_reference items. */
+  readItemsQuestionnaireAssessmentReference: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireAssessmentReference"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single questionnaire_assessment_reference item by unique identifier. */
+  readSingleItemsQuestionnaireAssessmentReference: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireAssessmentReference"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the questionnaire_author items. */
+  readItemsQuestionnaireAuthor: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireAuthor"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single questionnaire_author item by unique identifier. */
+  readSingleItemsQuestionnaireAuthor: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireAuthor"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the questionnaire_disorder items. */
+  readItemsQuestionnaireDisorder: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireDisorder"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single questionnaire_disorder item by unique identifier. */
+  readSingleItemsQuestionnaireDisorder: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireDisorder"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the questionnaire_disorder_category items. */
+  readItemsQuestionnaireDisorderCategory: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireDisorderCategory"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single questionnaire_disorder_category item by unique identifier. */
+  readSingleItemsQuestionnaireDisorderCategory: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireDisorderCategory"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the questionnaire_language_not_mhdb items. */
+  readItemsQuestionnaireLanguageNotMhdb: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireLanguageNotMhdb"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single questionnaire_language_not_mhdb item by unique identifier. */
+  readSingleItemsQuestionnaireLanguageNotMhdb: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireLanguageNotMhdb"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the questionnaire_respondent items. */
+  readItemsQuestionnaireRespondent: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireRespondent"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single questionnaire_respondent item by unique identifier. */
+  readSingleItemsQuestionnaireRespondent: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireRespondent"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the questionnaire_sign_symptom items. */
+  readItemsQuestionnaireSignSymptom: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireSignSymptom"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single questionnaire_sign_symptom item by unique identifier. */
+  readSingleItemsQuestionnaireSignSymptom: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireSignSymptom"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the questionnaire_subject items. */
+  readItemsQuestionnaireSubject: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireSubject"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single questionnaire_subject item by unique identifier. */
+  readSingleItemsQuestionnaireSubject: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsQuestionnaireSubject"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the research_evidence items. */
+  readItemsResearchEvidence: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsResearchEvidence"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single research_evidence item by unique identifier. */
+  readSingleItemsResearchEvidence: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsResearchEvidence"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the resource_people_audience items. */
+  readItemsResourcePeopleAudience: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsResourcePeopleAudience"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single resource_people_audience item by unique identifier. */
+  readSingleItemsResourcePeopleAudience: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsResourcePeopleAudience"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the response_type items. */
+  readItemsResponseType: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsResponseType"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single response_type item by unique identifier. */
+  readSingleItemsResponseType: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsResponseType"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the sign_symptom items. */
+  readItemsSignSymptom: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptom"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single sign_symptom item by unique identifier. */
+  readSingleItemsSignSymptom: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptom"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the sign_symptom_accommodation items. */
+  readItemsSignSymptomAccommodation: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptomAccommodation"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single sign_symptom_accommodation item by unique identifier. */
+  readSingleItemsSignSymptomAccommodation: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptomAccommodation"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the sign_symptom_example items. */
+  readItemsSignSymptomExample: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptomExample"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single sign_symptom_example item by unique identifier. */
+  readSingleItemsSignSymptomExample: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptomExample"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the sign_symptom_intervention items. */
+  readItemsSignSymptomIntervention: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptomIntervention"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single sign_symptom_intervention item by unique identifier. */
+  readSingleItemsSignSymptomIntervention: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptomIntervention"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the sign_symptom_neutral_construct items. */
+  readItemsSignSymptomNeutralConstruct: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptomNeutralConstruct"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single sign_symptom_neutral_construct item by unique identifier. */
+  readSingleItemsSignSymptomNeutralConstruct: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptomNeutralConstruct"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the sign_symptom_technology items. */
+  readItemsSignSymptomTechnology: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptomTechnology"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single sign_symptom_technology item by unique identifier. */
+  readSingleItemsSignSymptomTechnology: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptomTechnology"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the sign_symptom_with_example items. */
+  readItemsSignSymptomwithExample: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptomwithExample"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single sign_symptom_with_example item by unique identifier. */
+  readSingleItemsSignSymptomwithExample: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsSignSymptomwithExample"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the state_domain_behaviour items. */
+  readItemsStateDomainBehaviour: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsStateDomainBehaviour"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single state_domain_behaviour item by unique identifier. */
+  readSingleItemsStateDomainBehaviour: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsStateDomainBehaviour"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the task items. */
+  readItemsTask: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsTask"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single task item by unique identifier. */
+  readSingleItemsTask: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsTask"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the technology items. */
+  readItemsTechnology: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsTechnology"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single technology item by unique identifier. */
+  readSingleItemsTechnology: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsTechnology"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
+  /** List the technology_research_evidence items. */
+  readItemsTechnologyResearchEvidence: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** A limit on the number of objects that are returned. */
+        limit?: components["parameters"]["Limit"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+        /** How many items to skip when fetching data. */
+        offset?: components["parameters"]["Offset"];
+        /** How to sort the returned items. `sort` is a CSV of fields used to sort the fetched items. Sorting defaults to ascending (ASC) order but a minus sign (` - `) can be used to reverse this to descending (DESC) order. Fields are prioritized by their order in the CSV. You can also use a ` ? ` to sort randomly. */
+        sort?: components["parameters"]["Sort"];
+        /** Select items in collection by given conditions. */
+        filter?: components["parameters"]["Filter"];
+        /** Filter by items that contain the given search query in one of their fields. */
+        search?: components["parameters"]["Search"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsTechnologyResearchEvidence"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+    };
+  };
+  /** Retrieve a single technology_research_evidence item by unique identifier. */
+  readSingleItemsTechnologyResearchEvidence: {
+    parameters: {
+      query: {
+        /** Control what fields are being returned in the object. */
+        fields?: components["parameters"]["Fields"];
+        /** What metadata to return in the response. */
+        meta?: components["parameters"]["Meta"];
+      };
+    };
+    responses: {
+      /** Successful request */
+      200: {
+        content: {
+          "application/json": {
+            data?: components["schemas"]["ItemsTechnologyResearchEvidence"][];
+          };
+        };
+      };
+      401: components["responses"]["UnauthorizedError"];
+      404: components["responses"]["NotFoundError"];
+    };
+  };
 }
 
 export type Collections = {
-  accommodation: Accommodation;
-  accommodation_research_evidence: AccommodationResearchEvidence;
-  alias: Alias;
-  assessment_reference: AssessmentReference;
-  assessment_reference_author: AssessmentReferenceAuthor;
-  author: Author;
-  behaviour_accommodation: BehaviourAccommodation;
-  behaviour_guide: BehaviourGuide;
-  behaviour_intervention: BehaviourIntervention;
-  behaviour_questionnaire: BehaviourQuestionnaire;
-  behaviour_technology: BehaviourTechnology;
-  disorder: Disorder;
-  disorder_accommodation: DisorderAccommodation;
-  disorder_category: DisorderCategory;
-  disorder_category_accommodation: DisorderCategoryAccommodation;
-  disorder_category_intervention: DisorderCategoryIntervention;
-  disorder_category_technology: DisorderCategoryTechnology;
-  disorder_intervention: DisorderIntervention;
-  disorder_reference: DisorderReference;
-  disorder_reference_author: DisorderReferenceAuthor;
-  disorder_sign_symptom: DisorderSignSymptom;
-  disorder_subcategory: DisorderSubcategory;
-  disorder_technology: DisorderTechnology;
-  guide: Guide;
-  guide_accommodation: GuideAccommodation;
-  guide_audience: GuideAudience;
-  guide_author: GuideAuthor;
-  guide_disorder: GuideDisorder;
-  guide_disorder_category: GuideDisorderCategory;
-  guide_guide_type: GuideGuideType;
-  guide_intervention: GuideIntervention;
-  guide_reference: GuideReference;
-  guide_technology: GuideTechnology;
-  guide_type: GuideType;
-  intervention: Intervention;
-  intervention_research_evidence: InterventionResearchEvidence;
-  language_source: LanguageSource;
-  lisa_domain: LisaDomain;
-  lisa_domain_locale: LisaDomainLocale;
-  lisa_guide: LisaGuide;
-  lisa_guide_locale: LisaGuideLocale;
-  lisa_subdomain: LisaSubdomain;
-  lisa_subdomain_guide: LisaSubdomainGuide;
-  lisa_subdomain_guide_locale: LisaSubdomainGuideLocale;
-  lisa_subdomain_locale: LisaSubdomainLocale;
-  locale: Locale;
-  neutral_construct: NeutralConstruct;
-  question: Question;
-  question_response_type: QuestionResponseType;
-  questionnaire: Questionnaire;
-  questionnaire_assessment_reference: QuestionnaireAssessmentReference;
-  questionnaire_author: QuestionnaireAuthor;
-  questionnaire_disorder: QuestionnaireDisorder;
-  questionnaire_disorder_category: QuestionnaireDisorderCategory;
-  questionnaire_language_not_mhdb: QuestionnaireLanguageNotMhdb;
-  questionnaire_respondent: QuestionnaireRespondent;
-  questionnaire_sign_symptom: QuestionnaireSignSymptom;
-  questionnaire_subject: QuestionnaireSubject;
-  research_evidence: ResearchEvidence;
-  resource_people_audience: ResourcePeopleAudience;
-  response_type: ResponseType;
-  sign_symptom: SignSymptom;
-  sign_symptom_accommodation: SignSymptomAccommodation;
-  sign_symptom_example: SignSymptomExample;
-  sign_symptom_intervention: SignSymptomIntervention;
-  sign_symptom_neutral_construct: SignSymptomNeutralConstruct;
-  sign_symptom_technology: SignSymptomTechnology;
-  sign_symptom_with_example: SignSymptomwithExample;
-  state_domain_behaviour: StateDomainBehaviour;
-  task: Task;
-  technology: Technology;
-  technology_research_evidence: TechnologyResearchEvidence;
+  accommodation: components["schemas"]["ItemsAccommodation"];
+  accommodation_research_evidence: components["schemas"]["ItemsAccommodationResearchEvidence"];
+  alias: components["schemas"]["ItemsAlias"];
+  assessment_reference: components["schemas"]["ItemsAssessmentReference"];
+  assessment_reference_author: components["schemas"]["ItemsAssessmentReferenceAuthor"];
+  author: components["schemas"]["ItemsAuthor"];
+  behaviour_accommodation: components["schemas"]["ItemsBehaviourAccommodation"];
+  behaviour_guide: components["schemas"]["ItemsBehaviourGuide"];
+  behaviour_intervention: components["schemas"]["ItemsBehaviourIntervention"];
+  behaviour_questionnaire: components["schemas"]["ItemsBehaviourQuestionnaire"];
+  behaviour_technology: components["schemas"]["ItemsBehaviourTechnology"];
+  disorder: components["schemas"]["ItemsDisorder"];
+  disorder_accommodation: components["schemas"]["ItemsDisorderAccommodation"];
+  disorder_category: components["schemas"]["ItemsDisorderCategory"];
+  disorder_category_accommodation: components["schemas"]["ItemsDisorderCategoryAccommodation"];
+  disorder_category_intervention: components["schemas"]["ItemsDisorderCategoryIntervention"];
+  disorder_category_technology: components["schemas"]["ItemsDisorderCategoryTechnology"];
+  disorder_intervention: components["schemas"]["ItemsDisorderIntervention"];
+  disorder_reference: components["schemas"]["ItemsDisorderReference"];
+  disorder_reference_author: components["schemas"]["ItemsDisorderReferenceAuthor"];
+  disorder_sign_symptom: components["schemas"]["ItemsDisorderSignSymptom"];
+  disorder_subcategory: components["schemas"]["ItemsDisorderSubcategory"];
+  disorder_technology: components["schemas"]["ItemsDisorderTechnology"];
+  guide: components["schemas"]["ItemsGuide"];
+  guide_accommodation: components["schemas"]["ItemsGuideAccommodation"];
+  guide_audience: components["schemas"]["ItemsGuideAudience"];
+  guide_author: components["schemas"]["ItemsGuideAuthor"];
+  guide_disorder: components["schemas"]["ItemsGuideDisorder"];
+  guide_disorder_category: components["schemas"]["ItemsGuideDisorderCategory"];
+  guide_guide_type: components["schemas"]["ItemsGuideGuideType"];
+  guide_intervention: components["schemas"]["ItemsGuideIntervention"];
+  guide_reference: components["schemas"]["ItemsGuideReference"];
+  guide_technology: components["schemas"]["ItemsGuideTechnology"];
+  guide_type: components["schemas"]["ItemsGuideType"];
+  intervention: components["schemas"]["ItemsIntervention"];
+  intervention_research_evidence: components["schemas"]["ItemsInterventionResearchEvidence"];
+  language_source: components["schemas"]["ItemsLanguageSource"];
+  lisa_domain: components["schemas"]["ItemsLisaDomain"];
+  lisa_domain_locale: components["schemas"]["ItemsLisaDomainLocale"];
+  lisa_guide: components["schemas"]["ItemsLisaGuide"];
+  lisa_guide_locale: components["schemas"]["ItemsLisaGuideLocale"];
+  lisa_subdomain: components["schemas"]["ItemsLisaSubdomain"];
+  lisa_subdomain_guide: components["schemas"]["ItemsLisaSubdomainGuide"];
+  lisa_subdomain_guide_locale: components["schemas"]["ItemsLisaSubdomainGuideLocale"];
+  lisa_subdomain_locale: components["schemas"]["ItemsLisaSubdomainLocale"];
+  locale: components["schemas"]["ItemsLocale"];
+  neutral_construct: components["schemas"]["ItemsNeutralConstruct"];
+  question: components["schemas"]["ItemsQuestion"];
+  question_response_type: components["schemas"]["ItemsQuestionResponseType"];
+  questionnaire: components["schemas"]["ItemsQuestionnaire"];
+  questionnaire_assessment_reference: components["schemas"]["ItemsQuestionnaireAssessmentReference"];
+  questionnaire_author: components["schemas"]["ItemsQuestionnaireAuthor"];
+  questionnaire_disorder: components["schemas"]["ItemsQuestionnaireDisorder"];
+  questionnaire_disorder_category: components["schemas"]["ItemsQuestionnaireDisorderCategory"];
+  questionnaire_language_not_mhdb: components["schemas"]["ItemsQuestionnaireLanguageNotMhdb"];
+  questionnaire_respondent: components["schemas"]["ItemsQuestionnaireRespondent"];
+  questionnaire_sign_symptom: components["schemas"]["ItemsQuestionnaireSignSymptom"];
+  questionnaire_subject: components["schemas"]["ItemsQuestionnaireSubject"];
+  research_evidence: components["schemas"]["ItemsResearchEvidence"];
+  resource_people_audience: components["schemas"]["ItemsResourcePeopleAudience"];
+  response_type: components["schemas"]["ItemsResponseType"];
+  sign_symptom: components["schemas"]["ItemsSignSymptom"];
+  sign_symptom_accommodation: components["schemas"]["ItemsSignSymptomAccommodation"];
+  sign_symptom_example: components["schemas"]["ItemsSignSymptomExample"];
+  sign_symptom_intervention: components["schemas"]["ItemsSignSymptomIntervention"];
+  sign_symptom_neutral_construct: components["schemas"]["ItemsSignSymptomNeutralConstruct"];
+  sign_symptom_technology: components["schemas"]["ItemsSignSymptomTechnology"];
+  sign_symptomwith_example: components["schemas"]["ItemsSignSymptomwithExample"];
+  state_domain_behaviour: components["schemas"]["ItemsStateDomainBehaviour"];
+  task: components["schemas"]["ItemsTask"];
+  technology: components["schemas"]["ItemsTechnology"];
+  technology_research_evidence: components["schemas"]["ItemsTechnologyResearchEvidence"];
 };

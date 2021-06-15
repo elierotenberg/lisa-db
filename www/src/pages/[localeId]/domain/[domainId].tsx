@@ -3,11 +3,11 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { FunctionComponent } from "react";
 import { isRecord, isString } from "typed-assert";
 
-import { LisaDomainLocale } from "../../../../directus";
+import { Collections } from "../../../../directus";
 import { getDirectusFromEnv, asNonPartialMany } from "../../../lib/Directus";
 
 type DomainPageStaticProps = {
-  readonly domainLocale: LisaDomainLocale;
+  readonly domainLocale: Collections["lisa_domain_locale"];
 };
 
 const DomainPage: FunctionComponent<DomainPageStaticProps> = ({
@@ -58,8 +58,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: domainLocales.map(
       ({ locale_id: localeId, domain_id: domainId }) => ({
         params: {
-          localeId,
-          domainId,
+          localeId:
+            typeof localeId === `string`
+              ? localeId
+              : (localeId.locale_id as string),
+          domainId:
+            typeof domainId === `string`
+              ? domainId
+              : (domainId.domain_id as string),
         },
       }),
     ),

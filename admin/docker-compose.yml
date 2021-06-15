@@ -7,7 +7,8 @@ services:
       - ./env/dev/postgres.env
     volumes:
       - lisa-db-postgres-pgdata:/var/lib/postgresql/data
-      - ./data/pgdump.sql:/docker-entrypoint-initdb.d/00-pgdump.sql:ro
+      # - ./data/pgdump.sql:/docker-entrypoint-initdb.d/00-pgdump.sql:ro
+      - ./src/sql/scratch.sql:/docker-entrypoint-initdb.d/00-scratch.sql:ro
 
     networks:
       - lisa-db-admin
@@ -22,7 +23,7 @@ services:
       - lisa-db-admin
 
   lisa-db-directus:
-    image: directus/directus:v9.0.0-rc.75
+    image: directus/directus:v9.0.0-rc.76
     container_name: lisa-db-directus
     ports:
       - "8055:8055"

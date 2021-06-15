@@ -6,7 +6,7 @@ import React, { FunctionComponent } from "react";
 import { isRecord, isString } from "typed-assert";
 import { resolveAllConcurrent } from "typed-utilities";
 
-import { LisaDomainLocale, Locale } from "../../../../directus";
+import { Collections } from "../../../../directus";
 import {
   asNonPartial,
   asNonPartialMany,
@@ -14,8 +14,8 @@ import {
 } from "../../../lib/Directus";
 
 type DomainIndexPageStaticProps = {
-  readonly locale: Locale;
-  readonly domainLocales: LisaDomainLocale[];
+  readonly locale: Collections["locale"];
+  readonly domainLocales: Collections["lisa_domain_locale"][];
 };
 
 const DomainIndexPage: FunctionComponent<DomainIndexPageStaticProps> = ({
