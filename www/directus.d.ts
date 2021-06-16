@@ -1276,6 +1276,7 @@ export interface components {
       locale_id?: string | components["schemas"]["ItemsLocale"];
       name?: string;
       description?: string;
+      lisa_domain_locale_id?: string;
     };
     ItemsLisaGuide: {
       lisa_guide_id?: string;

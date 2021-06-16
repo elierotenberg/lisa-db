@@ -7,8 +7,8 @@ services:
       - ./env/dev/postgres.env
     volumes:
       - lisa-db-postgres-pgdata:/var/lib/postgresql/data
-      # - ./data/pgdump.sql:/docker-entrypoint-initdb.d/00-pgdump.sql:ro
-      - ./src/sql/scratch.sql:/docker-entrypoint-initdb.d/00-scratch.sql:ro
+      - ./data/pgdump.sql:/docker-entrypoint-initdb.d/00-pgdump.sql:ro
+      #- ./src/sql/scratch.sql:/docker-entrypoint-initdb.d/00-scratch.sql:ro
 
     networks:
       - lisa-db-admin

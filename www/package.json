@@ -8,7 +8,7 @@
     "dev": "next dev -p 4290",
     "build": "next build",
     "export": "next export",
-    "directus-typescript-gen": "directus-typescript-gen --host http://localhost:8055 --email www-dev@lisa-db.ifea.education --password lisa-db-www-dev-password --typeName Collections --outFile directus.d.ts"
+    "directus-typescript-gen": "directus-typescript-gen --host http://localhost:8055 --email www-dev@lisa-db.ifea.education --password lisa-db-www-dev-password --typeName Collections --outFile directus.d.ts --specOutFile directus.spec.json"
   },
   "repository": {
     "type": "git",

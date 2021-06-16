@@ -1729,6 +1729,12 @@ COPY public.directus_activity (id, action, "user", "timestamp", ip, user_agent, 
 156	create	33e7a79b-8db2-4af8-a9d0-b78af5a2acb6	2021-06-15 06:58:28.079131+00	192.168.192.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0	directus_collections	technology_research_evidence	\N
 157	create	33e7a79b-8db2-4af8-a9d0-b78af5a2acb6	2021-06-15 06:58:28.148759+00	192.168.192.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0	directus_permissions	83	\N
 158	create	33e7a79b-8db2-4af8-a9d0-b78af5a2acb6	2021-06-15 06:59:09.729809+00	192.168.192.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0	directus_users	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	\N
+159	authenticate	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	2021-06-15 14:00:49.741342+00	::ffff:192.168.224.1	node-fetch/1.0 (+https://github.com/bitinn/node-fetch)	directus_users	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	\N
+160	authenticate	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	2021-06-15 14:00:56.002068+00	::ffff:192.168.224.1	node-fetch/1.0 (+https://github.com/bitinn/node-fetch)	directus_users	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	\N
+161	authenticate	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	2021-06-15 14:01:01.911098+00	::ffff:192.168.224.1	node-fetch/1.0 (+https://github.com/bitinn/node-fetch)	directus_users	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	\N
+162	authenticate	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	2021-06-15 14:01:08.654703+00	::ffff:192.168.224.1	node-fetch/1.0 (+https://github.com/bitinn/node-fetch)	directus_users	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	\N
+163	authenticate	33e7a79b-8db2-4af8-a9d0-b78af5a2acb6	2021-06-15 14:01:31.821942+00	::ffff:192.168.224.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0	directus_users	33e7a79b-8db2-4af8-a9d0-b78af5a2acb6	\N
+164	update	33e7a79b-8db2-4af8-a9d0-b78af5a2acb6	2021-06-15 14:01:42.951279+00	192.168.224.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0	directus_users	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	\N
 \.
 
 
@@ -1994,6 +2000,11 @@ COPY public.directus_roles (id, name, icon, description, ip_access, enforce_tfa,
 
 COPY public.directus_sessions (token, "user", expires, ip, user_agent) FROM stdin;
 Nd8i3TxVxINCk8_5jXXG0msdSljT_d-no1k9I7rzVqM0vZj_l4DAqTyq4a1opJAw	33e7a79b-8db2-4af8-a9d0-b78af5a2acb6	2021-06-22 06:56:26.075+00	::ffff:192.168.192.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0
+bJ30e-GWNPTjdiGEG3f8ztc2hGAs8h3ka_u2prt0qQKTWPLjOCOAhF6mr5FJNYxJ	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	2021-06-22 14:00:49.732+00	::ffff:192.168.224.1	node-fetch/1.0 (+https://github.com/bitinn/node-fetch)
+vMc-2FBgnUb_y31xhYo1KsUGrQ_gm2JamnnYoeCe9BBP5BT2V5Pf1itEUAfob3LN	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	2021-06-22 14:00:55.992+00	::ffff:192.168.224.1	node-fetch/1.0 (+https://github.com/bitinn/node-fetch)
+9aE4Dac7VBUaPEvAuXfpuBkbE5tN08azKrZj5PhDj5grzgQubAr9ika2PioWQPWF	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	2021-06-22 14:01:01.897+00	::ffff:192.168.224.1	node-fetch/1.0 (+https://github.com/bitinn/node-fetch)
+I7gMpsCSWQZPP61sEydv0v9SfS-af7YAp5NfRY1oiGPzJkgCatOiN_MbkCIoXKwV	129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	2021-06-22 14:01:08.648+00	::ffff:192.168.224.1	node-fetch/1.0 (+https://github.com/bitinn/node-fetch)
+Z69aGv7RcCBzd93BGv1TcxQRs76e5jEQIXoOfpHbc4F0WzQhP6nPkDQ0rYLunbBu	33e7a79b-8db2-4af8-a9d0-b78af5a2acb6	2021-06-22 14:01:31.813+00	::ffff:192.168.224.1	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0
 \.
 
 
@@ -2010,8 +2021,8 @@ COPY public.directus_settings (id, project_name, project_url, project_color, pro
 --
 
 COPY public.directus_users (id, first_name, last_name, email, password, location, title, description, tags, avatar, language, theme, tfa_secret, status, role, token, last_access, last_page) FROM stdin;
-129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	WWW	LISA DB	www-dev@lisa-db.ifea.education	$argon2i$v=19$m=4096,t=3,p=1$kd4+fgY/pApYaY7KRRRdYQ$Q3yHo6mbToSFw94kq12FpdGC9jFzlmFgzrIP2/njbwY	\N	\N	\N	\N	\N	en-US	auto	\N	active	\N	\N	\N	\N
-33e7a79b-8db2-4af8-a9d0-b78af5a2acb6	\N	\N	dev@lisa-db.ifea.education	$argon2i$v=19$m=4096,t=3,p=1$G1cysmCcfWLhW4uGvFARaQ$Oej1KGZjE7IvSNRw6hKUUBL5tavq/oLNmUIB9KFHjNA	\N	\N	\N	\N	\N	en-US	auto	\N	active	36a8a942-db80-4dda-9b6a-cccfb00054a0	\N	2021-06-15 06:59:10.305+00	/users
+129a5a2e-6d77-4f2b-92e4-ad4a8b62bb65	WWW	LISA DB	www-dev@lisa-db.ifea.education	$argon2i$v=19$m=4096,t=3,p=1$kd4+fgY/pApYaY7KRRRdYQ$Q3yHo6mbToSFw94kq12FpdGC9jFzlmFgzrIP2/njbwY	\N	\N	\N	\N	\N	en-US	auto	\N	active	0ee264f6-f91d-4df0-bd11-da49504ebb68	\N	2021-06-15 14:01:08.672+00	\N
+33e7a79b-8db2-4af8-a9d0-b78af5a2acb6	\N	\N	dev@lisa-db.ifea.education	$argon2i$v=19$m=4096,t=3,p=1$G1cysmCcfWLhW4uGvFARaQ$Oej1KGZjE7IvSNRw6hKUUBL5tavq/oLNmUIB9KFHjNA	\N	\N	\N	\N	\N	en-US	auto	\N	active	36a8a942-db80-4dda-9b6a-cccfb00054a0	\N	2021-06-15 14:01:43.498+00	/users
 \.
 
 
@@ -2515,7 +2526,7 @@ COPY public.technology_research_evidence (technology_id, research_evidence_id) F
 -- Name: directus_activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: lisa-db-dev-user
 --
 
-SELECT pg_catalog.setval('public.directus_activity_id_seq', 158, true);
+SELECT pg_catalog.setval('public.directus_activity_id_seq', 164, true);
 
 
 --

@@ -34,33 +34,32 @@ const DomainIndexPage: FunctionComponent<DomainIndexPageStaticProps> = ({
   </Container>
 );
 
-export const getStaticProps: GetStaticProps<DomainIndexPageStaticProps> = async ({
-  params,
-}) => {
-  isRecord(params);
-  const { localeId } = params;
-  isString(localeId);
-  const directus = await getDirectusFromEnv();
+export const getStaticProps: GetStaticProps<DomainIndexPageStaticProps> =
+  async ({ params }) => {
+    isRecord(params);
+    const { localeId } = params;
+    isString(localeId);
+    const directus = await getDirectusFromEnv();
 
-  const [locale, domainLocales] = await resolveAllConcurrent([
-    directus.items(`locale`).readOne(localeId).then(asNonPartial),
-    directus
-      .items(`lisa_domain_locale`)
-      .readMany({
-        filter: {
-          locale_id: localeId,
-        },
-      })
-      .then(asNonPartialMany),
-  ]);
+    const [locale, domainLocales] = await resolveAllConcurrent([
+      directus.items(`locale`).readOne(localeId).then(asNonPartial),
+      directus
+        .items(`lisa_domain_locale`)
+        .readMany({
+          filter: {
+            locale_id: localeId,
+          },
+        })
+        .then(asNonPartialMany),
+    ]);
 
-  return {
-    props: {
-      locale,
-      domainLocales,
-    },
+    return {
+      props: {
+        locale,
+        domainLocales,
+      },
+    };
   };
-};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const directus = await getDirectusFromEnv();
