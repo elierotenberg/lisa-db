@@ -17,3 +17,20 @@ export type GuideLocaleAuthor = {
   readonly lastName: string;
   readonly portraitHref: string;
 };
+
+export type Domain = {
+  readonly domainId: string;
+  readonly domainCategoryId: string;
+};
+export type DomainLocale = {
+  readonly domainId: string;
+  readonly localeId: string;
+  readonly title: string;
+  readonly body: string;
+};
+export type DomainCategoryLocale = {
+  readonly domainCategory: string;
+  readonly localeId: string;
+  readonly title: string;
+  readonly body: string;
+};

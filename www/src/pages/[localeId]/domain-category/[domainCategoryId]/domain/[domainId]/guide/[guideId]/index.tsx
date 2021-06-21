@@ -81,7 +81,7 @@ export const getStaticProps: GetStaticProps<GuidePageStaticProps> = async ({
     },
   };
 };
-
+// http://localhost:4290/en/domain-category/cognition/domain/cognition-1/guide/cognition-1-1
 export const getStaticPaths: GetStaticPaths<{
   readonly localeId: string;
   readonly domainCategoryId: string;

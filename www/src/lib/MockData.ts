@@ -1,6 +1,6 @@
 import { Chance } from "chance";
 
-import { GuideLocale } from "./Models";
+import { DomainCategoryLocale, DomainLocale, GuideLocale } from "./Models";
 
 export const lorem = (length: number): string => {
   let value = ``;
@@ -16,8 +16,10 @@ export type MockDatabase = {
   readonly locales: { readonly localeId: string }[];
   readonly domainCategories: {
     readonly domainCategoryId: string;
+    readonly domainCategoryLocales: DomainCategoryLocale[];
     readonly domains: {
       readonly domainId: string;
+      readonly domainLocales: Omit<DomainLocale, "domainId">[];
       readonly guides: {
         readonly guideId: string;
         readonly guideLocales: (GuideLocale & {
@@ -28,6 +30,7 @@ export type MockDatabase = {
       }[];
     }[];
   }[];
+
   readonly authors: {
     readonly authorId: string;
     readonly firstName: string;
@@ -58,11 +61,20 @@ const mockDatabase = (): MockDatabase => {
     `behavior`,
   ].map((domainCategoryId) => ({
     domainCategoryId,
+    domainCategoryLocales: [
+      {
+        domainCategory: `string`,
+        localeId: `string`,
+        title: `string`,
+        body: `string`,
+      },
+    ],
     domains: [`${domainCategoryId}-1`, `${domainCategoryId}-2`].map(
       (
         domainId,
       ): MockDatabase["domainCategories"][number]["domains"][number] => ({
         domainId,
+        domainLocales: [],
         guides: [`${domainId}-1`, `${domainId}-2`].map((guideId) => ({
           guideId,
           guideLocales: locales.map(
