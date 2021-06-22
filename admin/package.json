@@ -1,5 +1,5 @@
 {
-  "name": "@lisa/db-admin",
+  "name": "@lisa-db/admin",
   "version": "0.0.1",
   "description": "LISA DB Admin",
   "main": "build/main.js",

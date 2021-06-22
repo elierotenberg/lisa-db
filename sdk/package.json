@@ -1,13 +1,21 @@
 {
-  "name": "@lisa-db/www",
-  "version": "0.0.0",
-  "description": "",
+  "name": "@lisa-db/sdk",
+  "version": "0.0.1",
+  "description": "LISA DB SDK",
   "main": "build/index.js",
+  "files": [
+    "build"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next dev -p 4290",
-    "build": "next build",
-    "export": "next export",
+    "test": "npm run clean && npm run build && node --trace-warnings --async-stack-traces --enable-source-maps node_modules/.bin/jest",
+    "build:typescript": "babel src --out-dir build --extensions '.ts' --source-maps",
+    "build": "npm run build:typescript",
+    "clean": "rm -rf build",
+    "check:types": "tsc -p . --noEmit",
+    "check:lint": "eslint src",
+    "check": "npm run check:types && npm run check:lint",
+    "prepack": "npm run clean && npm run build && npm run check",
+    "export": "npm pack && mv lisa-db-sdk-*.tgz vendor",
     "directus-typescript-gen": "directus-typescript-gen --host http://localhost:8055 --email dev-www@lisa-db.ifea.education --password lisa-db-www-dev-password --typeName Collections --outFile directus.d.ts --specOutFile directus.spec.json"
   },
   "repository": {
@@ -21,38 +29,24 @@
   },
   "homepage": "https://github.com/elierotenberg/lisa-db#readme",
   "dependencies": {
-    "@chakra-ui/react": "^1.6.4",
     "@directus/sdk": "*",
-    "@emotion/react": "^11.4.0",
-    "@emotion/styled": "^11.3.0",
-    "@types/node": "^15.12.4",
-    "@types/react": "^17.0.11",
-    "@types/react-dom": "^17.0.8",
-    "framer-motion": "^4.1.17",
-    "i18next": "^20.3.2",
-    "next": "^11.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-i18next": "^11.11.0",
-    "react-query": "^3.17.2",
-    "typed-assert": "^1.0.7",
-    "typed-utilities": "^1.11.0"
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@types/chance": "^1.1.2",
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-typescript": "^7.14.5",
+    "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
-    "chance": "^1.1.7",
     "directus-typescript-gen": "^0.2.1",
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-config-react": "^1.1.7",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.24.0",
-    "node-fetch": "^2.6.1",
+    "jest": "^27.0.5",
     "prettier": "^2.3.1",
-    "ts-node": "^10.0.0",
     "typescript": "^4.3.4"
   }
 }

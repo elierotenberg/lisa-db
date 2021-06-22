@@ -1,0 +1,12 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": ">2%, not dead"
+      }
+    ],
+    "@babel/typescript"
+  ],
+  "sourceMaps": true
+}

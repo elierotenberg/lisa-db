@@ -11,7 +11,11 @@
   },
   "eslint.workingDirectories": [
     {
-      "directory": "www",
+      "directory": "admin",
+      "changeProcessCWD": true
+    },
+    {
+      "directory": "sdk",
       "changeProcessCWD": true
     },
     {
