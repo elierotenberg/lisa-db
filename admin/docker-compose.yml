@@ -13,33 +13,34 @@ services:
       - "8056:8056"
     command: -p 8056
 
-  lisa-db-postgres-scratch:
-    image: postgres:13
-    container_name: lisa-db-postgres-scratch
-    env_file:
-      - ./env/dev/postgres.env
-    volumes:
-      - ./src/sql/scratch.sql:/docker-entrypoint-initdb.d/00-scratch.sql:ro
-    networks:
-      - lisa-db-admin
-    ports:
-      - "8057:8057"
-    command: -p 8057
+  # lisa-db-postgres-scratch and lisa-db-postgres-migrate are only used to validate migrations
+  # lisa-db-postgres-scratch:
+  #   image: postgres:13
+  #   container_name: lisa-db-postgres-scratch
+  #   env_file:
+  #     - ./env/dev/postgres.env
+  #   volumes:
+  #     - ./src/sql/scratch.sql:/docker-entrypoint-initdb.d/00-scratch.sql:ro
+  #   networks:
+  #     - lisa-db-admin
+  #   ports:
+  #     - "8057:8057"
+  #   command: -p 8057
 
-  lisa-db-postgres-migrate:
-    image: postgres:13
-    container_name: lisa-db-postgres-migrate
-    env_file:
-      - ./env/dev/postgres.env
-    volumes:
-      - ./src/sql/0000.sql:/docker-entrypoint-initdb.d/0000.sql:ro
-      - ./src/sql/0001.sql:/docker-entrypoint-initdb.d/0001.sql:ro
-      - ./src/sql/0002.sql:/docker-entrypoint-initdb.d/0002.sql:ro
-    networks:
-      - lisa-db-admin
-    ports:
-      - "8058:8058"
-    command: -p 8058
+  # lisa-db-postgres-migrate:
+  #   image: postgres:13
+  #   container_name: lisa-db-postgres-migrate
+  #   env_file:
+  #     - ./env/dev/postgres.env
+  #   volumes:
+  #     - ./src/sql/0000.sql:/docker-entrypoint-initdb.d/0000.sql:ro
+  #     - ./src/sql/0001.sql:/docker-entrypoint-initdb.d/0001.sql:ro
+  #     - ./src/sql/0002.sql:/docker-entrypoint-initdb.d/0002.sql:ro
+  #   networks:
+  #     - lisa-db-admin
+  #   ports:
+  #     - "8058:8058"
+  #   command: -p 8058
 
   lisa-db-directus-redis:
     image: redis:6.2-alpine

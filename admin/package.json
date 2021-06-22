@@ -8,9 +8,7 @@
     "build:typescript": "tsc -p .",
     "docker:up": "docker-compose up --build",
     "docker:down": "docker-compose down -v",
-    "docker:pgdump:tty": "docker exec -it $CONTAINER_NAME pg_dump -p 8056 -U lisa-db-dev-user lisa-db-dev-db",
-    "docker:pgdump": "npm run docker:pgdump:tty $CONTAINER_NAME | sed -n '/PostgreSQL database dump/,$p' > data/pgdump.sql",
-    "docker:psql": "docker exec -i $CONTAINER_NAME bash -c 'psql -p 8056 -U lisa-db-dev-user lisa-db-dev-db'",
+    "docker:pgdump": "./scripts/pg-dump.sh lisa-db-postgres-dump 8056 > data/pgdump.sql",
     "docker": "npm run docker:down && npm run docker:up",
     "dev:fixtures": "docker exec -i lisa-db-postgres psql -U lisa-db-dev-user -W lisa-db-dev-password -p 8056",
     "dev:cli": "POSTGRES_JSON_FILE=env/dev/postgres.json GOOGLEAPIS_OAUTH_SECRETS_JSON_FILE=env/dev/googleapis.oauth.secrets.json GOOGLEAPIS_TOKENS_JSON_FILE=env/dev/tokens.secret.json ts-node src/main.ts",
@@ -33,13 +31,13 @@
   "homepage": "https://github.com/elierotenberg/lisa-db#readme",
   "dependencies": {
     "@types/js-yaml": "^4.0.1",
-    "@types/node": "^15.12.2",
+    "@types/node": "^15.12.4",
     "@types/pg": "^8.6.0",
     "@types/yargs": "^17.0.0",
     "fastify": "^3.18.0",
-    "googleapis": "^76.0.0",
+    "googleapis": "^78.0.0",
     "js-yaml": "^4.1.0",
-    "open": "^8.2.0",
+    "open": "^8.2.1",
     "pg": "^8.6.0",
     "tslib": "^2.3.0",
     "typed-assert": "^1.0.7",
@@ -47,14 +45,14 @@
     "yargs": "^17.0.1"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.27.0",
-    "@typescript-eslint/parser": "^4.27.0",
-    "eslint": "^7.28.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/parser": "^4.28.0",
+    "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.3.1",
     "ts-node": "^10.0.0",
-    "typescript": "^4.3.3"
+    "typescript": "^4.3.4"
   }
 }
