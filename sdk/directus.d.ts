@@ -886,11 +886,9 @@ export interface components {
       assessment_reference_id?:
         | number
         | components["schemas"]["ItemsAssessmentReference"];
-      author_first_initial?: string;
-      author_middle_initial?: string;
-      author_surname?: string;
       rank?: number | null;
       assessment_reference_author_id?: string;
+      author_id?: string | components["schemas"]["ItemsAuthor"];
     };
     ItemsAuthor: {
       first_initial?: string;
@@ -1271,11 +1269,9 @@ export interface components {
       disorder_reference_id?:
         | number
         | components["schemas"]["ItemsDisorderReference"];
-      author_first_initial?: string;
-      author_middle_initial?: string;
-      author_surname?: string;
       rank?: number | null;
       disorder_reference_author_id?: string;
+      author_id?: string | components["schemas"]["ItemsAuthor"];
     };
     ItemsDisorderSignSymptom: {
       disorder_id?: number | components["schemas"]["ItemsDisorder"];
@@ -1313,12 +1309,10 @@ export interface components {
       guide_audience_id?: string;
     };
     ItemsGuideAuthor: {
-      author_first_initial?: string;
-      author_middle_initial?: string;
-      author_surname?: string;
       guide_id?: number | components["schemas"]["ItemsGuide"];
       rank?: number | null;
       guide_author_id?: string;
+      author_id?: string | components["schemas"]["ItemsAuthor"];
     };
     ItemsGuideDisorder: {
       disorder_id?: number | components["schemas"]["ItemsDisorder"];
@@ -1396,19 +1390,21 @@ export interface components {
     };
     ItemsLisaDomainCategoryLocaleAuthor: {
       lisa_domain_category_locale_author_id?: string;
-      domain_category_id?: string;
-      locale_id?: string;
       lisa_author_id?: string | components["schemas"]["ItemsLisaAuthor"];
       rank?: number | null;
+      lisa_domain_category_locale_id?:
+        | string
+        | components["schemas"]["ItemsLisaDomainCategoryLocale"];
     };
     ItemsLisaDomainCategoryLocaleVersion: {
       lisa_domain_category_locale_version_id?: string;
-      domain_category_id?: string;
-      locale_id?: string;
       created_at?: string;
       name?: string;
       content_markdown?: string;
       created_by?: string | components["schemas"]["ItemsLisaAuthor"];
+      lisa_domain_category_locale_id?:
+        | string
+        | components["schemas"]["ItemsLisaDomainCategoryLocale"];
     };
     ItemsLisaDomainGuide: {
       domain_id?: string | components["schemas"]["ItemsLisaDomain"];
@@ -1418,8 +1414,9 @@ export interface components {
     ItemsLisaDomainGuideLocale: {
       locale_id?: string | components["schemas"]["ItemsLocale"];
       lisa_domain_guide_locale_id?: string;
-      lisa_guide_id?: string;
-      domain_id?: string;
+      lisa_domain_guide_id?:
+        | string
+        | components["schemas"]["ItemsLisaDomainGuide"];
     };
     ItemsLisaDomainLocale: {
       domain_id?: string | components["schemas"]["ItemsLisaDomain"];
@@ -1428,19 +1425,21 @@ export interface components {
     };
     ItemsLisaDomainLocaleAuthor: {
       lisa_domain_locale_author_id?: string;
-      domain_id?: string;
-      locale_id?: string;
       lisa_author_id?: string | components["schemas"]["ItemsLisaAuthor"];
       rank?: number | null;
+      lisa_domain_locale_id?:
+        | string
+        | components["schemas"]["ItemsLisaDomainLocale"];
     };
     ItemsLisaDomainLocaleVersion: {
       lisa_domain_locale_version_id?: string;
-      domain_id?: string;
-      locale_id?: string;
       created_at?: string;
       name?: string;
       content_markdown?: string;
       created_by?: string | components["schemas"]["ItemsLisaAuthor"];
+      lisa_domain_locale_id?:
+        | string
+        | components["schemas"]["ItemsLisaDomainLocale"];
     };
     ItemsLisaGuide: {
       lisa_guide_id?: string;
@@ -1452,19 +1451,21 @@ export interface components {
     };
     ItemsLisaGuideLocaleAuthor: {
       lisa_guide_locale_author_id?: string;
-      lisa_guide_id?: string;
-      locale_id?: string;
       lisa_author_id?: string | components["schemas"]["ItemsLisaAuthor"];
       rank?: number | null;
+      lisa_guide_locale_id?:
+        | string
+        | components["schemas"]["ItemsLisaGuideLocale"];
     };
     ItemsLisaGuideLocaleVersion: {
       lisa_guide_locale_version_id?: string;
-      lisa_guide_id?: string;
-      locale_id?: string;
       created_at?: string;
       name?: string;
       content_markdown?: string;
       created_by?: string | components["schemas"]["ItemsLisaAuthor"];
+      lisa_guide_locale_id?:
+        | string
+        | components["schemas"]["ItemsLisaGuideLocale"];
     };
     ItemsLisaStaticContent: {
       static_content_id?: string;
@@ -1478,12 +1479,13 @@ export interface components {
     };
     ItemsLisaStaticContentLocaleVersion: {
       lisa_static_content_locale_version_id?: string;
-      static_content_id?: string;
-      locale_id?: string;
       created_at?: string;
       name?: string;
       content_markdown?: string;
       created_by?: string | components["schemas"]["ItemsLisaAuthor"];
+      lisa_static_content_locale_id?:
+        | string
+        | components["schemas"]["ItemsLisaStaticContentLocale"];
     };
     ItemsLocale: {
       locale_id?: string;
@@ -1532,12 +1534,10 @@ export interface components {
       questionnaire_assessment_reference_id?: string;
     };
     ItemsQuestionnaireAuthor: {
-      author_first_initial?: string;
-      author_middle_initial?: string;
-      author_surname?: string;
       questionnaire_id?: number | components["schemas"]["ItemsQuestionnaire"];
       rank?: number | null;
       questionnaire_author_id?: string;
+      author_id?: string | components["schemas"]["ItemsAuthor"];
     };
     ItemsQuestionnaireDisorder: {
       questionnaire_id?: number | components["schemas"]["ItemsQuestionnaire"];

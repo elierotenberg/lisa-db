@@ -11890,18 +11890,6 @@
               }
             ]
           },
-          "author_first_initial": {
-            "nullable": false,
-            "type": "string"
-          },
-          "author_middle_initial": {
-            "nullable": false,
-            "type": "string"
-          },
-          "author_surname": {
-            "nullable": false,
-            "type": "string"
-          },
           "rank": {
             "nullable": true,
             "type": "integer"
@@ -11910,6 +11898,18 @@
             "nullable": false,
             "type": "string",
             "format": "uuid"
+          },
+          "author_id": {
+            "nullable": false,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/ItemsAuthor"
+              }
+            ]
           }
         },
         "x-collection": "assessment_reference_author"
@@ -13326,18 +13326,6 @@
               }
             ]
           },
-          "author_first_initial": {
-            "nullable": false,
-            "type": "string"
-          },
-          "author_middle_initial": {
-            "nullable": false,
-            "type": "string"
-          },
-          "author_surname": {
-            "nullable": false,
-            "type": "string"
-          },
           "rank": {
             "nullable": true,
             "type": "integer"
@@ -13346,6 +13334,18 @@
             "nullable": false,
             "type": "string",
             "format": "uuid"
+          },
+          "author_id": {
+            "nullable": false,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/ItemsAuthor"
+              }
+            ]
           }
         },
         "x-collection": "disorder_reference_author"
@@ -13532,18 +13532,6 @@
       "ItemsGuideAuthor": {
         "type": "object",
         "properties": {
-          "author_first_initial": {
-            "nullable": false,
-            "type": "string"
-          },
-          "author_middle_initial": {
-            "nullable": false,
-            "type": "string"
-          },
-          "author_surname": {
-            "nullable": false,
-            "type": "string"
-          },
           "guide_id": {
             "nullable": false,
             "oneOf": [
@@ -13563,6 +13551,18 @@
             "nullable": false,
             "type": "string",
             "format": "uuid"
+          },
+          "author_id": {
+            "nullable": false,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/ItemsAuthor"
+              }
+            ]
           }
         },
         "x-collection": "guide_author"
@@ -13924,14 +13924,6 @@
             "type": "string",
             "format": "uuid"
           },
-          "domain_category_id": {
-            "nullable": false,
-            "type": "string"
-          },
-          "locale_id": {
-            "nullable": false,
-            "type": "string"
-          },
           "lisa_author_id": {
             "nullable": false,
             "oneOf": [
@@ -13947,6 +13939,18 @@
           "rank": {
             "nullable": true,
             "type": "integer"
+          },
+          "lisa_domain_category_locale_id": {
+            "nullable": false,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/ItemsLisaDomainCategoryLocale"
+              }
+            ]
           }
         },
         "x-collection": "lisa_domain_category_locale_author"
@@ -13958,14 +13962,6 @@
             "nullable": false,
             "type": "string",
             "format": "uuid"
-          },
-          "domain_category_id": {
-            "nullable": false,
-            "type": "string"
-          },
-          "locale_id": {
-            "nullable": false,
-            "type": "string"
           },
           "created_at": {
             "nullable": false,
@@ -13989,6 +13985,18 @@
               },
               {
                 "$ref": "#/components/schemas/ItemsLisaAuthor"
+              }
+            ]
+          },
+          "lisa_domain_category_locale_id": {
+            "nullable": false,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/ItemsLisaDomainCategoryLocale"
               }
             ]
           }
@@ -14047,13 +14055,17 @@
             "type": "string",
             "format": "uuid"
           },
-          "lisa_guide_id": {
+          "lisa_domain_guide_id": {
             "nullable": false,
-            "type": "string"
-          },
-          "domain_id": {
-            "nullable": false,
-            "type": "string"
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/ItemsLisaDomainGuide"
+              }
+            ]
           }
         },
         "x-collection": "lisa_domain_guide_locale"
@@ -14099,14 +14111,6 @@
             "type": "string",
             "format": "uuid"
           },
-          "domain_id": {
-            "nullable": false,
-            "type": "string"
-          },
-          "locale_id": {
-            "nullable": false,
-            "type": "string"
-          },
           "lisa_author_id": {
             "nullable": false,
             "oneOf": [
@@ -14122,6 +14126,18 @@
           "rank": {
             "nullable": true,
             "type": "integer"
+          },
+          "lisa_domain_locale_id": {
+            "nullable": false,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/ItemsLisaDomainLocale"
+              }
+            ]
           }
         },
         "x-collection": "lisa_domain_locale_author"
@@ -14133,14 +14149,6 @@
             "nullable": false,
             "type": "string",
             "format": "uuid"
-          },
-          "domain_id": {
-            "nullable": false,
-            "type": "string"
-          },
-          "locale_id": {
-            "nullable": false,
-            "type": "string"
           },
           "created_at": {
             "nullable": false,
@@ -14164,6 +14172,18 @@
               },
               {
                 "$ref": "#/components/schemas/ItemsLisaAuthor"
+              }
+            ]
+          },
+          "lisa_domain_locale_id": {
+            "nullable": false,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/ItemsLisaDomainLocale"
               }
             ]
           }
@@ -14221,14 +14241,6 @@
             "type": "string",
             "format": "uuid"
           },
-          "lisa_guide_id": {
-            "nullable": false,
-            "type": "string"
-          },
-          "locale_id": {
-            "nullable": false,
-            "type": "string"
-          },
           "lisa_author_id": {
             "nullable": false,
             "oneOf": [
@@ -14244,6 +14256,18 @@
           "rank": {
             "nullable": true,
             "type": "integer"
+          },
+          "lisa_guide_locale_id": {
+            "nullable": false,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/ItemsLisaGuideLocale"
+              }
+            ]
           }
         },
         "x-collection": "lisa_guide_locale_author"
@@ -14255,14 +14279,6 @@
             "nullable": false,
             "type": "string",
             "format": "uuid"
-          },
-          "lisa_guide_id": {
-            "nullable": false,
-            "type": "string"
-          },
-          "locale_id": {
-            "nullable": false,
-            "type": "string"
           },
           "created_at": {
             "nullable": false,
@@ -14286,6 +14302,18 @@
               },
               {
                 "$ref": "#/components/schemas/ItemsLisaAuthor"
+              }
+            ]
+          },
+          "lisa_guide_locale_id": {
+            "nullable": false,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/ItemsLisaGuideLocale"
               }
             ]
           }
@@ -14343,14 +14371,6 @@
             "type": "string",
             "format": "uuid"
           },
-          "static_content_id": {
-            "nullable": false,
-            "type": "string"
-          },
-          "locale_id": {
-            "nullable": false,
-            "type": "string"
-          },
           "created_at": {
             "nullable": false,
             "type": "string",
@@ -14373,6 +14393,18 @@
               },
               {
                 "$ref": "#/components/schemas/ItemsLisaAuthor"
+              }
+            ]
+          },
+          "lisa_static_content_locale_id": {
+            "nullable": false,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/ItemsLisaStaticContentLocale"
               }
             ]
           }
@@ -14574,18 +14606,6 @@
       "ItemsQuestionnaireAuthor": {
         "type": "object",
         "properties": {
-          "author_first_initial": {
-            "nullable": false,
-            "type": "string"
-          },
-          "author_middle_initial": {
-            "nullable": false,
-            "type": "string"
-          },
-          "author_surname": {
-            "nullable": false,
-            "type": "string"
-          },
           "questionnaire_id": {
             "nullable": false,
             "oneOf": [
@@ -14605,6 +14625,18 @@
             "nullable": false,
             "type": "string",
             "format": "uuid"
+          },
+          "author_id": {
+            "nullable": false,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/ItemsAuthor"
+              }
+            ]
           }
         },
         "x-collection": "questionnaire_author"

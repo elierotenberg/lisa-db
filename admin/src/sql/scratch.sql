@@ -57,11 +57,7 @@ CREATE TABLE author (
 CREATE TABLE disorder_reference_author (
   disorder_reference_author_id uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
   disorder_reference_id int NOT NULL REFERENCES disorder_reference (disorder_reference_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  author_first_initial text NOT NULL,
-  author_middle_initial text NOT NULL,
-  author_surname text NOT NULL,
-  FOREIGN KEY (author_first_initial, author_middle_initial, author_surname) REFERENCES author (first_initial, middle_initial, surname) ON UPDATE CASCADE ON DELETE CASCADE,
-  UNIQUE (disorder_reference_id, author_first_initial, author_middle_initial, author_surname),
+  author_id uuid NOT NULL REFERENCES author (author_id) ON UPDATE CASCADE ON DELETE CASCADE,
   rank int,
   UNIQUE (disorder_reference_id, rank)
 );
@@ -84,7 +80,7 @@ CREATE TABLE sign_symptom_example (
 );
 
 CREATE TABLE sign_symptom_with_example (
-  sign_symptom_with_example uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
+  sign_symptom_with_example_id uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
   sign_symptom_id int NOT NULL REFERENCES sign_symptom (sign_symptom_id) ON UPDATE CASCADE ON DELETE CASCADE,
   sign_symptom_example_id int NOT NULL REFERENCES sign_symptom_example (sign_symptom_example_id) ON UPDATE CASCADE ON DELETE CASCADE,
   UNIQUE (sign_symptom_id, sign_symptom_example_id)
@@ -104,11 +100,7 @@ CREATE TABLE assessment_reference (
 CREATE TABLE assessment_reference_author (
   assessment_reference_author_id uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
   assessment_reference_id int NOT NULL REFERENCES assessment_reference (assessment_reference_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  author_first_initial text NOT NULL,
-  author_middle_initial text NOT NULL,
-  author_surname text NOT NULL,
-  FOREIGN KEY (author_first_initial, author_middle_initial, author_surname) REFERENCES author (first_initial, middle_initial, surname) ON UPDATE CASCADE ON DELETE CASCADE,
-  UNIQUE (assessment_reference_id, author_first_initial, author_middle_initial, author_surname),
+  author_id uuid NOT NULL REFERENCES author (author_id) ON UPDATE CASCADE ON DELETE CASCADE,
   rank int
 );
 
@@ -209,12 +201,8 @@ CREATE TABLE questionnaire_assessment_reference (
 -- Verified: for a given questionnaire, there are multiple authors
 CREATE TABLE questionnaire_author (
   questionnaire_author_id uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
-  author_first_initial text NOT NULL,
-  author_middle_initial text NOT NULL,
-  author_surname text NOT NULL,
-  FOREIGN KEY (author_first_initial, author_middle_initial, author_surname) REFERENCES author (first_initial, middle_initial, surname) ON UPDATE CASCADE ON DELETE CASCADE,
+  author_id uuid NOT NULL REFERENCES author (author_id) ON UPDATE CASCADE ON DELETE CASCADE,
   questionnaire_id int NOT NULL REFERENCES questionnaire (questionnaire_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  UNIQUE (author_first_initial, author_middle_initial, author_surname, questionnaire_id),
   rank int
 );
 
@@ -275,12 +263,8 @@ CREATE TABLE guide_audience (
 -- possible many authors for the same references
 CREATE TABLE guide_author (
   guide_author_id uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
-  author_first_initial text NOT NULL,
-  author_middle_initial text NOT NULL,
-  author_surname text NOT NULL,
-  FOREIGN KEY (author_first_initial, author_middle_initial, author_surname) REFERENCES author (first_initial, middle_initial, surname) ON UPDATE CASCADE ON DELETE CASCADE,
+  author_id uuid NOT NULL REFERENCES author (author_id) ON UPDATE CASCADE ON DELETE CASCADE,
   guide_id int NOT NULL REFERENCES guide (guide_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  UNIQUE (author_first_initial, author_middle_initial, author_surname, guide_id),
   rank int
 );
 
@@ -559,80 +543,59 @@ CREATE TABLE lisa_static_content_locale (
 -- for my understanding, the created_by is the people who technically updated the version, and the ManyToMany table of the author refers to the people who write the article
 CREATE TABLE lisa_domain_category_locale_version (
   lisa_domain_category_locale_version_id uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
-  domain_category_id text NOT NULL,
-  locale_id text NOT NULL,
   created_at timestamp with time zone NOT NULL,
   name text NOT NULL,
   content_markdown text NOT NULL,
   created_by uuid NOT NULL REFERENCES lisa_author (lisa_author_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  UNIQUE (domain_category_id, locale_id, created_at),
-  FOREIGN KEY (domain_category_id, locale_id) REFERENCES lisa_domain_category_locale (domain_category_id, locale_id) ON UPDATE CASCADE ON DELETE CASCADE
+  lisa_domain_category_locale_id uuid NOT NULL REFERENCES lisa_domain_category_locale (lisa_domain_category_locale_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE lisa_domain_locale_version (
   lisa_domain_locale_version_id uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
-  domain_id text NOT NULL,
-  locale_id text NOT NULL,
   created_at timestamp with time zone NOT NULL,
   name text NOT NULL,
   content_markdown text NOT NULL,
   created_by uuid NOT NULL REFERENCES lisa_author (lisa_author_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  UNIQUE (domain_id, locale_id, created_at),
-  FOREIGN KEY (domain_id, locale_id) REFERENCES lisa_domain_locale (domain_id, locale_id) ON UPDATE CASCADE ON DELETE CASCADE
+  lisa_domain_locale_id uuid NOT NULL REFERENCES lisa_domain_locale (lisa_domain_locale_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE lisa_guide_locale_version (
   lisa_guide_locale_version_id uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
-  lisa_guide_id text NOT NULL,
-  locale_id text NOT NULL,
   created_at timestamp with time zone NOT NULL,
   name text NOT NULL,
   content_markdown text NOT NULL,
   created_by uuid NOT NULL REFERENCES lisa_author (lisa_author_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  UNIQUE (lisa_guide_id, locale_id, created_at),
-  FOREIGN KEY (lisa_guide_id, locale_id) REFERENCES lisa_guide_locale (lisa_guide_id, locale_id) ON UPDATE CASCADE ON DELETE CASCADE
+  lisa_guide_locale_id uuid NOT NULL REFERENCES lisa_guide_locale (lisa_guide_locale_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE lisa_static_content_locale_version (
   lisa_static_content_locale_version_id uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
-  static_content_id text NOT NULL,
-  locale_id text NOT NULL,
   created_at timestamp with time zone NOT NULL,
   name text NOT NULL,
   content_markdown text NOT NULL,
   created_by uuid NOT NULL REFERENCES lisa_author (lisa_author_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  UNIQUE (static_content_id, locale_id, created_at),
-  FOREIGN KEY (static_content_id, locale_id) REFERENCES lisa_static_content_locale (static_content_id, locale_id) ON UPDATE CASCADE ON DELETE CASCADE
+  lisa_static_content_locale_id uuid NOT NULL REFERENCES lisa_static_content_locale (lisa_static_content_locale_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE lisa_domain_category_locale_author (
   lisa_domain_category_locale_author_id uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
-  domain_category_id text NOT NULL,
-  locale_id text NOT NULL,
   lisa_author_id uuid NOT NULL REFERENCES lisa_author (lisa_author_id) ON UPDATE CASCADE ON DELETE CASCADE,
   rank int,
-  UNIQUE (domain_category_id, locale_id, lisa_author_id),
-  FOREIGN KEY (domain_category_id, locale_id) REFERENCES lisa_domain_category_locale (domain_category_id, locale_id) ON UPDATE CASCADE ON DELETE CASCADE
+  lisa_domain_category_locale_id uuid NOT NULL REFERENCES lisa_domain_category_locale (lisa_domain_category_locale_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE lisa_guide_locale_author (
   lisa_guide_locale_author_id uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
-  lisa_guide_id text NOT NULL,
-  locale_id text NOT NULL,
   lisa_author_id uuid NOT NULL REFERENCES lisa_author (lisa_author_id) ON UPDATE CASCADE ON DELETE CASCADE,
   rank int,
-  UNIQUE (lisa_guide_id, locale_id, lisa_author_id),
-  FOREIGN KEY (lisa_guide_id, locale_id) REFERENCES lisa_guide_locale (lisa_guide_id, locale_id) ON UPDATE CASCADE ON DELETE CASCADE
+  lisa_guide_locale_id uuid NOT NULL REFERENCES lisa_guide_locale (lisa_guide_locale_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE lisa_domain_locale_author (
   lisa_domain_locale_author_id uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
-  domain_id text NOT NULL,
-  locale_id text NOT NULL,
   lisa_author_id uuid NOT NULL REFERENCES lisa_author (lisa_author_id) ON UPDATE CASCADE ON DELETE CASCADE,
   rank int,
-  UNIQUE (domain_id, locale_id, lisa_author_id),
-  FOREIGN KEY (domain_id, locale_id) REFERENCES lisa_domain_locale (domain_id, locale_id) ON UPDATE CASCADE ON DELETE CASCADE
+  lisa_domain_locale_id uuid NOT NULL REFERENCES lisa_domain_locale (lisa_domain_locale_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE lisa_domain_guide (
@@ -645,10 +608,7 @@ CREATE TABLE lisa_domain_guide (
 CREATE TABLE lisa_domain_guide_locale (
   lisa_domain_guide_locale_id uuid NOT NULL DEFAULT gen_random_uuid () PRIMARY KEY,
   locale_id text NOT NULL REFERENCES locale (locale_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  lisa_guide_id text NOT NULL,
-  domain_id text NOT NULL,
-  FOREIGN KEY (lisa_guide_id, domain_id) REFERENCES lisa_domain_guide (lisa_guide_id, domain_id) ON UPDATE CASCADE ON DELETE CASCADE,
-  UNIQUE (locale_id, lisa_guide_id, domain_id)
+  lisa_domain_guide_id uuid NOT NULL REFERENCES lisa_domain_guide (lisa_domain_guide_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 COMMIT;
