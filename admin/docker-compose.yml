@@ -6,7 +6,12 @@ services:
     env_file:
       - ./env/dev/postgres.env
     volumes:
-      - ./data/pgdump.sql:/docker-entrypoint-initdb.d/00-pgdump.sql:ro
+      # Development dump
+      - ./data/pg/development/full.pgdump.sql:/docker-entrypoint-initdb.d/00-pgdump.sql:ro
+
+      # Production dump
+      # - ./src/sql/scratch.sql:/docker-entrypoint-initdb.d/00-scratch.sql:ro
+      # - ./data/pg/production/data.pgdump.sql:/docker-entrypoint-initdb.d/01-data.sql:ro
     networks:
       - lisa-db-admin
     ports:

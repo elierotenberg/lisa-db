@@ -8,7 +8,6 @@
     "build:typescript": "tsc -p .",
     "docker:up": "docker-compose up --build",
     "docker:down": "docker-compose down -v",
-    "docker:pgdump": "./scripts/pg-dump.sh lisa-db-postgres-dump 8056 > data/pgdump.sql",
     "docker": "npm run docker:down && npm run docker:up",
     "dev:fixtures": "docker exec -i lisa-db-postgres psql -U lisa-db-dev-user -W lisa-db-dev-password -p 8056",
     "dev:cli": "POSTGRES_JSON_FILE=env/dev/postgres.json GOOGLEAPIS_OAUTH_SECRETS_JSON_FILE=env/dev/googleapis.oauth.secrets.json GOOGLEAPIS_TOKENS_JSON_FILE=env/dev/tokens.secret.json ts-node src/main.ts",

@@ -1,8 +1,8 @@
 export const config = {
   url: `http://localhost:8055`,
   auth: {
-    email: `dev-www@lisa-db.ifea.education`,
-    password: `lisa-db-www-dev-password`,
-    token: `lisa-db-dev-token`,
+    email: `api-client-dev@lisa-db.ifea.education`,
+    password: `api-client-dev-password`,
+    token: `api-client-dev-token`,
   },
 } as const;
