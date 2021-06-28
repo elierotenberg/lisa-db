@@ -1,6 +1,10 @@
 import { Chance } from "chance";
 
-import { DomainCategoryLocale, DomainLocale, GuideLocale } from "./Models";
+import {
+  DomainCategoryLocaleVersion,
+  DomainLocaleVersion,
+  GuideLocale,
+} from "./Models";
 
 export const lorem = (length: number): string => {
   let value = ``;
@@ -16,10 +20,10 @@ export type MockDatabase = {
   readonly locales: { readonly localeId: string }[];
   readonly domainCategories: {
     readonly domainCategoryId: string;
-    readonly domainCategoryLocales: DomainCategoryLocale[];
+    readonly domainCategoryLocales: DomainCategoryLocaleVersion[];
     readonly domains: {
       readonly domainId: string;
-      readonly domainLocales: Omit<DomainLocale, "domainId">[];
+      readonly domainLocales: Omit<DomainLocaleVersion, "domainId">[];
       readonly guides: {
         readonly guideId: string;
         readonly guideLocales: (GuideLocale & {

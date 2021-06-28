@@ -1,21 +1,20 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import { FunctionComponent, Fragment } from "react";
 import { Flex, Text, Box, Heading, Link } from "@chakra-ui/react";
+import { completeDataList } from "@lisa-db/sdk/build/utils";
+import { z } from "zod";
 
 import Footer from "../../../../../../components/Shell/Footer";
 import TopBar from "../../../../../../components/Shell/TopBar/TopBar";
-import { lorem, mockedDatabase } from "../../../../../../lib/MockData";
+import { lorem } from "../../../../../../lib/MockData";
 import { SideBar } from "../../../../../../components/Shell/SideBar/SideBar";
 import { SearchBar } from "../../../../../../components/Search/SearchBar";
-import { DomainLocale } from "../../../../../../lib/Models";
-import { assertNotVoid, assertString } from "../../../../../../lib/utils";
+import { DomainLocaleVersion } from "../../../../../../lib/Models";
 import { PersonPortrait } from "../../../../../../components/Content/Person/PersonPortrait";
+import { getLisaDbClientFromEnv } from "../../../../../../lib/LisaDbClient";
 
 type DomainPageStaticProps = {
-  readonly localeId: string;
-  readonly domainCategoryId: string;
-  readonly domainId: string;
-  readonly domainLocale: DomainLocale;
+  readonly domainLocaleVersion: DomainLocaleVersion;
 };
 
 const DomainPage: FunctionComponent<DomainPageStaticProps> = (props) => {
@@ -108,45 +107,58 @@ const DomainPage: FunctionComponent<DomainPageStaticProps> = (props) => {
 export const getStaticProps: GetStaticProps<DomainPageStaticProps> = async ({
   params,
 }) => {
-  assertNotVoid(params);
+  const { localeId, domainCategoryId, domainId } = z
+    .object({
+      localeId: z.string(),
+      domainCategoryId: z.string(),
+      domainId: z.string(),
+    })
+    .parse(params);
 
-  const localeId = params.localeId;
-  assertString(localeId);
-  const domainCategoryId = params.domainCategoryId;
-  assertString(domainCategoryId);
-  const domainId = params.domainId;
-  assertString(domainId);
+  const client = await getLisaDbClientFromEnv();
 
-  const domainLocale = mockedDatabase.domainCategories
-    .flatMap(({ domainCategoryId, domains }) =>
-      domains.flatMap(({ domainId, guides }) =>
-        guides.flatMap(({ guideId, guideLocales }) =>
-          guideLocales.map(({ localeId, title, body }) => ({
-            localeId,
-            domainCategoryId,
-            domainId,
-            guideId,
-            title,
-            body,
-          })),
-        ),
+  const [domainLocale] = await client
+    .items(`lisa_domain_locale`)
+    .readMany({
+      filter: {
+        domain_id: domainId,
+        locale_id: localeId,
+      },
+      limit: 1,
+    })
+    .then(completeDataList);
+
+  const [
+    {
+      content_markdown: contentMarkdown,
+      name,
+      lisa_domain_locale_version_id: domainLocaleVersionId,
+    },
+  ] = await client
+    .items(`lisa_domain_locale_version`)
+    .readMany({
+      filter: {
+        lisa_domain_locale_id: domainLocale.lisa_domain_locale_id,
+      },
+    })
+    .then(completeDataList)
+    .then((domainLocaleVersions) =>
+      domainLocaleVersions.sort(
+        (a, b) =>
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
       ),
-    )
-    .find(
-      (domainLocale) =>
-        domainLocale.localeId === localeId &&
-        domainLocale.domainCategoryId === domainCategoryId &&
-        domainLocale.domainId === domainId,
     );
-
-  assertNotVoid(domainLocale);
 
   return {
     props: {
-      localeId,
-      domainCategoryId,
-      domainId,
-      domainLocale,
+      domainLocaleVersion: {
+        contentMarkdown,
+        domainCategoryId,
+        domainLocaleVersionId,
+        domainId,
+        localeId,
+        name,
+      },
     },
   };
 };
@@ -156,22 +168,33 @@ export const getStaticPaths: GetStaticPaths<{
   readonly localeId: string;
   readonly domainCategoryId: string;
   readonly domainId: string;
-}> = async () => ({
-  paths: mockedDatabase.domainCategories.flatMap(
-    ({ domainCategoryId, domains }) =>
-      domains.flatMap(({ domainId, guides }) =>
-        guides.flatMap(({ guideLocales }) =>
-          guideLocales.map(({ localeId }) => ({
-            params: {
-              localeId,
-              domainCategoryId,
-              domainId,
-            },
-          })),
-        ),
-      ),
-  ),
-  fallback: false,
-});
+}> = async () => {
+  const client = await getLisaDbClientFromEnv();
+
+  const domains = await client
+    .items(`lisa_domain`)
+    .readMany()
+    .then(completeDataList);
+
+  const domainLocales = await client
+    .items(`lisa_domain_locale`)
+    .readMany()
+    .then(completeDataList);
+
+  return {
+    paths: domainLocales.map(({ domain_id: domainId, locale_id: localeId }) => {
+      const domain = domains.find((domain) => domain.domain_id === domainId);
+      const domainCategoryId = z.string().parse(domain?.domain_category_id);
+      return {
+        params: {
+          localeId: z.string().parse(localeId),
+          domainCategoryId,
+          domainId: z.string().parse(domainId),
+        },
+      };
+    }),
+    fallback: false,
+  };
+};
 
 export default DomainPage;

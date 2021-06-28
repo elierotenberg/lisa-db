@@ -1,25 +1,25 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import { FunctionComponent, Fragment } from "react";
 import { Flex, Text, Box, Heading } from "@chakra-ui/react";
+import { completeDataList } from "@lisa-db/sdk/build/utils";
+import { z } from "zod";
 
-import { mockedDatabase, lorem } from "../../../../lib/MockData";
-import { DomainCategoryLocale } from "../../../../lib/Models";
-import { assertNotVoid, assertString } from "../../../../lib/utils";
+import { lorem } from "../../../../lib/MockData";
+import { DomainCategoryLocaleVersion } from "../../../../lib/Models";
 import Footer from "../../../../components/Shell/Footer";
 import TopBar from "../../../../components/Shell/TopBar/TopBar";
 import { SideBar } from "../../../../components/Shell/SideBar/SideBar";
 import { PreviewCard } from "../../../../components/Content/Preview/PreviewCard";
 import { SearchBar } from "../../../../components/Search/SearchBar";
+import { getLisaDbClientFromEnv } from "../../../../lib/LisaDbClient";
 
 type DomainPageStaticProps = {
-  readonly localeId: string;
-  readonly domainCategoryId: string;
-  readonly domainCategoryLocale: DomainCategoryLocale;
+  readonly domainCategoryLocaleVersion: DomainCategoryLocaleVersion;
 };
 
-const DomainCategoryPage: FunctionComponent<DomainPageStaticProps> = (
-  props,
-) => {
+const DomainCategoryPage: FunctionComponent<DomainPageStaticProps> = ({
+  domainCategoryLocaleVersion: { name },
+}) => {
   return (
     <Fragment>
       <TopBar />
@@ -29,7 +29,7 @@ const DomainCategoryPage: FunctionComponent<DomainPageStaticProps> = (
       <Flex justifyContent="space-between">
         <Box>
           <Heading as="h2" size="lg" w="100%" m="auto" padding="10">
-            Popular Guide{` `}
+            {name}
           </Heading>
         </Box>
         <Box padding="10">
@@ -63,7 +63,6 @@ const DomainCategoryPage: FunctionComponent<DomainPageStaticProps> = (
           Accelerators
         </Heading>
       </Box>
-      {JSON.stringify(props, null, 2)}
       <Footer />
     </Fragment>
   );
@@ -72,40 +71,57 @@ const DomainCategoryPage: FunctionComponent<DomainPageStaticProps> = (
 export const getStaticProps: GetStaticProps<DomainPageStaticProps> = async ({
   params,
 }) => {
-  assertNotVoid(params);
+  const { localeId, domainCategoryId } = z
+    .object({
+      localeId: z.string(),
+      domainCategoryId: z.string(),
+    })
+    .parse(params);
 
-  const localeId = params.localeId;
-  assertString(localeId);
-  const domainCategoryId = params.domainCategoryId;
-  assertString(domainCategoryId);
+  const client = await getLisaDbClientFromEnv();
 
-  const domainCategoryLocales = mockedDatabase.domainCategories
-    .flatMap(
-      ({
-        domainCategoryId,
-        domains,
-        domainCategoryLocales: domainCategoryLocale,
-      }) =>
-        domainCategoryLocale.map(({ domainCategory, body, title }) => ({
-          localeId,
-          title,
-          body,
-          domainCategory,
-          domains,
-          domainCategoryId,
-        })),
-    )
-    .find(
-      (domainCategoryLocale) =>
-        domainCategoryLocale.localeId === localeId &&
-        domainCategoryLocale.domainCategoryId === domainCategoryId,
+  const [domainCategoryLocale] = await client
+    .items(`lisa_domain_category_locale`)
+    .readMany({
+      filter: {
+        locale_id: localeId,
+        domain_category_id: domainCategoryId,
+      },
+      limit: 1,
+    })
+    .then(completeDataList);
+
+  const [
+    {
+      content_markdown: contentMarkdown,
+      name,
+      lisa_domain_category_locale_version_id: domainCategoryLocaleVersionId,
+    },
+  ] = await client
+    .items(`lisa_domain_category_locale_version`)
+    .readMany({
+      filter: {
+        lisa_domain_category_locale_id:
+          domainCategoryLocale.lisa_domain_category_locale_id,
+      },
+    })
+    .then(completeDataList)
+    .then((domainCategoryLocaleVersions) =>
+      domainCategoryLocaleVersions.sort(
+        (a, b) =>
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+      ),
     );
-  assertNotVoid(domainCategoryLocales);
+
   return {
     props: {
-      localeId,
-      domainCategoryId,
-      domainCategoryLocale: domainCategoryLocales,
+      domainCategoryLocaleVersion: {
+        domainCategoryId,
+        localeId,
+        contentMarkdown,
+        domainCategoryLocaleVersionId,
+        name,
+      },
     },
   };
 };
@@ -114,21 +130,45 @@ export const getStaticProps: GetStaticProps<DomainPageStaticProps> = async ({
 export const getStaticPaths: GetStaticPaths<{
   readonly localeId: string;
   readonly domainCategoryId: string;
-}> = async () => ({
-  paths: mockedDatabase.domainCategories.flatMap(
-    ({ domainCategoryId, domains }) =>
-      domains.flatMap(({ guides }) =>
-        guides.flatMap(({ guideLocales }) =>
-          guideLocales.map(({ localeId }) => ({
-            params: {
-              localeId,
-              domainCategoryId,
-            },
-          })),
-        ),
-      ),
-  ),
-  fallback: false,
-});
+}> = async () => {
+  const client = await getLisaDbClientFromEnv();
+  const domainDomainCategoryLocales = await client
+    .items(`lisa_domain_category_locale`)
+    .readMany()
+    .then(completeDataList);
+
+  return {
+    paths: domainDomainCategoryLocales.flatMap(
+      ({ domain_category_id: domainCategoryId, locale_id: localeId }) => ({
+        params: {
+          domainCategoryId: z.string().parse(domainCategoryId),
+          localeId: z.string().parse(localeId),
+        },
+      }),
+    ),
+    fallback: false,
+  };
+};
+
+// // http://localhost:4290/en/domain-category/cognition
+// export const getStaticPaths: GetStaticPaths<{
+//   readonly localeId: string;
+//   readonly domainCategoryId: string;
+// }> = async () => ({
+//   paths: mockedDatabase.domainCategories.flatMap(
+//     ({ domainCategoryId, domains }) =>
+//       domains.flatMap(({ guides }) =>
+//         guides.flatMap(({ guideLocales }) =>
+//           guideLocales.map(({ localeId }) => ({
+//             params: {
+//               localeId,
+//               domainCategoryId,
+//             },
+//           })),
+//         ),
+//       ),
+//   ),
+//   fallback: false,
+// });
 
 export default DomainCategoryPage;

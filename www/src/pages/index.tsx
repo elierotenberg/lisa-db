@@ -21,7 +21,7 @@ const IndexPage: FunctionComponent = () => {
         <Box justifyContent="space-between">
           <Box textAlign="center">
             <Heading as="h1" size="4xl" padding="25">
-              Welcome to L.I.S.A. DataBase
+              Welcome to LISA DataBase
             </Heading>
             <Text color="gray.400">
               Research-validated instructions to empower young generation
@@ -29,7 +29,7 @@ const IndexPage: FunctionComponent = () => {
           </Box>
 
           <Flex justifyContent="space-between">
-            <Box paddingTop="7" w="80%" m="auto">
+            <Box paddingTop={7} w="80%" m="auto">
               <SearchBar />
             </Box>
             <Box paddingTop="7">

@@ -22,15 +22,18 @@ export type Domain = {
   readonly domainId: string;
   readonly domainCategoryId: string;
 };
-export type DomainLocale = {
+export type DomainLocaleVersion = {
+  readonly domainCategoryId: string;
+  readonly domainLocaleVersionId: string;
   readonly domainId: string;
   readonly localeId: string;
-  readonly title: string;
-  readonly body: string;
+  readonly name: string;
+  readonly contentMarkdown: string;
 };
-export type DomainCategoryLocale = {
-  readonly domainCategory: string;
+export type DomainCategoryLocaleVersion = {
+  readonly domainCategoryId: string;
   readonly localeId: string;
-  readonly title: string;
-  readonly body: string;
+  readonly domainCategoryLocaleVersionId: string;
+  readonly name: string;
+  readonly contentMarkdown: string;
 };

@@ -22,24 +22,26 @@
   "homepage": "https://github.com/elierotenberg/lisa-db#readme",
   "dependencies": {
     "@chakra-ui/icons": "^1.0.13",
-    "@chakra-ui/react": "^1.6.3",
+    "@chakra-ui/react": "^1.6.4",
     "@directus/sdk": "*",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "@types/node": "^15.12.4",
+    "@lisa-db/sdk": "file:../sdk/typescript/vendor/lisa-db-sdk-0.0.1.tgz",
+    "@types/node": "^15.12.5",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.8",
     "framer-motion": "^4.1.17",
     "i18next": "^20.3.2",
-    "next": "^11.0.0",
+    "next": "^11.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-i18next": "^11.11.0",
     "react-icons": "^4.2.0",
-    "react-query": "^3.17.1",
+    "react-query": "^3.18.1",
     "react-router-dom": "^5.2.0",
     "typed-assert": "^1.0.7",
-    "typed-utilities": "^1.11.0"
+    "typed-utilities": "^1.11.0",
+    "zod": "^3.2.0"
   },
   "devDependencies": {
     "@types/chance": "^1.1.2",
@@ -54,7 +56,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "node-fetch": "^2.6.1",
-    "prettier": "^2.3.1",
+    "prettier": "^2.3.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.4"
   }

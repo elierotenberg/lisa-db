@@ -4,12 +4,14 @@
   "description": "LISA DB SDK",
   "main": "build/index.js",
   "files": [
-    "build"
+    "build",
+    "directus.d.ts"
   ],
   "scripts": {
     "test": "npm run clean && npm run build && node --trace-warnings --async-stack-traces --enable-source-maps node_modules/.bin/jest",
     "build:typescript": "babel src --out-dir build --extensions '.ts' --source-maps",
-    "build": "npm run build:typescript",
+    "build:typescript-declarations": "tsc -p . --declaration --emitDeclarationOnly",
+    "build": "npm run build:typescript && npm run build:typescript-declarations",
     "clean": "rm -rf build",
     "check:types": "tsc -p . --noEmit",
     "check:lint": "eslint src",
@@ -46,7 +48,7 @@
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-prettier": "^3.4.0",
     "jest": "^27.0.5",
-    "prettier": "^2.3.1",
+    "prettier": "^2.3.2",
     "typescript": "^4.3.4"
   }
 }

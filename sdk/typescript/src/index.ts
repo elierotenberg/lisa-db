@@ -3,7 +3,8 @@ import { AuthCredentials, Directus } from "@directus/sdk";
 import { Collections } from "../directus";
 
 export { completeItem as complete } from "./utils";
-type LisaDb = Directus<Collections>;
+
+export type LisaDb = Directus<Collections>;
 
 export const createClient = async (
   url: string,
