@@ -48,5 +48,6 @@
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.snippetSuggestions": "none",
   "editor.wordWrap": "on",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "python.formatting.provider": "black"
 }
