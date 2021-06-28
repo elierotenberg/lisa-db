@@ -19,8 +19,7 @@ const Footer: FunctionComponent = () => {
       </HStack>
       <Flex width="100%" justifyContent="center" wrap="wrap">
         <Text width="40%" textAlign="center" color="white" fontSize="sm">
-          Last Login 03.06.2021 - 11:29 | Data last updated on 03.06.2021 -
-          22:00
+          Data last updated on 03.06.2021 - 22:00
         </Text>
       </Flex>
     </Flex>

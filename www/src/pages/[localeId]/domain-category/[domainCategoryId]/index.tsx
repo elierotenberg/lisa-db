@@ -1,13 +1,15 @@
-// import NotImplemented from "../../about";
+import { GetStaticProps, GetStaticPaths } from "next";
+import { FunctionComponent, Fragment } from "react";
+import { Flex, Text, Box, Heading } from "@chakra-ui/react";
 
-import { GetStaticPaths, GetStaticProps } from "next";
-import { FunctionComponent } from "react";
-
-import { mockedDatabase } from "../../../../lib/MockData";
+import { mockedDatabase, lorem } from "../../../../lib/MockData";
 import { DomainCategoryLocale } from "../../../../lib/Models";
 import { assertNotVoid, assertString } from "../../../../lib/utils";
-
-// export default NotImplemented;
+import Footer from "../../../../components/Shell/Footer";
+import TopBar from "../../../../components/Shell/TopBar/TopBar";
+import { SideBar } from "../../../../components/Shell/SideBar/SideBar";
+import { PreviewCard } from "../../../../components/Content/Preview/PreviewCard";
+import { SearchBar } from "../../../../components/Search/SearchBar";
 
 type DomainPageStaticProps = {
   readonly localeId: string;
@@ -17,7 +19,55 @@ type DomainPageStaticProps = {
 
 const DomainCategoryPage: FunctionComponent<DomainPageStaticProps> = (
   props,
-) => <div>{JSON.stringify(props, null, 2)}</div>;
+) => {
+  return (
+    <Fragment>
+      <TopBar />
+      <Box paddingTop="100" w="80%" m="auto">
+        <SearchBar />
+      </Box>
+      <Flex justifyContent="space-between">
+        <Box>
+          <Heading as="h2" size="lg" w="100%" m="auto" padding="10">
+            Popular Guide{` `}
+          </Heading>
+        </Box>
+        <Box padding="10">
+          <SideBar />
+        </Box>
+      </Flex>
+
+      <Flex w="full" alignItems="center" justifyContent="center" wrap="wrap">
+        <PreviewCard />
+        <PreviewCard />
+        <PreviewCard />
+        <PreviewCard />
+        <PreviewCard />
+      </Flex>
+      <Box>
+        <Heading as="h2" size="lg" w="100%" m="auto" padding="10">
+          What is LISA Guide?
+        </Heading>
+        <Text justifyContent="center" align="justify" w="90%" m="auto">
+          {` `}
+          {lorem(1150)}
+        </Text>
+      </Box>
+      <Box>
+        <Heading as="h2" size="lg" w="100%" m="auto" padding="10">
+          How to read LISA Guide?
+        </Heading>
+      </Box>
+      <Box>
+        <Heading as="h2" size="lg" w="100%" m="auto" padding="10">
+          Accelerators
+        </Heading>
+      </Box>
+      {JSON.stringify(props, null, 2)}
+      <Footer />
+    </Fragment>
+  );
+};
 
 export const getStaticProps: GetStaticProps<DomainPageStaticProps> = async ({
   params,

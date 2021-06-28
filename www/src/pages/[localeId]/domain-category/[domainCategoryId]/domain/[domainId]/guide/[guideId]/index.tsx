@@ -1,12 +1,26 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { FunctionComponent } from "react";
+import { FunctionComponent, Fragment } from "react";
+import {
+  Flex,
+  Text,
+  Box,
+  Heading,
+  Divider,
+  ListItem,
+  UnorderedList,
+  Link,
+} from "@chakra-ui/react";
 
-import { mockedDatabase } from "../../../../../../../../lib/MockData";
+import Footer from "../../../../../../../../components/Shell/Footer";
+import TopBar from "../../../../../../../../components/Shell/TopBar/TopBar";
+import { lorem, mockedDatabase } from "../../../../../../../../lib/MockData";
 import {
   GuideLocale,
   GuideLocaleAuthor,
 } from "../../../../../../../../lib/Models";
 import { assertNotVoid, assertString } from "../../../../../../../../lib/utils";
+import { SideBar } from "../../../../../../../../components/Shell/SideBar/SideBar";
+import { SearchBar } from "../../../../../../../../components/Search/SearchBar";
 
 type GuidePageStaticProps = {
   readonly localeId: string;
@@ -17,9 +31,84 @@ type GuidePageStaticProps = {
   readonly guideLocaleAuthors: GuideLocaleAuthor[];
 };
 
-const GuidePage: FunctionComponent<GuidePageStaticProps> = (props) => (
-  <div>{JSON.stringify(props, null, 2)}</div>
-);
+const GuidePage: FunctionComponent<GuidePageStaticProps> = (props) => {
+  return (
+    <Fragment>
+      <TopBar />
+      <Box paddingTop="100" w="80%" m="auto">
+        <SearchBar />
+      </Box>
+      <Box>
+        <Flex justifyContent="space-between">
+          <Box>
+            <Heading as="h2" size="lg" w="100%" m="auto" padding="10">
+              Cognition{` `}
+            </Heading>
+          </Box>
+          <Box padding="10">
+            <SideBar />
+          </Box>
+        </Flex>
+        <Flex>
+          <Box>
+            {` `}
+            <Text justifyContent="center" align="justify" w="90%" ml="10">
+              {` `}
+              {lorem(1500)}
+            </Text>
+            <Box w="80%" m="auto" p="1">
+              <Divider />
+            </Box>
+            <Text justifyContent="center" align="justify" w="90%" ml="10">
+              {` `}
+              {lorem(1500)}
+            </Text>
+            <Box w="80%" m="auto" p="1">
+              <Divider />
+            </Box>
+            <Text justifyContent="center" align="justify" w="90%" ml="10">
+              {` `}
+              {lorem(1500)}
+            </Text>
+            <Box w="80%" m="auto" p="1">
+              <Divider />
+            </Box>
+          </Box>
+        </Flex>
+      </Box>
+
+      <Box>
+        <Heading as="h2" size="lg" w="100%" m="auto" padding="10">
+          Explore its subdomains :
+        </Heading>
+      </Box>
+      <Box w="90%" m="auto">
+        <UnorderedList>
+          <Link>
+            <ListItem>Attention</ListItem>
+          </Link>
+          <Link>
+            <ListItem>Planning and Organization</ListItem>
+          </Link>
+          <Link>
+            <ListItem>Memory</ListItem>
+          </Link>
+          <Link>
+            <ListItem>Abstract Learning</ListItem>
+          </Link>
+          <Link>
+            <ListItem>Thnking Speed</ListItem>
+          </Link>
+        </UnorderedList>
+      </Box>
+      <Box w="80%" m="auto" p="1">
+        <Divider />
+      </Box>
+      {JSON.stringify(props, null, 2)}
+      <Footer />
+    </Fragment>
+  );
+};
 
 export const getStaticProps: GetStaticProps<GuidePageStaticProps> = async ({
   params,
