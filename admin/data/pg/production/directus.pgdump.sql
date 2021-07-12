@@ -5,7 +5,7 @@
 -- Dumped from database version 13.2
 -- Dumped by pg_dump version 13.3 (Ubuntu 13.3-1.pgdg20.04+1)
 
--- Started on 2021-06-24 15:28:48 CEST
+-- Started on 2021-07-12 10:53:03 CEST
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -39,13 +39,13 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 86	lisa_domain_category_locale_version	content_markdown	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N
 108	lisa_author	lisa_author_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
 105	lisa_domain_category_locale_author	lisa_domain_category_locale_id	\N	select-dropdown-m2o	{"template":"{{domain_category_id.domain_category_id}}{{locale_id.locale_id}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+109	lisa_domain	domain_category_id	\N	select-dropdown-m2o	{"template":"{{domain_category_id}}"}	\N	\N	f	f	\N	full	\N	\N	\N
 55	domain_locale	domain_locale_id	uuid	input	\N	\N	\N	t	t	\N	full	\N	\N	\N
 61	domain_locale	body	\N	input-rich-text-html	{"toolbar":["bold","italic","underline","removeformat","link","bullist","numlist","blockquote","h1","h2","h3","image","media","hr","code","fullscreen","aligncenter","alignjustify","alignleft","alignnone","alignright","subscript","strikethrough","superscript","unlink","h4","h5","h6","indent","outdent","undo","redo"]}	formatted-value	\N	f	f	\N	full	\N	\N	\N
 118	lisa_guide_locale_author	lisa_guide_locale_author_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
 81	lisa_domain_category_locale_version	created_by	\N	select-dropdown-m2o	{"template":"{{lisa_author_first_name}}{{lisa_author_last_name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
 67	lisa_guide	lisa_guide_id	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
 119	lisa_guide_locale_author	lisa_author_id	\N	select-dropdown-m2o	{"template":"{{lisa_author_first_name}}{{lisa_author_last_name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
-109	lisa_domain	domain_category_id	\N	select-dropdown-m2o	{"template":"{{domain_category_id}}"}	\N	\N	f	f	\N	full	\N	\N	\N
 106	lisa_static_content_locale	lisa_static_content_locale_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
 95	lisa_static_content_locale_version	created_by	\N	select-dropdown-m2o	{"template":"{{lisa_author_first_name}}{{lisa_author_last_name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
 96	lisa_static_content_locale_version	lisa_static_content_locale_id	\N	select-dropdown-m2o	{"template":"{{static_content_id.static_content_id}}{{locale_id.name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
@@ -133,7 +133,106 @@ COPY public.directus_fields (id, collection, field, special, interface, options,
 180	disorder_category_intervention	disorder_category_id	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
 181	disorder_category_intervention	disorder_category_intervention_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
 182	disorder_category_technology	disorder_category_technology_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
-183	disorder_intervention	disorder_intervention_id	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
+183	disorder_intervention	disorder_intervention_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+184	disorder_intervention	intervention_id	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
+185	disorder_reference	disorder_reference_id	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
+186	disorder_reference_author	disorder_reference_id	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
+187	disorder_reference_author	rank	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
+188	disorder_reference_author	disorder_reference_author_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+189	disorder_reference_author	author_id		select-dropdown-m2o	{"template":"{{first_initial}}{{middle_initial}}{{surname}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+190	disorder_sign_symptom	disorder_id	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
+191	disorder_sign_symptom	sign_symptom_id	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
+192	disorder_sign_symptom	disorder_sign_symptom_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+193	disorder_technology	disorder_technology_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+194	guide	guide_reference_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+195	guide_accommodation	guide_accommodation_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+196	guide_accommodation	accommodation_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+197	guide_accommodation	guide_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+198	guide_audience	guide_audience_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+199	guide_audience	audience_id	\N	select-dropdown-m2o	{"template":"{{person}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+200	guide_audience	guide_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+201	guide_disorder	disorder_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+202	guide_disorder	guide_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+203	guide_disorder	guide_disorder_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+204	guide_disorder_category	disorder_category_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+205	guide_disorder_category	guide_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+206	guide_disorder_category	guide_disorder_category_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+207	guide_guide_type	guide_type_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+208	guide_guide_type	guide_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+209	guide_guide_type	guide_guide_type_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+210	guide_intervention	intervention_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+211	guide_intervention	guide_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+212	guide_intervention	guide_intervention_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+213	guide_reference	guide_reference_id	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
+214	guide_technology	technology_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+215	guide_technology	guide_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+216	guide_technology	guide_technology_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+217	intervention	description	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N
+218	intervention_research_evidence	intervention_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+219	intervention_research_evidence	research_evidence_id	\N	select-dropdown-m2o	{"template":"{{research_evidence_id}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+220	intervention_research_evidence	intervention_research_evidence_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+221	question	questionnaire_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+222	question	paper_instruction_preamble	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N
+223	question	digital_instruction_preamble	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N
+224	question	paper_instruction	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N
+225	question	digital_instruction	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N
+226	question	question_context	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N
+227	question	response_option	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N
+228	question_response_type	response_type_id	\N	select-dropdown-m2o	{"template":"{{type}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+229	question_response_type	question_id	\N	select-dropdown-m2o	{"template":"{{question_context}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+230	questionnaire	description	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N
+231	questionnaire	license_id	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
+232	questionnaire	language_source_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+233	questionnaire_assessment_reference	assessment_reference_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+234	questionnaire_assessment_reference	questionnaire_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+235	questionnaire_assessment_reference	questionnaire_assessment_reference_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+236	questionnaire_author	questionnaire_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+237	questionnaire_author	questionnaire_author_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+238	questionnaire_author	author_id	\N	select-dropdown-m2o	{"template":"{{first_initial}}{{middle_initial}}{{surname}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+239	questionnaire_disorder	questionnaire_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+240	questionnaire_disorder	disorder_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+241	questionnaire_disorder	questionnaire_disorder_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+242	questionnaire_disorder_category	questionnaire_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+243	questionnaire_disorder_category	disorder_category_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+244	questionnaire_disorder_category	questionnaire_disorder_category_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+245	questionnaire_language_not_mhdb	questionnaire_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+246	questionnaire_language_not_mhdb	language_source_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+247	questionnaire_language_not_mhdb	questionnaire_language_not_mhdb_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+248	questionnaire_respondent	respondent_id	\N	select-dropdown-m2o	{"template":"{{person}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+249	questionnaire_respondent	questionnaire_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+250	questionnaire_respondent	questionnaire_respondent_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+251	questionnaire_sign_symptom	questionnaire_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+252	questionnaire_sign_symptom	sign_symptom_id	\N	select-dropdown-m2o	{"template":"{{sign_symptom_id}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+253	questionnaire_sign_symptom	questionnaire_sign_symptom_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+254	questionnaire_subject	questionnaire_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+255	questionnaire_subject	subject_id	\N	select-dropdown-m2o	{"template":"{{person}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+256	questionnaire_subject	questionnaire_subject_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+257	research_evidence	research_evidence_id	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
+258	research_evidence	context	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N
+259	response_type	response_type_definition	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N
+260	sign_symptom	disorder_reference_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+261	sign_symptom	sign_symptom_id	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
+262	sign_symptom_accommodation	accommodation_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+263	sign_symptom_accommodation	sign_symptom_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+264	sign_symptom_accommodation	sign_symptom_accommodation_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+265	sign_symptom_intervention	intervention_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+266	sign_symptom_intervention	sign_symptom_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+267	sign_symptom_intervention	sign_symptom_intervention_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+268	sign_symptom_neutral_construct	sign_symptom_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+269	sign_symptom_neutral_construct	sign_symptom_neutral_construct_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+270	sign_symptom_technology	technology_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+271	sign_symptom_technology	sign_symptom_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+272	sign_symptom_technology	sign_symptom_technology_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+274	sign_symptom_with_example	sign_symptom_example_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+273	sign_symptom_with_example	sign_symptom_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+275	sign_symptom_with_example	sign_symptom_with_example_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+276	task	description	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N
+277	task	assessment_reference_id	\N	select-dropdown-m2o	{"template":"{{title}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+278	technology	description	\N	input-rich-text-md	\N	\N	\N	f	f	\N	full	\N	\N	\N
+279	technology_research_evidence	technology_id	\N	select-dropdown-m2o	{"template":"{{name}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+280	technology_research_evidence	research_evidence_id	\N	select-dropdown-m2o	{"template":"{{research_evidence_id}}"}	\N	\N	f	f	\N	full	\N	\N	\N
+281	technology_research_evidence	technology_research_evidence_id	uuid	\N	\N	\N	\N	t	f	\N	full	\N	\N	\N
+282	lisa_domain_category	domain_category_id	\N	\N	\N	\N	\N	f	f	\N	full	\N	\N	\N
 \.
 
 
@@ -354,7 +453,7 @@ ALTER TABLE public.directus_permissions ENABLE TRIGGER ALL;
 -- Name: directus_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.directus_fields_id_seq', 183, true);
+SELECT pg_catalog.setval('public.directus_fields_id_seq', 282, true);
 
 
 --
@@ -366,7 +465,7 @@ SELECT pg_catalog.setval('public.directus_fields_id_seq', 183, true);
 SELECT pg_catalog.setval('public.directus_permissions_id_seq', 189, true);
 
 
--- Completed on 2021-06-24 15:28:52 CEST
+-- Completed on 2021-07-12 10:53:08 CEST
 
 --
 -- PostgreSQL database dump complete
