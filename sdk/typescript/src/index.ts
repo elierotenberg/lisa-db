@@ -4,13 +4,15 @@ import { Collections } from "../directus";
 
 export { completeItem as complete } from "./utils";
 
-export type LisaDb = Directus<Collections>;
+export type LisaDbCollections = Collections;
+
+export type LisaDb = Directus<LisaDbCollections>;
 
 export const createClient = async (
   url: string,
   tokenOrCredentials: string | AuthCredentials,
 ): Promise<LisaDb> => {
-  const client = new Directus<Collections>(url);
+  const client = new Directus<LisaDbCollections>(url);
 
   if (typeof tokenOrCredentials === `string`) {
     await client.auth.static(tokenOrCredentials);
