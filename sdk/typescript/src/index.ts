@@ -2,7 +2,7 @@ import { AuthCredentials, Directus } from "@directus/sdk";
 
 import { Collections } from "../directus";
 
-export { completeItem as complete } from "./utils";
+export { completeItem as complete, Complete } from "./utils";
 
 export type LisaDbCollections = Collections;
 

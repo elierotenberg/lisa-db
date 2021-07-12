@@ -1,6 +1,6 @@
 type Maybe<T> = T | undefined;
 
-type Complete<T> = Required<
+export type Complete<T> = Required<
   {
     readonly [K in keyof T]: T[K] extends Maybe<infer U> ? U : never;
   }
